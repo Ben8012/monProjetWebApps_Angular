@@ -11,6 +11,9 @@ import { FormInscriptionComponent } from './form-inscription/form-inscription.co
 import { SitePlongeeComponent } from './site-plongee/site-plongee.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SiteDePlongeeService } from './shared/api/site-de-plongee.service';
+import { FormModificationComponent } from './form-modification/form-modification.component';
 
 
 
@@ -22,15 +25,19 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     FormInscriptionComponent,
     SitePlongeeComponent,
-    LoginComponent
+    LoginComponent,
+    FormModificationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    SiteDePlongeeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

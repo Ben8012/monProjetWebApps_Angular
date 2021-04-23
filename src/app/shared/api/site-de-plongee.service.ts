@@ -16,4 +16,24 @@ export class SiteDePlongeeService {
       )
   }
 
+  postCreateUtilisateur(myForm : any)
+  {
+    this._httpClient.post('http://localhost:3000/createUtilisateur', myForm)
+    .subscribe(
+      (data) => {
+        console.log(data)
+      }
+    )
+  }
+
+  postUpdateUtilisateur(myForm2 : any)
+  {
+    this._httpClient.post('http://localhost:3000/updateUtilisateur', myForm2)
+    .subscribe(
+      (data) => {
+        console.log(data)
+      }
+    )
+  }
+
 }

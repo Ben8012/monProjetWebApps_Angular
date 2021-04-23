@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-center" style="margin:10px;">
+  <h4>Modifiez votre profile</h4>
+</div>
+
+<form [formGroup] ="myForm2" (ngSubmit)="onSubmit()">
+    <div class="d-flex justify-content-center" style="margin:10px;">
+        <label for="AncienNomUtilsateur">Modifiez via votre nom</label>
+        <input type="text" class="form-control" formControlName="AncienNomUtilsateur" placeholder="Votre nom">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="updateNomUtilsateur">Nom</label>
+            <input type="text" class="form-control" formControlName="updateNomUtilsateur" placeholder="Votre nom">
+        </div>
+        
+        <div class="form-group col-md-6">
+            <label for="updatePrenomUtilsateur">Prénom</label>
+            <input type="text" class="form-control" formControlName="updatePrenomUtilsateur" placeholder="Votre prénom">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="updateEmailUtilsateur">Email</label>
+            <input type="email" class="form-control" formControlName="updateEmailUtilsateur" placeholder="Email">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="updatePasswordlUtilsateur">Modifiez votre mot de passe</label>
+            <input type="password" class="form-control" formControlName="updatePasswordlUtilsateur" placeholder="Modifiez votre mot de passe">
+        </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-10">
+          <label for="updateRuelUtilsateur">Rue</label>
+          <input type="text" class="form-control" formControlName="updateRuelUtilsateur" placeholder="Votre rue ">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="updateNumerolUtilsateur">Numero</label>
+        <input type="number" class="form-control" formControlName="updateNumerolUtilsateur" placeholder="Votre numero ">
+    </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="updateVillelUtilsateur">Ville</label>
+            <input type="text" class="form-control" formControlName="updateVillelUtilsateur" placeholder="Votre ville" >
+        </div>
+        <div class="form-group col-md-4">
+          <label for="updatePaysUtilsateur">Pays</label>
+          <input type="text" class="form-control" formControlName="updatePayslUtilsateur" placeholder="Votre ville" >
+        </div>
+        <div class="form-group col-md-4">
+            <label for="updateCodePostalUtilsateur">Code postal</label>
+            <input type="number" class="form-control" formControlName="updateCodePostalUtilsateur" placeholder="Votre code postal" >
+        </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="updateDateDeNaissanceUtilsateur">Date de naissance</label>
+          <input type="date" class="form-control" formControlName="updateDateDeNaissanceUtilsateur" placeholder="Votre date de naissance">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="updateLieuDeNaissanceUtilsateur">Lieu de naissance</label>
+          <input type="text" class="form-control" formControlName="updateLieuDeNaissanceUtilsateur" placeholder="Votre lieu de naissance">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="updateNumeroPadiUtilsateur">Numero Padi</label>
+          <input type="number" class="form-control" formControlName="updateNumeroPadiUtilsateur" placeholder="Votre numero padi">
+      </div>
+      <div class="form-group col-md-4">
+          <label for="updateNiveauActuelUtilsateur">Niveau actuel</label>
+          <select formControlName="updateNiveauActuelUtilsateur" class="form-control">
+            <option selected>Choix...</option>
+            <option  value="Open WaterDiver">Open Water Diver</option>
+            <option  value="Advanced Open WaterDiver">Advanced Open Water Diver</option>
+            <option  value="Advanced OpenWater Dive Deep">Advanced Open Water Diver Deep</option>
+            <option  value="Rescue Diver">Rescue Diver</option>
+            <option  value="Divemaster">Divemaster</option>
+            <option  value="Assistant Instructeur">Assistant Instructeur</option>
+            <option  value="Instructeur">Instructeur</option>
+            <option  value="Course Directeur">Course directeur</option>
+          </select>
+      </div>
+    
+      <div class="form-group col-md-6">
+          <label for="updateNomAssurancelUtilsateur">Nom de l'assurance</label>
+          <input type="text" class="form-control" formControlName="updateNomAssurancelUtilsateur" placeholder="Nom de votre assureur">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="updateNumeroAssurancelUtilsateur">Numero de votre assurance</label>
+          <input type="number" class="form-control" formControlName="updateNumeroAssurancelUtilsateur" placeholder="Votre nuemro d'assurance">
+      </div>
+    </div>
+
+  <div class="d-flex justify-content-center" style="margin:10px;">
+      <button type="submit" [disabled]="myForm2.invalid" class="btn btn-primary">Modifiez</button>
+  </div>
+        
+    
+</form>

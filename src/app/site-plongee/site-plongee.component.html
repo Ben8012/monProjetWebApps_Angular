@@ -1,6 +1,6 @@
 <div class="row">
 <div class="card" style="width: 18rem;margin:10px;" *ngFor= "let site of siteDePlongee">
-    <img src="{{site.photo}}" class="card-img-top" style="width:300px; height:200px;" alt="...">
+    <img src="{{env}}{{site.photo}}" class="card-img-top" style="width:300px; height:200px;" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{site.nom}}</h5>
       <p class="card-text">Niveau minimum: </p>
