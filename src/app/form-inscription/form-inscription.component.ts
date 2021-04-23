@@ -9,7 +9,6 @@ export class FormInscriptionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
   }
 
 }
