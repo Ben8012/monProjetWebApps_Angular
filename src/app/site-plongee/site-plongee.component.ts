@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {SiteDePlongeeService} from '../shared/api/site-de-plongee.service'
+import {SiteDePlongee, SiteDePlongeeService} from '../shared/api/site-de-plongee.service'
 import { environment } from '../../environments/environment';
+
 
 @Component({
   selector: 'app-site-plongee',
   templateUrl: './site-plongee.component.html'
 })
 export class SitePlongeeComponent implements OnInit {
-  siteDePlongee:Array<any>=[];
+  siteDePlongee:SiteDePlongee[]=[];
   public env : string = ""
-  constructor(private siteDePlongeeService:SiteDePlongeeService) {}
+  constructor(private siteDePlongeeService:SiteDePlongeeService,) {}
 
   ngOnInit(): void {
     this.env = environment.sitePlongeeImg
@@ -17,10 +18,10 @@ export class SitePlongeeComponent implements OnInit {
   }
 
   getSiteDePlongee(){
-    return this.siteDePlongeeService.getAll()
+    return this.siteDePlongeeService.getSite()
     .subscribe(
       siteDePlongee =>{
-        this.siteDePlongee = siteDePlongee.sites
+        this.siteDePlongee = siteDePlongee
       }
     )
   }

@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SiteDePlongeeService } from './shared/api/site-de-plongee.service';
 import { FormModificationComponent } from './form-modification/form-modification.component';
+import { InfosCarrieresComponent } from './infos-carrieres/infos-carrieres.component';
 
 
 
@@ -26,7 +27,8 @@ import { FormModificationComponent } from './form-modification/form-modification
     FormInscriptionComponent,
     SitePlongeeComponent,
     LoginComponent,
-    FormModificationComponent
+    FormModificationComponent,
+    InfosCarrieresComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,15 @@
+<div class="container" style="margin:10px">
+  <div class="media">
+      <img [src]="env+OneSiteDePlongee.photo" class="mr-3" style="width: 380px; height:300px;" alt="...">
+      <div class="media-body">
+        <h5 class="mt-0">{{OneSiteDePlongee.nom}}</h5>
+        <p>{{OneSiteDePlongee.info}}</p>
+        <div class="d-flex flex-row">
+          <div class="p-6">
+              <button class="btn btn-primary" ><a style="color:white" href="{{OneSiteDePlongee.site_web}}">lien vers le site </a></button> 
+              <button class="btn btn-primary" (click)="downloadPlan()"  value="{{OneSiteDePlongee.plan}}">plan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
