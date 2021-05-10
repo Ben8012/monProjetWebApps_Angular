@@ -1,0 +1,94 @@
+
+<div class="container" >
+  <!--<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" >
+    <div class="carousel-inner" >
+      <div class="carousel-item active" >
+        <div class="fit">
+            <img [src]="'http://localhost:3000/images_formations/'+OneSpeciality.photo1" class="d-block w-100 " alt="...">
+        </div>
+              
+      </div>
+      <div class="carousel-item">
+          <div class="fit">
+              <img [src]="'http://localhost:3000/images_formations/'+OneSpeciality.photo2" class="d-block w-100 " alt="...">
+          </div>
+      </div>
+      <div class="carousel-item">
+          <div class="fit">
+              <img [src]="'http://localhost:3000/images_formations/'+OneSpeciality.photo3" class="d-block w-100 " alt="...">
+          </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" data-target="#carouselExampleControls" role="button" data-slide="prev" data-ride="carousel">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" data-target="#carouselExampleControls" role="button" data-slide="next" data-ride="carousel">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>-->
+
+  <div class="video-player-wrapper">
+    <vg-player>
+      <vg-overlay-play></vg-overlay-play>
+      <vg-buffering></vg-buffering>
+  
+      <vg-scrub-bar>
+        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+      </vg-scrub-bar>
+  
+      <vg-controls>
+        <vg-play-pause></vg-play-pause>
+        <vg-playback-button></vg-playback-button>
+  
+        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+  
+        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+  
+        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+  
+        <vg-track-selector></vg-track-selector>
+        <vg-mute></vg-mute>
+        <vg-volume></vg-volume>
+  
+        <vg-fullscreen></vg-fullscreen>
+      </vg-controls>
+      <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" crossorigin autoplay muted >
+        <source [src]="'../../assets/video/'+OneSpeciality.video" type="video/mp4">
+        <source [src]="'../../assets/video/'+OneSpeciality.video" type="video/ogg">
+        <source [src]="'../../assets/video/'+OneSpeciality.video"type="video/webm">
+        <track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt"
+        srclang="en" default>
+        <track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt"
+        srclang="es">
+        <track kind="subtitles" label="French" src="http://static.videogular.com/assets/subs/pale-blue-dot-fr.vtt"
+        srclang="fr">
+      </video>
+    </vg-player> 
+
+
+    <div class="media">
+        <div class="media-body" style="padding:20px">
+            
+          <h5 class="mt-0"> {{OneSpeciality.nom}}</h5>
+          <p>{{OneSpeciality.intro}}</p>
+          <h6>Le cours:</h6>
+          <p>{{OneSpeciality.infos}}</p>
+          <h6>Conditions requises: </h6>
+          <p>{{OneSpeciality.prerequi}}</p>
+          <h6>Matériel necessaire:</h6>
+          <p>{{OneSpeciality.materiel}}</p>
+          <h6>Durée:</h6>
+          <p>{{OneSpeciality.duree}}</p>
+          <h6>Prix: {{OneSpeciality.prix}}€</h6>
+          <p></p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-around" style="padding-bottom:20px;">
+        <button class="btn btn-primary" >choisir cette formation</button> 
+    </div>
+</div>
+

@@ -9,21 +9,21 @@ import { environment } from '../../environments/environment';
 })
 export class SitePlongeeComponent implements OnInit {
   siteDePlongee:SiteDePlongee[]=[];
-  public env : string = ""
   constructor(private siteDePlongeeService:SiteDePlongeeService,) {}
 
   ngOnInit(): void {
-    this.env = environment.sitePlongeeImg
     this.getSiteDePlongee()
+    
   }
 
   getSiteDePlongee(){
-    return this.siteDePlongeeService.getSite()
+    this.siteDePlongeeService.getSite()
     .subscribe(
       siteDePlongee =>{
         this.siteDePlongee = siteDePlongee
       }
     )
+    
   }
-
+  
 }

@@ -11,4 +11,8 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  goFb(){
+    window.open("https://www.facebook.com/groups/342660476729885");
+  }
+
 }

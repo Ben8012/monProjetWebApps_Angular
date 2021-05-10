@@ -1,9 +1,51 @@
-<h1>Bienvnue sur le site de Enjoy Your Dive </h1>
+<div class="container">
+    
+    <h1 style=" text-align:center; padding:20px">Bienvenue sur le site PADI Enjoy Your Dive Belguim</h1>
 
-<h3>Ce site est dédié a la plongée vous y trouvez de multiples informations concerant les sites de plongée, les sorties organisées, les formations disponnibles et encore bien d'autres choses alors n'hesitez pas a naviger (hors de l'eau pour cette fois)</h3>
-<div  class="row">
-    <div class="justify-content-center">
-        <img src="assets/images/sites/home.jpg" alt="" style="height: 400px; width:600px; margin-right:25px">
-    </div>
+    <!-- <div class="d-flex justify-content-center" >
+        <img src="http://localhost:3000/images/home.jpg" alt="" style="height: 450px; width:800px;">
+       
+    </div> -->
+    <div class="video-player-wrapper">
+        <vg-player>
+          <vg-overlay-play></vg-overlay-play>
+          <vg-buffering></vg-buffering>
+      
+          <vg-scrub-bar>
+            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+          </vg-scrub-bar>
+      
+          <vg-controls autoplay>
+            <vg-play-pause></vg-play-pause>
+            <vg-playback-button></vg-playback-button>
+      
+            <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+      
+            <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+      
+            <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+            <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+      
+            <vg-track-selector></vg-track-selector>
+            <vg-mute></vg-mute>
+            <vg-volume></vg-volume>
+      
+            <vg-fullscreen></vg-fullscreen>
+          </vg-controls>
+          <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" crossorigin autoplay> 
+            <!--<video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" autoplay muted onloadedmetadata="this.muted = true">-->
+            <source src="'../../assets/video/padi_intro.mp4" type="video/mp4">
+            
+            <track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt"
+            srclang="en" default>
+            <track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt"
+            srclang="es">
+            <track kind="subtitles" label="Francais" src="http://static.videogular.com/assets/subs/pale-blue-dot-fr.vtt"
+            srclang="fr">
+          </video>
+        </vg-player> 
+    
+    <h5 style="padding: 20px;" >Ce site est dédié a la plongée PADI, vous y trouverez de multiples informations concerant les sites de plongée, les sorties organisées, les formations disponnibles et encore bien d'autres choses alors n'hesitez pas a naviger.</h5>
+    
 </div>
-

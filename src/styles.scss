@@ -1,11 +1,30 @@
-@import 'themes';
+// @import 'themes';
 
-@import '~@nebular/theme/styles/globals';
 
-@include nb-install() {
-  @include nb-theme-global();
-};
+// @include nb-install() {
+//   @include nb-theme-global();
+// };
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+
+.fit {
+    height: 60vh;
+    overflow: hidden;
+    img {
+        width: 100%;
+        object-fit: cover;
+        height: 100%;
+    }
+}
+
+.fondEcrand{
+    background-image:url('http://localhost:3000/images_formations/blue_sea_wallpaper_1920x1200.jpg'); 
+    // opacity:0.33;
+}
+

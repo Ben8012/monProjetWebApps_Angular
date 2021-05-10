@@ -1,0 +1,85 @@
+<div class="container">
+    <br>
+    <div class="d-flex justify-content-center" >
+    <h4>Ajouter une plongée a votre carnet de plongée </h4>
+    </div>
+    <form [formGroup] ="formCarnet" (ngSubmit)="onSubmit()" style="padding: 10px;">
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" formControlName="date" >
+            </div>
+            <div class="form-group col-md-3">
+                <label for="type_plongee">Quel type de plongée avez vous fait?</label>
+                <select formControlName="type_plongee" class="form-control">
+                    <option selected>Choix...</option>
+                    <option  value="Formation">Formation</option>
+                    <option  value="Exploration">Exploration</option>
+                </select>
+            </div>
+        </div>  
+        <div class="form-row">
+           
+            <div class="form-group col-md-6">
+                <label for="nom">Nom</label>
+                <input type="text" class="form-control" formControlName="nom" placeholder="Nomez votre plongée">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lieux">Site</label>
+
+                <select formControlName="lieux" class="form-control">
+                    <option selected  >Choix...</option>
+                    <option *ngFor="let site of sites" 
+                        value="{{site.nom}}">
+                        {{site.nom}}
+                    </option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="duree">Temps de plongée en minutes</label>
+                <input type="number" class="form-control" formControlName="duree" placeholder="">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="profondeur">A quel profondeur avez vous plongé</label>
+                <input type="number" class="form-control" formControlName="profondeur" placeholder="Profondeur max">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="temperature_air">Temperature hors de l'eau</label>
+                <input type="number" class="form-control" formControlName="temperature_air" placeholder="T° air ">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="temperature_eau">Temperature de l'eau</label>
+                <input type="number" class="form-control" formControlName="temperature_eau" placeholder="T° eau ">
+            </div>
+        </div>  
+        
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label class="form-check-label" for="plongeeDeco">Plongée avec déco</label>
+            </div>
+            <div class="form-group col-md-2"> 
+                <input type="checkbox" class="form-control" formControlName="deco"[(ngModel)]="deco">
+            </div>
+            <div class="form-group col-md-8" *ngIf="deco">
+                <label for="palier">Indiquez vos palier, leur durée, leur profondeur</label>
+                <input type="text" class="form-control" formControlName="palier" placeholder="palier" >
+            </div>
+        </div>
+        <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="info">Observations</label>
+            <input type="text" class="form-control" formControlName="info" placeholder="Citez vos observation lors de cette plongée">
+        </div>
+
+        <div class="form-row">
+        <div class="form-group col-md-12" >
+            <button type="submit" [disabled]="formCarnet.invalid" class="btn btn-primary">Validez</button>
+        </div> 
+        <br> 
+    
+</div>

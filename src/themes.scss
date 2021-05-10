@@ -1,5 +1,6 @@
 @import '~@nebular/theme/styles/theming';
 @import '~@nebular/theme/styles/themes/default';
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
 
 $nb-themes: nb-register-theme((
 

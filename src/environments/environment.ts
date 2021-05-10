@@ -4,8 +4,11 @@
 
 export const environment = {
   production: false,
-  sitePlongeeImg : "assets/images/sites/"
+  sitePlongeeImg : "assets/images/sites/",
+  pdfSitePlongee: "assets/images/plans/"
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

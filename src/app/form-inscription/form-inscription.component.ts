@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
 
 @Component({
@@ -9,28 +10,28 @@ import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
 export class FormInscriptionComponent implements OnInit {
 
   myForm : any
-  constructor(private apiService : SiteDePlongeeService, private formBuilder : FormBuilder) {
+  constructor(private apiService : SiteDePlongeeService, private formBuilder : FormBuilder, private router:Router) {
 
   }
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
       
-        createNomUtilsateur : ["Benji", [Validators.required]],   
-        createPrenomUtilsateur : ["Tata", [Validators.required]], 
-        createEmailUtilsateur : ["tata@mail.com", [Validators.required]], 
-        createPasswordlUtilsateur : ["test1234", [Validators.required]], 
-        createRuelUtilsateur : ["du sexe", [Validators.required]], 
-        createNumerolUtilsateur : ["45", [Validators.required]],
-        createVillelUtilsateur : ["bxl", [Validators.required]], 
-        createPayslUtilsateur : ["bel", [Validators.required]],  
-        createCodePostalUtilsateur : ["6100", [Validators.required]], 
-        createDateDeNaissanceUtilsateur : ["01-06-1991", [Validators.required]], 
-        createLieuDeNaissanceUtilsateur : ["la louière", [Validators.required]],
-        createNumeroPadiUtilsateur : ["13245678", [Validators.required]],
-        createNiveauActuelUtilsateur : ["0", [Validators.required]], 
-        createNomAssurancelUtilsateur : ["Tarlouze.com", [Validators.required]],   
-        createNumeroAssurancelUtilsateur : ["4242", [Validators.required]]   
+        createNomUtilsateur : ["", [Validators.required]],   
+        createPrenomUtilsateur : ["", [Validators.required]], 
+        createEmailUtilsateur : ["", [Validators.required]], 
+        createPasswordlUtilsateur : ["", [Validators.required]], 
+        createRuelUtilsateur : ["", [Validators.required]], 
+        createNumerolUtilsateur : ["", [Validators.required]],
+        createVillelUtilsateur : ["", [Validators.required]], 
+        createPayslUtilsateur : ["", [Validators.required]],  
+        createCodePostalUtilsateur : ["", [Validators.required]], 
+        createDateDeNaissanceUtilsateur : ["", [Validators.required]], 
+        createLieuDeNaissanceUtilsateur : ["", [Validators.required]],
+        createNumeroPadiUtilsateur : ["", [Validators.required]],
+        createNiveauActuelUtilsateur : ["", [Validators.required]], 
+        createNomAssurancelUtilsateur : ["", [Validators.required]],   
+        createNumeroAssurancelUtilsateur : ["", [Validators.required]]   
               
     })
   }
@@ -40,6 +41,7 @@ export class FormInscriptionComponent implements OnInit {
     if(this.myForm.valid)
     {
       this.apiService.postCreateUtilisateur(this.myForm.value)
+      this.router.navigate(['/'])
     }
   }
 

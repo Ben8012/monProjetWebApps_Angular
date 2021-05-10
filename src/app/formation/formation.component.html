@@ -1,0 +1,37 @@
+<br>
+<h2 style="text-align: center;">Les formations</h2>
+<br>
+<div class="row justify-content-center" >
+    <div class="d-flex align-items-center " style="width: 18rem;margin:10px; ;" *ngFor= "let formation of formations">
+      <div>
+        <h6 style="text-align: center;">{{formation.nom}}</h6>
+        <a [routerLink]="['app-infos-formation', formation.id]" >
+          <img [src]="'http://localhost:3000/images_formations/'+formation.image" style="width:286px; height:200px;margin:10px;" alt="..."> 
+        </a>         
+      </div>
+    </div>
+</div>
+<br>
+<br>
+<h2 style="text-align: center;">Les specialitées</h2>
+<br>
+  <div class="row justify-content-center">
+    <div class="d-flex align-items-center " style="width: 18rem;margin:10px; ;" *ngFor= "let speciality of specialitys">
+      <div>
+        <h6 style="text-align: center;">{{speciality.nom}}</h6>
+        <a [routerLink]="['app-infos-specialite', speciality.id]" >
+          <img [src]="'http://localhost:3000/images_formations/'+speciality.image" style="width:286px; height:200px;margin:10px;" alt="..."> 
+        </a>         
+      </div>
+    </div>
+    <!-- <div class="card text-center bg-primary mb-3" style="width: 18rem;margin:10px;" *ngFor= "let speciality of specialitys">
+        <img [src]="'http://localhost:3000/images_formations/'+speciality.image" class="card-img-top" style="width:286px; height:200px;" alt="...">
+        <div class="card-body ">
+          <h5 class="card-title">{{speciality.nom}}</h5>
+    
+          <div class="">
+            <a [routerLink]="['app-infos-specialite', speciality.id]" class="btn btn-secondary"  >voir en detail </a>
+          </div>
+        </div>
+    </div> -->
+  </div>

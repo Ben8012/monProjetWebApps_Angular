@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
 
 @Component({
   selector: 'app-login',
@@ -6,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  myForm3 : any
+  constructor(private apiService : SiteDePlongeeService, private formBuilder : FormBuilder) {
 
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+    this.myForm3 = this.formBuilder.group({
+      
+      login : ["", [Validators.required]],   
+      password : ["", [Validators.required]] 
+    })
+  }
+
+  onSubmit()
+  {
+    if(this.myForm3.valid)
+    {
+      this.apiService.postCreateUtilisateur(this.myForm3.value)
+    }
+  }
 }
