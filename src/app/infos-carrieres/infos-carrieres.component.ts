@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
-import { SiteDePlongee, SiteDePlongeeService} from '../shared/api/site-de-plongee.service'
 import { HttpClient } from '@angular/common/http';
-
+import {  SiteDePlongeeService} from '../shared/api/site-de-plongee.service';
+import { SiteDePlongee } from '../shared/api/class.service';
 
 
 @Component({
@@ -15,9 +15,9 @@ export class InfosCarrieresComponent implements OnInit {
   public OneSiteDePlongee!:SiteDePlongee
   public id : any 
 
-  constructor(private siteDePlongeeService:SiteDePlongeeService,private route: ActivatedRoute,private http: HttpClient, public router : ActivatedRoute )
+  constructor(private siteDePlongeeService:SiteDePlongeeService,private route: ActivatedRoute,private http: HttpClient)
   {
-    this.OneSiteDePlongee = this.router.snapshot.data["datas"]
+    this.OneSiteDePlongee = this.route.snapshot.data["datas"]
   }
 
   ngOnInit(): void {

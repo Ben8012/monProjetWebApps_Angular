@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Formations, SiteDePlongeeService, Speciality } from '../shared/api/site-de-plongee.service';
 import  { VgApiService }  from  '@videogular/ngx-videogular/core';
 import { VgPlayerComponent } from '@videogular/ngx-videogular/core';
+import {  SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
+import { Formations } from '../shared/api/class.service';
 
 @Component({
   selector: 'app-infos-formation',

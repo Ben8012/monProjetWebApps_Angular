@@ -7,13 +7,13 @@ import { SiteDePlongeeService } from './site-de-plongee.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ResolverInfosSpecialiteService implements Resolve<any>{
+export class ResolverUpdateCarnetService implements Resolve<any>{
 
   constructor(public serve :  SiteDePlongeeService) { }
 
 
   resolve(route : ActivatedRouteSnapshot)
   {
-    return this.serve.getOneSpeciality(route.params.id).pipe()
+    return this.serve.getOneCarnet(route.params.id).pipe()
   }
 }

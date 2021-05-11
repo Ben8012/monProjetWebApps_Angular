@@ -27,6 +27,8 @@ import { InfosSpecialiteComponent } from './infos-specialite/infos-specialite.co
 import { VgBufferingModule, VgControlsModule, VgCoreModule, VgOverlayPlayModule } from 'ngx-videogular';
 import { CarnetComponent } from './carnet/carnet.component';
 import { FormCarnetComponent } from './form-carnet/form-carnet.component';
+import { FormUpdateCarnetComponent } from './form-update-carnet/form-update-carnet.component';
+import { FormUpdateInscriptionComponent } from './form-update-inscription/form-update-inscription.component';
 
 
 
@@ -47,6 +49,8 @@ import { FormCarnetComponent } from './form-carnet/form-carnet.component';
     InfosSpecialiteComponent,
     CarnetComponent,
     FormCarnetComponent,
+    FormUpdateCarnetComponent,
+    FormUpdateInscriptionComponent,
     
     
     

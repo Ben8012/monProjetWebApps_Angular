@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SiteDePlongeeService, Carnets, SiteDePlongee } from '../shared/api/site-de-plongee.service';
+import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
+import { Carnets, SiteDePlongee } from '../shared/api/class.service';
 
 @Component({
   selector: 'app-carnet',
@@ -25,6 +26,7 @@ export class CarnetComponent implements OnInit {
         this.carnets = carnets
       }
     )
+    console.log(this.carnets)
   }
 
   getSite(){
@@ -36,26 +38,14 @@ export class CarnetComponent implements OnInit {
     )
   }
 
-  updateCarnet(){
+  // updateCarnet(id){
 
-  }
+  //   this.siteDePlongeeService.updateCarnet(id)
+  // }
 
   deleteCarnet(id: any){
     this.siteDePlongeeService.deleteCarnet(id)
+    window.location.reload();
   }
-
-  retrouveID(){
-    console.log('coucou')
-    this.carnets.forEach(c=>{
-      this.sites.forEach(s=>{
-        
-       if (c.lieux==s.nom){
-         this.myId = s.id
-       }
-      }) 
-    })
-   return this.myId
-  }
-  
 
 }

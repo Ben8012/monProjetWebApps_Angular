@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Formations, SiteDePlongeeService, Speciality } from '../shared/api/site-de-plongee.service';
+import {  SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
+import { Formations, Speciality } from '../shared/api/class.service';
 
 @Component({
   selector: 'app-formation',

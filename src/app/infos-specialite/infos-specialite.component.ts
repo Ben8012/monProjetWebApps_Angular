@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SiteDePlongeeService, Speciality } from '../shared/api/site-de-plongee.service';
 import  { VgApiService }  from  '@videogular/ngx-videogular/core';
 import { VgPlayerComponent } from '@videogular/ngx-videogular/core';
+import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
+import {  Speciality } from '../shared/api/class.service';
 
 @Component({
   selector: 'app-infos-specialite',

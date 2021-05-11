@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SiteDePlongeeService, SiteDePlongee } from '../shared/api/site-de-plongee.service';
+import { SiteDePlongeeService} from '../shared/api/site-de-plongee.service';
+import {  SiteDePlongee } from '../shared/api/class.service';
+
 
 @Component({
   selector: 'app-form-carnet',
@@ -22,7 +24,7 @@ export class FormCarnetComponent implements OnInit {
     this.formCarnet = this.formBuilder.group({
       
       nom : ["ma premiere", [Validators.required]], 
-      lieux : ["floreffe", [Validators.required]], 
+      lieux : ["", [Validators.required]], 
       duree : ["45", [Validators.required]],  
       profondeur : ["10", [Validators.required]], 
       temperature_air : ["20", [Validators.required]],  
@@ -41,7 +43,7 @@ export class FormCarnetComponent implements OnInit {
   {
     if(this.formCarnet.valid)
     {
-      this.apiService.postFormCarnet(this.formCarnet.value)
+      this.apiService.postFormCarnet(this.formCarnet.value) 
       this.router.navigate(['/app-carnet'])
     }
   }

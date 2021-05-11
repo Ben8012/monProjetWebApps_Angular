@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SiteDePlongeeService, UserInfo } from '../shared/api/site-de-plongee.service';
+import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
+import {  UserInfo } from '../shared/api/class.service';
 
 @Component({
   selector: 'app-navbar',

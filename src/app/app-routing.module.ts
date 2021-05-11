@@ -5,6 +5,7 @@ import { CarnetComponent } from './carnet/carnet.component';
 import { FormCarnetComponent } from './form-carnet/form-carnet.component';
 import { FormInscriptionComponent } from './form-inscription/form-inscription.component';
 import { FormModificationComponent } from './form-modification/form-modification.component';
+import { FormUpdateCarnetComponent } from './form-update-carnet/form-update-carnet.component';
 import { FormationComponent } from './formation/formation.component';
 import { HomeComponent } from './home/home.component';
 import { InfosCarrieresComponent } from './infos-carrieres/infos-carrieres.component';
@@ -14,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { ResolverInfosCarrieresService } from './shared/api/resolver-infos-carrieres.service';
 import { ResolverInfosSpecialiteService } from './shared/api/resolver-infos-specialite.servec';
 import { ResolverInfosFormationService } from './shared/api/resolver-infos_formation.service';
+import { ResolverUpdateCarnetService } from './shared/api/resolver-update_carnet.service';
 import { SitePlongeeComponent } from './site-plongee/site-plongee.component';
 
 const routes: Routes = [
@@ -32,6 +34,7 @@ const routes: Routes = [
   { path:'app-carnet', component: CarnetComponent},
   { path:'app-carnet/app-form-carnet', component: FormCarnetComponent},
   { path :'app-carnet/app-infos-carrieres/:id', resolve : {datas : ResolverInfosCarrieresService} , component: InfosCarrieresComponent},
+  { path : 'app-carnet/app-form-update-carnet/:id', resolve : {datas: ResolverUpdateCarnetService}, component:FormUpdateCarnetComponent}
  
 ];
 

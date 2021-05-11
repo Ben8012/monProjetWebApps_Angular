@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {SiteDePlongee, SiteDePlongeeService} from '../shared/api/site-de-plongee.service'
 import { environment } from '../../environments/environment';
-
+import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
+import {SiteDePlongee } from '../shared/api/class.service';
 
 @Component({
   selector: 'app-site-plongee',

@@ -1,9 +1,9 @@
 <div class="container">
     <br>
     <div class="d-flex justify-content-center" >
-    <h4>Ajouter une plongée a votre carnet de plongée </h4>
+    <h4>Modifier une plongée a votre carnet de plongée </h4>
     </div>
-    <form [formGroup] ="formCarnet" (ngSubmit)="onSubmit()" style="padding: 10px;">
+    <form [formGroup] ="formUpdateCarnet" (ngSubmit)="onSubmit()" style="padding: 10px;">
 
         <div class="form-row">
             <div class="form-group col-md-3">
@@ -29,7 +29,7 @@
                 <label for="lieux">Site</label>
 
                 <select formControlName="lieux" class="form-control">
-                    <option selected  >Choix...</option>
+                    <option disabled value="">{{ OneCarnet.lieux}}</option>
                     <option *ngFor="let site of sites" 
                         value="{{site.id}}">
                         {{site.nom}}
@@ -78,8 +78,9 @@
 
         <div class="form-row">
         <div class="form-group col-md-12" >
-            <button type="submit" [disabled]="formCarnet.invalid" class="btn btn-primary">Validez</button>
+            <button type="submit" [disabled]="formUpdateCarnet.invalid" class="btn btn-primary">Validez</button>
         </div> 
         <br> 
     
 </div>
+
