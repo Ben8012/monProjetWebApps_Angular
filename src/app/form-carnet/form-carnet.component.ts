@@ -15,6 +15,7 @@ export class FormCarnetComponent implements OnInit {
   formCarnet : any
   sites: SiteDePlongee[]=[]
   deco: boolean=false
+  formation: boolean=false
 
   constructor(private apiService : SiteDePlongeeService, private formBuilder : FormBuilder, private router:Router,private siteDePlongeeService:SiteDePlongeeService,) { }
 
@@ -23,17 +24,17 @@ export class FormCarnetComponent implements OnInit {
   ngOnInit(): void {
     this.formCarnet = this.formBuilder.group({
       
-      nom : ["ma premiere", [Validators.required]], 
+      nom : ["", [Validators.required]], 
       lieux : ["", [Validators.required]], 
-      duree : ["45", [Validators.required]],  
-      profondeur : ["10", [Validators.required]], 
-      temperature_air : ["20", [Validators.required]],  
-      temperature_eau : ["15", [Validators.required]], 
+      duree : ["", [Validators.required]],  
+      profondeur : ["", [Validators.required]], 
+      temperature_air : ["",],  
+      temperature_eau : ["",], 
       deco : ["",], 
-      type_plongee : ["Formation", [Validators.required]], 
-      palier : ["", ],
-      info : ["c'est joli", [Validators.required]], 
-      date : ["2021-05-07", [Validators.required]],  
+      type_plongee : ["", [Validators.required]], 
+      palier : ["",],
+      info : ["",], 
+      date : ["", [Validators.required]],  
     })
     this.getSiteDePlongee()
     

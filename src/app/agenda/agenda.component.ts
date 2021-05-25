@@ -25,8 +25,11 @@ import {
 import { FlatpickrDefaultsInterface } from 'angularx-flatpickr/flatpickr-defaults.service';
 import {  OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
+import { EventsPlongee, Formations, SiteDePlongee, Speciality } from '../shared/api/class.service';
+import { ChangeDetectorRef } from '@angular/core';
+import { DateUtils} from '../utils/date.utils'
 
 const colors: any = {
   red: {
@@ -83,58 +86,23 @@ export class AgendaComponent  {
 
   refresh: Subject<any> = new Subject();
   
-  events: CalendarEvent[] = [
-    // {
-    //   start: subDays(startOfDay(new Date()), 1),
-    //   end: addDays(new Date(), 1),
-    //   title: 'A 3 day event',
-    //   color: colors.red,
-    //   actions: this.actions,
-    //   allDay: true,
-    //   resizable: {
-    //     beforeStart: true,
-    //     afterEnd: true,
-    //   },
-    //   draggable: true,
-    // },
-    // {
-    //   start: startOfDay(new Date()),
-    //   title: 'An event with no end date',
-    //   color: colors.yellow,
-    //   actions: this.actions,
-    // },
-    // {
-    //   start: subDays(endOfMonth(new Date()), 3),
-    //   end: addDays(endOfMonth(new Date()), 3),
-    //   title: 'A long event that spans 2 months',
-    //   color: colors.blue,
-    //   allDay: true,
-    // },
-    // {
-    //   start: addHours(startOfDay(new Date()), 2),
-    //   end: addHours(new Date(), 2),
-    //   title: 'A draggable and resizable event',
-    //   color: colors.yellow,
-    //   actions: this.actions,
-    //   resizable: {
-    //     beforeStart: true,
-    //     afterEnd: true,
-    //   },
-    //   draggable: true,
-    // },
-  ];
+  events: CalendarEvent[] = [];
   
 // Ajouter les options du datePicker permet dans donner une nombre de jour ou un evement peut etre créé
-  public datePickerOptions : FlatpickrDefaultsInterface = {
+  public datePickerOptionsStart : FlatpickrDefaultsInterface = {
 // 84600000 = nombre de millisecondes dans une journée
     enable : [{from : new Date(Date.now() - 84600000), to : new Date(new Date().getFullYear() + 200, 12)}]
   }
 
+  public datePickerOptionsEnd : FlatpickrDefaultsInterface = {
+    // 84600000 = nombre de millisecondes dans une journée
+        enable : [{from : new Date(Date.now() - 84600000 ), to : new Date(new Date().getFullYear() + 200, 12)}]
+      }
+
   activeDayIsOpen: boolean = true
-  affiche: boolean=false
   formEvent: any
 
-  constructor(private modal: NgbModal,private apiService : SiteDePlongeeService, private formBuilder : FormBuilder, private router:Router) {}
+  constructor(private modal: NgbModal,private apiService : SiteDePlongeeService, private formBuilder : FormBuilder, private router:Router, private siteDePlongeeService:SiteDePlongeeService, private route : ActivatedRoute,private ref: ChangeDetectorRef) {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -171,15 +139,21 @@ export class AgendaComponent  {
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
+    
   }
 
+
+  
   addEvent(): void {
-    this.affiche=true
     this.events = [
       ...this.events,
       {
         title: '',
-        instructor:'',
+        instructor:'Benjamin',
+        training: false,
+        location:'',
+        level:'',
+        speciality:'',
         start: startOfDay(new Date()),
         end: endOfDay(new Date()),
         color: colors.red,
@@ -193,7 +167,12 @@ export class AgendaComponent  {
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
+    this.events = this.events.filter((event) => event !== eventToDelete); 
+    this.apiService.deleteEvent(eventToDelete.id)
+  }
+  
+  updateEvent(eventToUpdate: CalendarEvent) {
+    this.apiService.postUpdateEvent(eventToUpdate)
   }
 
   setView(view: CalendarView) {
@@ -206,11 +185,85 @@ export class AgendaComponent  {
 
 //mon code
 
+  formations:Formations[]=[];
+  specialitys:Speciality[]=[];
+  sites:SiteDePlongee[]=[];
+  eventsPlongee:EventsPlongee[]=[];
+  training:boolean=false;
   
   createEvent(){
-    // this.apiService.postCreateEvent(this.modalData.event)
-    this.events.push(this.modalData.event)
-    console.log(this.events)
+    // mettre la boucle dans le serveur
+    for (let index = 0; index < this.events.length; index++) {
+      this.apiService.postCreateEvent(this.events[index])
+    }
+    window.location.reload();
+  }
+  
+  ngOnInit(): void {
+    this.getFormation()
+    this.getSpeciality()
+    this.getSite()
+    this.getEvent()
+
+    this.eventsPlongee = this.route.snapshot.data["datas"]
+    
+    for (let index = 0; index < this.eventsPlongee.length; index++) {
+    let evenements = new EventsPlongee(this.eventsPlongee)
+    evenements.id = this.eventsPlongee[index].id
+    evenements.title = this.eventsPlongee[index].title
+    evenements.instructor = this.eventsPlongee[index].instructor
+    evenements.training = this.eventsPlongee[index].training
+    evenements.location = this.eventsPlongee[index].location
+    evenements.level = this.eventsPlongee[index].level
+    evenements.speciality = this.eventsPlongee[index].speciality
+    evenements.start = new Date(this.eventsPlongee[index].start)
+    evenements.end = new Date(this.eventsPlongee[index].end)
+    evenements.color = this.eventsPlongee[index].color
+    evenements.draggable = this.eventsPlongee[index].draggable
+    evenements.resizable = this.eventsPlongee[index].resizable
+
+    this.events.push(evenements)
+    } 
+   }
+
+   getFormation(){
+    this.siteDePlongeeService.getFormation()
+    .subscribe(
+      formations =>{
+        this.formations = formations
+      }
+    ) 
+  }
+
+  getSpeciality(){
+    this.siteDePlongeeService.getSpeciality()
+    .subscribe(
+      specialitys =>{
+        this.specialitys = specialitys
+      }
+    )
+  }
+
+  getSite(){
+    this.siteDePlongeeService.getSite()
+    .subscribe(
+      sites=>{
+        this.sites = sites
+      }
+    )
+  }
+  
+  getEvent(){
+    this.siteDePlongeeService.getEvent()
+    .subscribe(
+      events=>{
+        this.eventsPlongee = events
+      }
+    )
   }
   
 }
+
+
+
+

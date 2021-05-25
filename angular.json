@@ -38,8 +38,6 @@
               "./node_modules/flatpickr/dist/flatpickr.css",
               "./node_modules/@videogular/ngx-videogular/fonts/videogular.css",
               "src/styles.scss"
-              
-              
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",

@@ -21,20 +21,11 @@ export class InfosFormationComponent implements OnInit {
   constructor(private siteDePlongeeService:SiteDePlongeeService,private route: ActivatedRoute,private http: HttpClient, public router : ActivatedRoute) 
   {
     this.OneFormation = this.router.snapshot.data["datas"]
-   
-    console.log(this.OneFormation)
    }
   
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    
-    // si pas de resolver faire ce qui est ci dessous
-    // this.siteDePlongeeService.getOneFormation(this.id).subscribe(f => {
-    //   console.log(f);
-      
-    //   this.OneFormation = f;
-    // })
   }
 
   onPlayerReady(api: VgApiService) {

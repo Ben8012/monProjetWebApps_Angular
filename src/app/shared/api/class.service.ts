@@ -11,9 +11,9 @@ export class Carnets{
     palier:string;
     info:string;
     date:Date;
-    carnetID: string;
-    CarnetInfo:string;
-    id_site : number;
+    carnetId: number;
+    carnetInfo:string;
+    siteId : number;
   
     constructor(data : any)
     {
@@ -29,9 +29,9 @@ export class Carnets{
     this.palier = data.palier;
     this.info = data.info;
     this.date = data.date;
-    this.carnetID = data.carnetID;
-    this.CarnetInfo= data.CarnetInfo;
-    this.id_site = data.id_site;
+    this.carnetId = data.carnetId;
+    this.carnetInfo= data.carnetInfo;
+    this.siteId = data.siteId;
     }
   }
   
@@ -184,3 +184,39 @@ export class Carnets{
         this.id_facture = data.id_facture;      
     }
   }
+
+  export class EventsPlongee{
+    
+    id:number;
+    title: string;
+    instructor: string;
+    training: false;
+    location:string;
+    level:string;
+    speciality:string;
+    start: Date;
+    end: Date;
+    color: any;
+    draggable: true;
+    resizable: {
+      beforeStart: true;
+      afterEnd: true;
+    }
+  
+    constructor(data : any)
+    {
+    this.id= data.id;
+    this.title = data.title;
+    this.instructor= data.instructor; 
+    this.training = data.training;
+    this.location = data.location;
+    this.level = data.level;
+    this.speciality = data.speciality;
+    this.start = data.start;
+    this.end = data.end;
+    this.color = data.color;
+    this.draggable = data.draggable;
+    this.resizable = data.resizable;
+    
+  }
+}

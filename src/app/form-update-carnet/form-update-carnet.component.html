@@ -22,14 +22,22 @@
         <div class="form-row">
            
             <div class="form-group col-md-6">
-                <label for="nom">Nom</label>
-                <input type="text" class="form-control" formControlName="nom" placeholder="Nomez votre plongée">
+                <label for="nom">Niveau</label>
+                <select formControlName="nom" class="form-control">
+                    <option selected>Choix...</option>
+                    <option  value="Open Water Diver">Open Water Diver</option>
+                    <option  value="Advanced Open Water Diver">Advanced Open Water Diver</option>
+                    <option  value="Rescue Diver">Rescue Diver</option>
+                    <option  value="Divemaster">Divemaster</option>
+                    <option  value="Instructeur">Instructeur</option>
+                    <option  value="Course Directeur">Course Directeur</option>
+                </select>
             </div>
             <div class="form-group col-md-6">
                 <label for="lieux">Site</label>
 
                 <select formControlName="lieux" class="form-control">
-                    <option disabled value="">{{ OneCarnet.lieux}}</option>
+                    <!-- <option disabled value="">{{ OneCarnet.lieux}}</option> -->
                     <option *ngFor="let site of sites" 
                         value="{{site.id}}">
                         {{site.nom}}

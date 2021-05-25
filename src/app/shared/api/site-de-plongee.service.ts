@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {HttpResponse} from '@angular/common/http';
 import { Data } from '@angular/router';
-import { Carnets } from './class.service';
+import { Carnets, EventsPlongee } from './class.service';
 
 
 @Injectable({
@@ -70,6 +70,24 @@ export class SiteDePlongeeService {
   //   ) 
   // }
 
+  getEvent():Observable<any>{
+    return this._httpClient.get(
+      'http://localhost:3000/events'
+    )
+  }
+
+  getEventByTitle(title:any):Observable<any>{
+    return this._httpClient.get(
+      'http://localhost:3000/events/title/'+title
+    )
+  }
+
+  getEventBySpeciality(speciality:any):Observable<any>{
+    return this._httpClient.get(
+      'http://localhost:3000/events/speciality/'+speciality
+    )
+  }
+
 
 //les POST
   
@@ -109,6 +127,29 @@ export class SiteDePlongeeService {
     this._httpClient.post(
       "http://localhost:3000/event/",event)
       .subscribe(
+        (data) => {
+          console.log(data)
+        }
+      )
+  }
+
+  postUpdateEvent(data : any)
+  {
+    console.log(data)
+    this._httpClient.post(
+      "http://localhost:3000/update/event/", data)
+      .subscribe(
+        (data) => {
+          console.log(data)
+        }
+      )
+  }
+
+  deleteEvent(id: any)
+  {
+      this._httpClient.delete(
+        `http://localhost:3000/delete/event/${id}`)
+        .subscribe(
         (data) => {
           console.log(data)
         }
@@ -160,5 +201,15 @@ export class SiteDePlongeeService {
     )
   }
 
+  postEnvoisMail(data :any)
+  {
+    console.log(data)
+    this._httpClient.post('http://localhost:3000/mail/formation', data)
+    .subscribe(
+      (data) => {
+        console.log(data)
+      }
+    )
+  }
 
 }

@@ -97,35 +97,64 @@
 
   <h3 style="text-align: center;">
     Edit events
-    <button class="btn btn-primary float-right" (click)="addEvent()">
+    <button class="btn btn-primary float-left" (click)="addEvent()">
       Add new
     </button>
+     <button class="btn btn-primary float-right" (click)="createEvent()">
+      Create
+    </button>
+    
   </h3>
 
   <div class="table-responsive">
     <table class="table table-bordered">
-      <thead  *ngIf="affiche">
+      <thead  >
         <tr>
-          <th>Training</th>
+          <th>Event name</th>
+          <!--<th>Speciality</th>-->
+          <th>Location</th>
           <th>Instructor</th>
+          <!--<th>Training</th>-->
           <!--<th>Primary color</th>
           <th>Secondary color</th>-->
           <th>Starts at</th>
           <th>Ends at</th>
-          <th>Create event</th>
-          <th>Remove</th>
+          <th>Update</th>
+          <th>Delete</th>
         </tr>
       </thead>
 
       <tbody>
         <tr *ngFor="let event of events">
+          <td >
+            <select  type="text"
+            class="form-control"
+            [(ngModel)]="event.title"
+            (keyup)="refresh.next()">
+                <option selected>{{event.title}}</option>
+                <option value="Discover Local Diving">Discover Local Diving</option>
+                <option   *ngFor="let formation of formations" value={{formation.nom}}>{{formation.nom}}</option>
+                 <option   *ngFor="let speciality of specialitys" value={{speciality.nom}}>{{speciality.nom}}</option>
+            </select>
+          </td>
+          <!--<td >
+            <select  type="text"
+            class="form-control"
+            [(ngModel)]="event.speciality"
+            (keyup)="refresh.next()">
+                <option selected>{{event.speciality}}</option>
+                <option   *ngFor="let speciality of specialitys" value={{speciality.nom}}>{{speciality.nom}}</option>
+            </select>
+          </td>-->
           <td>
-            <input
+            <select
               type="text"
               class="form-control"
-              [(ngModel)]="event.title"
-              (keyup)="refresh.next()"
-            />
+              [(ngModel)]="event.location"
+              (keyup)="refresh.next()">
+              <option selected>{{event.location}}</option>
+              <option   *ngFor="let site of sites" value={{site.nom}}>{{site.nom}}</option>
+          </select>
           </td>
           <td>
             <input
@@ -135,6 +164,9 @@
               (keyup)="refresh.next()"
             />
           </td>
+          <!--<td>
+            <input type="checkbox" class="form-control"  [(ngModel)]="event.training">
+          </td>-->
           <!--<td>
             <input
               type="color"
@@ -161,7 +193,7 @@
               [enableTime]="true"
               dateFormat="Y-m-dTH:i"
               altFormat="F j, Y H:i"
-              [options]="datePickerOptions"
+              [options]="datePickerOptionsStart"
               placeholder="Not set"
             /> 
           </td>
@@ -177,13 +209,13 @@
               [enableTime]="true"
               dateFormat="Y-m-dTH:i"
               altFormat="F j, Y H:i"
-              [options]="datePickerOptions"
+              [options]="datePickerOptionsEnd"
               placeholder="Not set"
             />
           </td>
           <td>
-            <button class="btn btn-primary" (click)="createEvent()">
-              Enter
+            <button class="btn btn-primary" (click)="updateEvent(event)">
+              Update
             </button>
           </td>
           <td>
@@ -191,6 +223,7 @@
               Delete
             </button>
           </td>
+          
         </tr>
       </tbody>
     </table>
@@ -208,23 +241,36 @@
         Instructor:
         <pre>{{ modalData.event?.instructor}}</pre>
       </div>
-      <div>
+      <!--<div>
         Training:
+        <pre>{{ modalData.event?.training}}</pre>
+      </div>-->
+      <div>
+        Event name :
         <pre>{{ modalData.event?.title}}</pre>
+      </div>
+      <!--<div>
+        Speciality:
+        <pre>{{ modalData.event?.speciality}}</pre>
+      </div>-->
+      <div>
+        Location:
+        <pre>{{ modalData.event?.location}}</pre>
       </div>
       <div>
         Starts at:
-        <pre>{{ modalData.event?.start}} </pre>
+        <pre>{{ modalData.event?.start|date: 'short'}} </pre>
       </div>
       <div>
         Ends at:
-        <pre>{{ modalData.event?.end}} </pre>
+        <pre>{{ modalData.event?.end|date: 'short'}} </pre>
       </div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-secondary" (click)="close()">
         OK
       </button>
+    
     </div>
   </ng-template>
 </div>

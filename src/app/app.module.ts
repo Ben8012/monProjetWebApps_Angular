@@ -9,7 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FormInscriptionComponent } from './form-inscription/form-inscription.component';
 import { SitePlongeeComponent } from './site-plongee/site-plongee.component';
 import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SiteDePlongeeService } from './shared/api/site-de-plongee.service';
 import { FormModificationComponent } from './form-modification/form-modification.component';
@@ -29,6 +29,10 @@ import { CarnetComponent } from './carnet/carnet.component';
 import { FormCarnetComponent } from './form-carnet/form-carnet.component';
 import { FormUpdateCarnetComponent } from './form-update-carnet/form-update-carnet.component';
 import { FormUpdateInscriptionComponent } from './form-update-inscription/form-update-inscription.component';
+import { HttpInterceptorService } from './shared/api/http-interceptor.service';
+import { ChoixFormationComponent } from './choix-formation/choix-formation.component';
+import { ChoixSpecialiteeComponent } from './choix-specialitee/choix-specialitee.component';
+
 
 
 
@@ -51,6 +55,8 @@ import { FormUpdateInscriptionComponent } from './form-update-inscription/form-u
     FormCarnetComponent,
     FormUpdateCarnetComponent,
     FormUpdateInscriptionComponent,
+    ChoixFormationComponent,
+    ChoixSpecialiteeComponent,
     
     
     
@@ -77,7 +83,12 @@ import { FormUpdateInscriptionComponent } from './form-update-inscription/form-u
   
   providers: [
     SiteDePlongeeService,
-    ResolverInfosCarrieresService
+    ResolverInfosCarrieresService,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : HttpInterceptorService,
+      multi : true
+    }
   ],
   bootstrap: [AppComponent]
 })

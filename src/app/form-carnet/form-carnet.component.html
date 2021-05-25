@@ -11,7 +11,7 @@
                 <input type="date" class="form-control" formControlName="date" >
             </div>
             <div class="form-group col-md-3">
-                <label for="type_plongee">Quel type de plongée avez vous fait?</label>
+                <label for="type_plongee">Quel type de plongée avez-vous fait?</label>
                 <select formControlName="type_plongee" class="form-control">
                     <option selected>Choix...</option>
                     <option  value="Formation">Formation</option>
@@ -22,8 +22,16 @@
         <div class="form-row">
            
             <div class="form-group col-md-6">
-                <label for="nom">Nom</label>
-                <input type="text" class="form-control" formControlName="nom" placeholder="Nomez votre plongée">
+                <label for="nom">Niveau</label>
+                <select formControlName="nom" class="form-control">
+                    <option selected>Choix...</option>
+                    <option  value="Open Water Diver">Open Water Diver</option>
+                    <option  value="Advanced Open Water Diver">Advanced Open Water Diver</option>
+                    <option  value="Rescue Diver">Rescue Diver</option>
+                    <option  value="Divemaster">Divemaster</option>
+                    <option  value="Instructeur">Instructeur</option>
+                    <option  value="Course Directeur">Course Directeur</option>
+                </select>
             </div>
             <div class="form-group col-md-6">
                 <label for="lieux">Site</label>

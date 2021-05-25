@@ -1,31 +1,32 @@
-<h2 style="text-align: center;">Carnet de plongée</h2>
-
+<h2 style="text-align: center;">Carnet de plongée : 
+<div class="d-flex justify-content-around" style="padding:20px">
+  <button type="submit" routerLink="app-form-carnet" class="btn btn-primary">Ajouter une plongée</button>
+</div>
+</h2>
 <div class="row justify-content-center">
   <div class="d-flex align-items-center " style="width: 18rem; margin:10px;" *ngFor= "let carnet of carnets; let myIndex=index;" >
     <div style="background-color:lavender;">
-      <a [routerLink]="['app-infos-carrieres', carnet.id ]" style=" text-decoration:none;color:black;">
+      <h6 style="text-align: center; margin:10px;"> le {{carnet.date |date:'dd-MM-yyyy' }} </h6>  
+      <a [routerLink]="['app-infos-carrieres', carnet.siteId ]" style=" text-decoration:none;color:black;">
         <img [src]="'http://localhost:3000/images/'+carnet.lieux+'.jpg'" class="card-img-top" style="width:286px; height:200px;" alt="...">
       </a>
-      
         <div style="text-align: center; margin:10px;">
           <h5 >{{carnet.lieux}}</h5>
-            <p >{{carnet.date |date:'dd-MM-yyyy' }} </p>  
+          <h5 >{{carnet.nom}}</h5>
+            
             <p >{{carnet.type_plongee}} </p>  
             <p >Durée: {{carnet.duree}} minutes </p> 
             <p >Profondeur: {{carnet.profondeur}}m </p>   
             <p >T° de l'eau: {{carnet.temperature_eau}}° </p>
             <p >T° de l'air: {{carnet.temperature_air}}° </p> 
             <p >Observation:</p>   
-            <p>{{carnet.CarnetInfo}}</p>
+            <p>{{carnet.carnetInfo}}</p>
         </div> 
       
       <div class="d-flex justify-content-around" style="padding:10px">
-        <button class="btn btn-primary" [routerLink]="['app-form-update-carnet',carnet.carnetID]">Modifier</button>
-        <button class="btn btn-danger" (click)="deleteCarnet(carnet.carnetID)">Supprimer</button>
+        <button class="btn btn-primary" [routerLink]="['app-form-update-carnet',carnet.carnetId]">Modifier</button>
+        <button class="btn btn-danger" (click)="deleteCarnet(carnet.carnetId)">Supprimer</button>
       </div>
     </div>
   </div>
-</div>
-<div class="d-flex justify-content-around" style="padding:20px">
-  <button type="submit" routerLink="app-form-carnet" class="btn btn-primary">Ajouter une plongée</button>
 </div>

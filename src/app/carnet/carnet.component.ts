@@ -23,10 +23,10 @@ export class CarnetComponent implements OnInit {
     this.siteDePlongeeService.getCarnet()
     .subscribe(
       carnets =>{
-        this.carnets = carnets
+        this.carnets = carnets;
+        console.log(this.carnets)
       }
     )
-    console.log(this.carnets)
   }
 
   getSite(){
@@ -37,11 +37,6 @@ export class CarnetComponent implements OnInit {
       }
     )
   }
-
-  // updateCarnet(id){
-
-  //   this.siteDePlongeeService.updateCarnet(id)
-  // }
 
   deleteCarnet(id: any){
     this.siteDePlongeeService.deleteCarnet(id)
