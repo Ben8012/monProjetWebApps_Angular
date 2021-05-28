@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
 
 @Component({
@@ -9,15 +10,15 @@ import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
 export class LoginComponent implements OnInit {
 
   myForm3 : any
-  constructor(private apiService : SiteDePlongeeService, private formBuilder : FormBuilder) {
+  constructor(private apiService : SiteDePlongeeService, private formBuilder : FormBuilder, private router:Router) {
 
   }
 
   ngOnInit(): void {
     this.myForm3 = this.formBuilder.group({
       
-      login : ["", [Validators.required]],   
-      password : ["", [Validators.required]] 
+      login : ["benjaminstercks@gmail.com", [Validators.required]],   
+      password : ["0000", [Validators.required]] 
     })
   }
 
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
   {
     if(this.myForm3.valid)
     {
-      this.apiService.postCreateUtilisateur(this.myForm3.value)
+      this.apiService.postLogin(this.myForm3.value)
     }
+    this.router.navigate(['/app-formation'])
   }
 }

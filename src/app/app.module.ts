@@ -32,6 +32,7 @@ import { FormUpdateInscriptionComponent } from './form-update-inscription/form-u
 import { HttpInterceptorService } from './shared/api/http-interceptor.service';
 import { ChoixFormationComponent } from './choix-formation/choix-formation.component';
 import { ChoixSpecialiteeComponent } from './choix-specialitee/choix-specialitee.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -57,6 +58,7 @@ import { ChoixSpecialiteeComponent } from './choix-specialitee/choix-specialitee
     FormUpdateInscriptionComponent,
     ChoixFormationComponent,
     ChoixSpecialiteeComponent,
+    ProfileComponent,
     
     
     

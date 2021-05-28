@@ -5,6 +5,7 @@ import  { VgApiService }  from  '@videogular/ngx-videogular/core';
 import { VgPlayerComponent } from '@videogular/ngx-videogular/core';
 import {  SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
 import { Formations } from '../shared/api/class.service';
+import { UserSessionService } from '../shared/api/user-session.service';
 
 @Component({
   selector: 'app-infos-formation',
@@ -17,8 +18,9 @@ export class InfosFormationComponent implements OnInit {
   public id : any
   public preload : string = 'auto' ;
   public api !: VgApiService  ;
+  public user: any;
  
-  constructor(private siteDePlongeeService:SiteDePlongeeService,private route: ActivatedRoute,private http: HttpClient, public router : ActivatedRoute) 
+  constructor(private siteDePlongeeService:SiteDePlongeeService,private route: ActivatedRoute,private http: HttpClient, public router : ActivatedRoute, public userSessionService:UserSessionService) 
   {
     this.OneFormation = this.router.snapshot.data["datas"]
    }
@@ -26,6 +28,10 @@ export class InfosFormationComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
+    this.userSessionService.user$.subscribe((user : any) => {
+      this.user = user;
+    })
+    console.log(this.user)
   }
 
   onPlayerReady(api: VgApiService) {

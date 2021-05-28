@@ -30,6 +30,7 @@ import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
 import { EventsPlongee, Formations, SiteDePlongee, Speciality } from '../shared/api/class.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { DateUtils} from '../utils/date.utils'
+import { UserSessionService } from '../shared/api/user-session.service';
 
 const colors: any = {
   red: {
@@ -90,19 +91,25 @@ export class AgendaComponent  {
   
 // Ajouter les options du datePicker permet dans donner une nombre de jour ou un evement peut etre créé
   public datePickerOptionsStart : FlatpickrDefaultsInterface = {
-// 84600000 = nombre de millisecondes dans une journée
-    enable : [{from : new Date(Date.now() - 84600000), to : new Date(new Date().getFullYear() + 200, 12)}]
+
+    enable : [{from : new Date(Date.now()), to : new Date(new Date().getFullYear() + 200, 12)}]
   }
 
   public datePickerOptionsEnd : FlatpickrDefaultsInterface = {
-    // 84600000 = nombre de millisecondes dans une journée
-        enable : [{from : new Date(Date.now() - 84600000 ), to : new Date(new Date().getFullYear() + 200, 12)}]
+   
+        enable : [{from : new Date(Date.now()), to : new Date(new Date().getFullYear() + 200, 12)}]
       }
 
   activeDayIsOpen: boolean = true
   formEvent: any
+  OneProfile: any
+  id:any
 
-  constructor(private modal: NgbModal,private apiService : SiteDePlongeeService, private formBuilder : FormBuilder, private router:Router, private siteDePlongeeService:SiteDePlongeeService, private route : ActivatedRoute,private ref: ChangeDetectorRef) {}
+  constructor(private modal: NgbModal,private apiService : SiteDePlongeeService, private formBuilder : FormBuilder, private router:Router, private siteDePlongeeService:SiteDePlongeeService, private route : ActivatedRoute,private ref: ChangeDetectorRef,public userSessionService : UserSessionService,) 
+  {
+    this.OneProfile = this.route.snapshot.data["datas2"]
+    this.eventsPlongee = this.route.snapshot.data["datas1"]
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -190,13 +197,12 @@ export class AgendaComponent  {
   sites:SiteDePlongee[]=[];
   eventsPlongee:EventsPlongee[]=[];
   training:boolean=false;
+  user: any
   
-  createEvent(){
-    // mettre la boucle dans le serveur
-    for (let index = 0; index < this.events.length; index++) {
-      this.apiService.postCreateEvent(this.events[index])
-    }
-    window.location.reload();
+  createEvent(eventCreate : CalendarEvent){
+      this.apiService.postCreateEvent(eventCreate)
+      window.location.reload()
+   
   }
   
   ngOnInit(): void {
@@ -204,26 +210,35 @@ export class AgendaComponent  {
     this.getSpeciality()
     this.getSite()
     this.getEvent()
+    this.setEvent()
 
-    this.eventsPlongee = this.route.snapshot.data["datas"]
-    
+    // console.log(this.eventsPlongee)
+    // console.log(this.OneProfile)
+    this.userSessionService.user$.subscribe((user : any) => {
+      this.user = user;
+    })
+    // console.log(this.user)
+  
+   }
+
+   setEvent(){
     for (let index = 0; index < this.eventsPlongee.length; index++) {
-    let evenements = new EventsPlongee(this.eventsPlongee)
-    evenements.id = this.eventsPlongee[index].id
-    evenements.title = this.eventsPlongee[index].title
-    evenements.instructor = this.eventsPlongee[index].instructor
-    evenements.training = this.eventsPlongee[index].training
-    evenements.location = this.eventsPlongee[index].location
-    evenements.level = this.eventsPlongee[index].level
-    evenements.speciality = this.eventsPlongee[index].speciality
-    evenements.start = new Date(this.eventsPlongee[index].start)
-    evenements.end = new Date(this.eventsPlongee[index].end)
-    evenements.color = this.eventsPlongee[index].color
-    evenements.draggable = this.eventsPlongee[index].draggable
-    evenements.resizable = this.eventsPlongee[index].resizable
-
-    this.events.push(evenements)
-    } 
+      let evenements = new EventsPlongee(this.eventsPlongee)
+      evenements.id = this.eventsPlongee[index].id
+      evenements.title = this.eventsPlongee[index].title
+      evenements.instructor = this.eventsPlongee[index].instructor
+      evenements.training = this.eventsPlongee[index].training
+      evenements.location = this.eventsPlongee[index].location
+      evenements.level = this.eventsPlongee[index].level
+      evenements.speciality = this.eventsPlongee[index].speciality
+      evenements.start = new Date(this.eventsPlongee[index].start)
+      evenements.end = new Date(this.eventsPlongee[index].end)
+      evenements.color = this.eventsPlongee[index].color
+      evenements.draggable = this.eventsPlongee[index].draggable
+      evenements.resizable = this.eventsPlongee[index].resizable
+  
+      this.events.push(evenements)
+      } 
    }
 
    getFormation(){

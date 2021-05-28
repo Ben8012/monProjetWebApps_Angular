@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
-import {  UserInfo } from '../shared/api/class.service';
+import { UserSessionService } from '../shared/api/user-session.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -8,20 +9,20 @@ import {  UserInfo } from '../shared/api/class.service';
 })
 export class NavbarComponent implements OnInit {
 
-  infoUser: UserInfo[]=[]
-  constructor(private siteDePlongeeService:SiteDePlongeeService ) {}
+  
+  public user: any;
+
+  constructor(private siteDePlongeeService:SiteDePlongeeService,
+    private userSessionService : UserSessionService) {}
 
   ngOnInit(): void {
-    // this.getInfoUser()
+    this.userSessionService.user$.subscribe((user : any) => {
+      this.user = user;
+    })
   }
 
-  // getInfoUser(){
-  //   this.siteDePlongeeService.getInfoUser()
-  //   .subscribe(
-  //     infoUser =>{
-  //       this.infoUser = infoUser
-  //       console.log(infoUser)
-  //     }
-  //   )
-  // }
+  LogOut(){
+    this.userSessionService.clearSession()
+  }
+
 }

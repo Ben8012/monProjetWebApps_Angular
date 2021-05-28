@@ -11,8 +11,8 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   intercept(req : HttpRequest<any>, next : HttpHandler) : Observable<HttpEvent<any>>
   {
-    let token = /*va chercher ton token et met le ici */ ""
-    if(token != "")
+    let token = sessionStorage.getItem('token')
+    if(token)
     {
       let clone = req.clone({
         setHeaders : {

@@ -5,14 +5,15 @@ import { catchError, retry } from 'rxjs/operators';
 import {HttpResponse} from '@angular/common/http';
 import { Data } from '@angular/router';
 import { Carnets, EventsPlongee } from './class.service';
-
+import { UserSessionService } from './user-session.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SiteDePlongeeService {
 
-  constructor(private _httpClient : HttpClient) { }
+  constructor(private _httpClient : HttpClient, 
+    private userSessionService : UserSessionService) { }
 
 //Les GET
 
@@ -64,11 +65,11 @@ export class SiteDePlongeeService {
     ) 
   }
 
-  // getInfoUser(): Observable<any>{
-  //   return this._httpClient.get(
-  //     "http://localhost:3000/user/infos"
-  //   ) 
-  // }
+  getOneProfile(id:any): Observable<any>{
+    return this._httpClient.get(
+      "http://localhost:3000/user/infos/"+id
+    ) 
+  }
 
   getEvent():Observable<any>{
     return this._httpClient.get(
@@ -103,7 +104,7 @@ export class SiteDePlongeeService {
 
   postUpdateUtilisateur(myForm2 : any)
   {
-    this._httpClient.post('http://localhost:3000/updateUtilisateur', myForm2)
+    this._httpClient.post('http://localhost:3000/user/update', myForm2)
     .subscribe(
       (data) => {
         console.log(data)
@@ -111,13 +112,26 @@ export class SiteDePlongeeService {
     )
   }
 
+  deleteUtilisateur(id: any)
+  {
+    console.log(id)
+      this._httpClient.delete(
+        `http://localhost:3000/user/delete/${id}`)
+        .subscribe(
+        (data) => {
+          console.log(data)
+        }
+      )
+  }
+
+
   postLogin(myForm3 : any)
   {
      this._httpClient.post(
       "http://localhost:3000/user/login/",myForm3)
       .subscribe(
-        (data) => {
-          console.log(data)
+        (data: any) => {
+          this.userSessionService.saveSession(data.token)
         }
       )
   }

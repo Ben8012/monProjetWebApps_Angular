@@ -1,6 +1,7 @@
 <h4 style="text-align: center;margin:20px">Cliquez sur l'evenement pour validez votre choix</h4>
+<h5 style="text-align: center;margin:20px">Un email sera envoyez a votre instructeur qui prendra contact avec vous</h5>
 <div class="row justify-content-center">
-  <div class="d-flex align-items-center " style="width: 18rem; margin:10px; height:80vh;" *ngFor= "let event of eventsByTitle">
+  <div class="d-flex align-items-center " style="width: 18rem; margin:10px; height:72vh;" *ngFor= "let event of eventsByTitle">
     <div style="background-color:lavender; border:black solid 1px;border-radius: 10px;">
       <a [routerLink]="" (click)="envoisMail(event)"  style=" text-decoration:none;color:black;">
         <div style="text-align: center; margin:10px;">

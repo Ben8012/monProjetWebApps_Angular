@@ -17,9 +17,9 @@ export class FormInscriptionComponent implements OnInit {
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
       
-        createNomUtilsateur : ["Sterckx", [Validators.required]],   
-        createPrenomUtilsateur : ["Benjamin", [Validators.required]], 
-        createEmailUtilsateur : ["benjaminstercks@gmail.com", [Validators.required]], 
+        createNomUtilsateur : ["", [Validators.required]],   
+        createPrenomUtilsateur : ["", [Validators.required]], 
+        createEmailUtilsateur : ["@gmail.com", [Validators.required]], 
         createPasswordlUtilsateur : ["", [Validators.required]], 
         createRuelUtilsateur : ["de villers", [Validators.required]], 
         createNumerolUtilsateur : ["7", [Validators.required]],

@@ -15,35 +15,87 @@ import { InfosCarrieresComponent } from './infos-carrieres/infos-carrieres.compo
 import { InfosFormationComponent } from './infos-formation/infos-formation.component';
 import { InfosSpecialiteComponent } from './infos-specialite/infos-specialite.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 import { ResolverCalendarEventService } from './shared/api/reslover-calendar-event.service';
 import { ResolverChoixFormationService } from './shared/api/resolver-choix-formation.service';
 import { ResolverChoixSpecialiteeService } from './shared/api/resolver-choix-specialitee.service';
 import { ResolverInfosCarrieresService } from './shared/api/resolver-infos-carrieres.service';
-import { ResolverInfosSpecialiteService } from './shared/api/resolver-infos-specialite.servec';
+import { ResolverInfosSpecialiteService } from './shared/api/resolver-infos-specialite.service';
 import { ResolverInfosFormationService } from './shared/api/resolver-infos_formation.service';
+import { ResolverProfileService } from './shared/api/resolver-profile.service';
 import { ResolverUpdateCarnetService } from './shared/api/resolver-update_carnet.service';
 import { SitePlongeeComponent } from './site-plongee/site-plongee.component';
 
 const routes: Routes = [
   { path : '', component: HomeComponent, pathMatch : 'full'},
+
   { path:'app-home', component: HomeComponent},
+
   { path:'app-login/app-form-inscription', component: FormInscriptionComponent},
-  { path:'app-form-modification', component: FormModificationComponent },
-  { path :'app-site-plongee/app-infos-carrieres/:id', resolve : {datas : ResolverInfosCarrieresService} , component: InfosCarrieresComponent},
+
+  { path:'app-profile/:id/app-form-modification/:id',
+   resolve :{
+              datas: ResolverProfileService
+    },
+    component: FormModificationComponent },
+
+  { path :'app-site-plongee/app-infos-carrieres/:id', resolve : 
+    {
+      datas : ResolverInfosCarrieresService
+    }, component: InfosCarrieresComponent},
+
   { path:'app-site-plongee', component: SitePlongeeComponent},
   { path:'app-infos-carrieres', component: InfosCarrieresComponent},
   { path:'app-login', component: LoginComponent},
-  { path:'app-agenda',resolve :{datas : ResolverCalendarEventService}, component: AgendaComponent},
+  
+  { path:'app-agenda/:id',resolve :
+    {
+    datas1 : ResolverCalendarEventService,
+    dates2 : ResolverProfileService
+    },  component: AgendaComponent},
+
   { path:'app-formation', component: FormationComponent},
-  { path:'app-formation/app-infos-formation/:id',resolve :{datas: ResolverInfosFormationService}, component: InfosFormationComponent},
-  { path:'app-formation/app-infos-specialite/:id', resolve:{datas:ResolverInfosSpecialiteService}, component: InfosSpecialiteComponent},
+
+  { path:'app-formation/app-infos-formation/:id',resolve :
+    {
+      datas: ResolverInfosFormationService
+    }, component: InfosFormationComponent},
+
+  { path:'app-formation/app-infos-specialite/:id', resolve:
+    {
+    datas:ResolverInfosSpecialiteService
+    }, component: InfosSpecialiteComponent},
+
   { path:'app-carnet', component: CarnetComponent},
+
   { path:'app-carnet/app-form-carnet', component: FormCarnetComponent},
-  { path :'app-carnet/app-infos-carrieres/:id', resolve : {datas : ResolverInfosCarrieresService} , component: InfosCarrieresComponent},
-  { path : 'app-carnet/app-form-update-carnet/:id', resolve : {datas: ResolverUpdateCarnetService}, component:FormUpdateCarnetComponent},
+
+  { path :'app-carnet/app-infos-carrieres/:id', resolve :
+    {
+     datas : ResolverInfosCarrieresService
+    }, component: InfosCarrieresComponent},
+
+  { path : 'app-carnet/app-form-update-carnet/:id', resolve : 
+    {
+      datas: ResolverUpdateCarnetService
+    }, component:FormUpdateCarnetComponent},
+
   { path : 'app-login/app-form-update-inscription',component: FormUpdateInscriptionComponent},
-  {path : 'app-formation/app-infos-formation/:id/app-choix-formation/:nom',resolve : {datas: ResolverChoixFormationService},component: ChoixFormationComponent},
-  {path : 'app-formation/app-infos-specialite/:id/app-choix-specialitee/:nom',resolve : {datas: ResolverChoixSpecialiteeService},component: ChoixSpecialiteeComponent}
+
+  { path : 'app-formation/app-infos-formation/:id/app-choix-formation/:nom',resolve : 
+    {
+      datas: ResolverChoixFormationService
+    },component: ChoixFormationComponent},
+
+  { path : 'app-formation/app-infos-specialite/:id/app-choix-specialitee/:nom',resolve :  
+    {
+      datas: ResolverChoixSpecialiteeService
+    },component: ChoixSpecialiteeComponent},
+
+  { path : 'app-profile/:id', resolve :
+    {
+      datas: ResolverProfileService
+    },component:ProfileComponent}
 ];
 
 

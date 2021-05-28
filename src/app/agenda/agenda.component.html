@@ -94,15 +94,13 @@
   <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
 
   <br /><br /><br />
-
+<div *ngIf="user.userId">
   <h3 style="text-align: center;">
     Edit events
     <button class="btn btn-primary float-left" (click)="addEvent()">
       Add new
     </button>
-     <button class="btn btn-primary float-right" (click)="createEvent()">
-      Create
-    </button>
+     
     
   </h3>
 
@@ -119,6 +117,7 @@
           <th>Secondary color</th>-->
           <th>Starts at</th>
           <th>Ends at</th>
+          <th>Create</th>
           <th>Update</th>
           <th>Delete</th>
         </tr>
@@ -214,6 +213,11 @@
             />
           </td>
           <td>
+            <button class="btn btn-primary float-right" (click)="createEvent(event)">
+              Create
+            </button>
+          </td>
+          <td>
             <button class="btn btn-primary" (click)="updateEvent(event)">
               Update
             </button>
@@ -228,6 +232,7 @@
       </tbody>
     </table>
   </div>
+</div>
 
   <ng-template #modalContent let-close="close">
     <div class="modal-header">
