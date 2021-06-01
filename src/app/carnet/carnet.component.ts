@@ -24,7 +24,6 @@ export class CarnetComponent implements OnInit {
     .subscribe(
       carnets =>{
         this.carnets = carnets;
-        console.log(this.carnets)
       }
     )
   }

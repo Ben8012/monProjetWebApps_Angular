@@ -13,7 +13,6 @@ export class SitePlongeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSiteDePlongee()
-    
   }
 
   getSiteDePlongee(){
@@ -23,7 +22,5 @@ export class SitePlongeeComponent implements OnInit {
         this.siteDePlongee = siteDePlongee
       }
     )
-    
   }
-  
 }
