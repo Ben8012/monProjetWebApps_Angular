@@ -98,6 +98,7 @@ export class AgendaComponent  {
   public datePickerOptionsEnd : FlatpickrDefaultsInterface = {
    
         enable : [{from : new Date(Date.now()), to : new Date(new Date().getFullYear() + 200, 12)}]
+       
       }
 
   activeDayIsOpen: boolean = true

@@ -100,7 +100,7 @@
     <button class="btn btn-primary float-left" (click)="addEvent()">
       Add new
     </button>
-     
+    {{madate}}
     
   </h3>
 
@@ -190,8 +190,7 @@
               [altInput]="true"
               [convertModelValue]="true"
               [enableTime]="true"
-              dateFormat="Y-m-dTH:i"
-              altFormat="F j, Y H:i"
+              
               [options]="datePickerOptionsStart"
               placeholder="Not set"
             /> 
@@ -206,8 +205,7 @@
               [altInput]="true"
               [convertModelValue]="true"
               [enableTime]="true"
-              dateFormat="Y-m-dTH:i"
-              altFormat="F j, Y H:i"
+             
               [options]="datePickerOptionsEnd"
               placeholder="Not set"
             />

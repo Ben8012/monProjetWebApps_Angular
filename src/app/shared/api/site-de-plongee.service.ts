@@ -138,6 +138,8 @@ export class SiteDePlongeeService {
 
   postCreateEvent(event : any)
   {
+    event.start=event.start.toISOString().slice(0, 19).replace('T', ' ');
+    event.end=event.end.toISOString().slice(0, 19).replace('T', ' ');
     this._httpClient.post(
       "http://localhost:3000/event/",event)
       .subscribe(
