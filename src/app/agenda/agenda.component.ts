@@ -27,7 +27,7 @@ import {  OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
-import { EventsPlongee, Formations, SiteDePlongee, Speciality } from '../shared/api/class.service';
+import { EventsPlongee, Formations, SiteDePlongee, Speciality, UserInfo } from '../shared/api/class.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { DateUtils} from '../utils/date.utils'
 import { UserSessionService } from '../shared/api/user-session.service';
@@ -157,7 +157,8 @@ export class AgendaComponent  {
       ...this.events,
       {
         title: '',
-        instructor:'Benjamin',
+        userId:this.user.userId,
+        instructor:this.user.surname,
         training: false,
         location:'',
         level:'',
@@ -172,6 +173,8 @@ export class AgendaComponent  {
         },
       },
     ];
+
+    
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {
@@ -198,28 +201,28 @@ export class AgendaComponent  {
   sites:SiteDePlongee[]=[];
   eventsPlongee:EventsPlongee[]=[];
   training:boolean=false;
-  user: any
+  user: any;
+  vueOk: boolean = false;
+  allUsers:UserInfo[]=[]
+  eventByUserId:EventsPlongee[]=[]
   
   createEvent(eventCreate : CalendarEvent){
       this.apiService.postCreateEvent(eventCreate)
       window.location.reload()
-   
   }
   
   ngOnInit(): void {
+    this.user = this.userSessionService.user
+
     this.getFormation()
     this.getSpeciality()
     this.getSite()
     this.getEvent()
     this.setEvent()
+    this.getUsers()
+    this.getEventByUserId()
 
-    // console.log(this.eventsPlongee)
-    // console.log(this.OneProfile)
-    this.userSessionService.user$.subscribe((user : any) => {
-      this.user = user;
-    })
-    // console.log(this.user)
-  
+    console.log(this.user)
    }
 
    setEvent(){
@@ -237,6 +240,7 @@ export class AgendaComponent  {
       evenements.color = this.eventsPlongee[index].color
       evenements.draggable = this.eventsPlongee[index].draggable
       evenements.resizable = this.eventsPlongee[index].resizable
+      evenements.userId = this.eventsPlongee[index].userId
   
       this.events.push(evenements)
       } 
@@ -277,6 +281,30 @@ export class AgendaComponent  {
       }
     )
   }
+
+  getUsers(){
+    this.siteDePlongeeService.getUsers()
+    .subscribe(
+      allUsers =>{
+        this.allUsers = allUsers;
+      }
+    )
+  }
+
+  getEventByUserId(){
+    this.siteDePlongeeService.getEventByUserId(this.user.userId)
+    .subscribe(
+      eventByUserId =>{
+        this.eventByUserId = eventByUserId
+      }
+    )
+    
+  }
+
+
+ 
+
+  
   
 }
 

@@ -94,13 +94,13 @@
   <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
 
   <br /><br /><br />
-<div *ngIf="user.userId">
+<div *ngIf="user">
   <h3 style="text-align: center;">
     Edit events
     <button class="btn btn-primary float-left" (click)="addEvent()">
       Add new
     </button>
-    {{madate}}
+    
     
   </h3>
 
@@ -111,7 +111,6 @@
           <th>Event name</th>
           <!--<th>Speciality</th>-->
           <th>Location</th>
-          <th>Instructor</th>
           <!--<th>Training</th>-->
           <!--<th>Primary color</th>
           <th>Secondary color</th>-->
@@ -124,8 +123,9 @@
       </thead>
 
       <tbody>
+
         <tr *ngFor="let event of events">
-          <td >
+          <td  *ngIf="event.userId == user.userId">
             <select  type="text"
             class="form-control"
             [(ngModel)]="event.title"
@@ -145,7 +145,7 @@
                 <option   *ngFor="let speciality of specialitys" value={{speciality.nom}}>{{speciality.nom}}</option>
             </select>
           </td>-->
-          <td>
+          <td *ngIf="event.userId == user.userId">
             <select
               type="text"
               class="form-control"
@@ -153,17 +153,17 @@
               (keyup)="refresh.next()">
               <option selected>{{event.location}}</option>
               <option   *ngFor="let site of sites" value={{site.nom}}>{{site.nom}}</option>
-          </select>
+            </select>
           </td>
-          <td>
+          <!--<td>
             <input
               type="text"
               class="form-control"
-              [(ngModel)]="event.instructor"
+              [(ngModel)]="user.surname"
               (keyup)="refresh.next()"
             />
           </td>
-          <!--<td>
+          <td>
             <input type="checkbox" class="form-control"  [(ngModel)]="event.training">
           </td>-->
           <!--<td>
@@ -180,7 +180,7 @@
               (change)="refresh.next()"
             />
           </td>-->
-          <td>
+          <td *ngIf="event.userId == user.userId">
             <input
               class="form-control"
               type="text"
@@ -195,7 +195,7 @@
               placeholder="Not set"
             /> 
           </td>
-          <td>
+          <td *ngIf="event.userId == user.userId">
             <input
               class="form-control"
               type="text"
@@ -210,17 +210,17 @@
               placeholder="Not set"
             />
           </td>
-          <td>
+          <td *ngIf="event.userId == user.userId">
             <button class="btn btn-primary float-right" (click)="createEvent(event)">
               Create
             </button>
           </td>
-          <td>
+          <td *ngIf="event.userId == user.userId">
             <button class="btn btn-primary" (click)="updateEvent(event)">
               Update
             </button>
           </td>
-          <td>
+          <td *ngIf="event.userId == user.userId">
             <button class="btn btn-danger" (click)="deleteEvent(event)">
               Delete
             </button>
@@ -241,7 +241,7 @@
     </div>
     <div class="modal-body">
       <div>
-        Instructor:
+        Create by:
         <pre>{{ modalData.event?.instructor}}</pre>
       </div>
       <!--<div>

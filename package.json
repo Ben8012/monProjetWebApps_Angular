@@ -43,7 +43,7 @@
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1102.3",
+    "@angular-devkit/build-angular": "^12.0.2",
     "@angular/cli": "~11.2.4",
     "@angular/compiler-cli": "~11.2.5",
     "@schematics/angular": "~11.2.4",
@@ -66,5 +66,13 @@
   "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.",
   "main": "karma.conf.js",
   "author": "Ben",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ben8012/monProjetWebApps_Angular.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ben8012/monProjetWebApps_Angular/issues"
+  },
+  "homepage": "https://github.com/Ben8012/monProjetWebApps_Angular#readme"
 }

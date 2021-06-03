@@ -31,7 +31,7 @@ export class InfosFormationComponent implements OnInit {
     this.userSessionService.user$.subscribe((user : any) => {
       this.user = user;
     })
-    console.log(this.user)
+    //console.log(this.user)
   }
 
   onPlayerReady(api: VgApiService) {

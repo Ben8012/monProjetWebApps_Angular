@@ -14,6 +14,7 @@ export class Carnets{
     carnetId: number;
     carnetInfo:string;
     siteId : number;
+    userId: number;
   
     constructor(data : any)
     {
@@ -32,6 +33,7 @@ export class Carnets{
     this.carnetId = data.carnetId;
     this.carnetInfo= data.carnetInfo;
     this.siteId = data.siteId;
+    this.userId = data.userId;
     }
   }
   
@@ -42,7 +44,7 @@ export class Carnets{
     prenom:string;
     email:string;
     date_de_naissance:Date;
-    lieux_de_naissance:string;
+    lieu_de_naissance:string;
     rue:string;
     numero:number;
     code_postal:number;
@@ -52,6 +54,7 @@ export class Carnets{
     numero_padi:number;
     nom_assurance:string;
     numero_assurance:string;
+    droit_evenement:boolean
   
     constructor(data : any)
     {
@@ -60,7 +63,7 @@ export class Carnets{
       this.prenom = data.prenom;
       this.email = data.email;
       this.date_de_naissance = data.date_de_naissance;
-      this.lieux_de_naissance = data.lieux_de_naissance;
+      this.lieu_de_naissance = data.lieu_de_naissance;
       this.rue = data.rue;
       this.numero = data.numero;
       this.code_postal = data.code_postal;
@@ -70,6 +73,7 @@ export class Carnets{
       this.numero_padi = data.numero_padi;
       this.nom_assurance = data.nom_assurance;
       this.numero_assurance = data.numero_assurance;
+      this.droit_evenement = data.droit_evenement;
     }
   }
   
@@ -189,6 +193,7 @@ export class Carnets{
     
     id:number;
     title: string;
+    userId:number;
     instructor: string;
     training: false;
     location:string;
@@ -207,6 +212,7 @@ export class Carnets{
     {
     this.id= data.id;
     this.title = data.title;
+    this.userId= data.userId;
     this.instructor= data.instructor; 
     this.training = data.training;
     this.location = data.location;
@@ -217,6 +223,7 @@ export class Carnets{
     this.color = data.color;
     this.draggable = data.draggable;
     this.resizable = data.resizable;
+    
     
   }
 }

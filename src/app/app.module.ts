@@ -33,6 +33,8 @@ import { HttpInterceptorService } from './shared/api/http-interceptor.service';
 import { ChoixFormationComponent } from './choix-formation/choix-formation.component';
 import { ChoixSpecialiteeComponent } from './choix-specialitee/choix-specialitee.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AllUsersComponent } from './all-users/all-users.component';
+import { UserSessionService } from './shared/api/user-session.service';
 
 
 
@@ -59,6 +61,8 @@ import { ProfileComponent } from './profile/profile.component';
     ChoixFormationComponent,
     ChoixSpecialiteeComponent,
     ProfileComponent,
+    AllUsersComponent,
+    
     
     
     
@@ -90,7 +94,8 @@ import { ProfileComponent } from './profile/profile.component';
       provide : HTTP_INTERCEPTORS,
       useClass : HttpInterceptorService,
       multi : true
-    }
+    },
+    UserSessionService
   ],
   bootstrap: [AppComponent]
 })

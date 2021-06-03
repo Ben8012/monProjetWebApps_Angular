@@ -17,15 +17,17 @@
           <a class="nav-link" routerLink="app-site-plongee">Sites de plongée <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" routerLink="app-carnet">Carnet de plongée <span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="app-agenda">Agenda <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['app-agenda', user.userId]">Agenda <span class="sr-only">(current)</span></a>
+          <a class="nav-link" *ngIf="user.name" [routerLink]="['app-carnet',user.userId]">Carnet de plongée <span class="sr-only">(current)</span></a>
         </li>
       </ul>
+      
       <button class="my-lg-0 bg-light" *ngIf="user.name" style="margin-right:20px; padding:7px; border-radius:25px; color:blue"  [routerLink]="['app-profile',user.userId]">
           {{user.surname}}
       </button>
+      <button  *ngIf="user.email==='benjaminstercks@gmail.com'" class="btn btn bg-primary" style="margin-right:20px;color:whitesmoke"  routerLink='app-all-users'>Utilisateurs</button>
       <button  *ngIf="!user.name" class="btn btn bg-primary" style="margin-right:20px;color:whitesmoke"  routerLink="app-login">Connection</button>
       <button  *ngIf="user.name" class="btn btn bg-primary" style="margin-right:20px;color:whitesmoke" (click)="LogOut()" routerLink="app-login">Deconnection</button>
       <!-- <form class="form-inline my-2 my-lg-0">

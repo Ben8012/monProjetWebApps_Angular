@@ -1,0 +1,30 @@
+<h2 style="text-align: center;">Les utilisateurs </h2>
+<div  class="row justify-content-center">
+  <div class="d-flex align-items-center " style="width: 18rem; margin:10px;" *ngFor= "let users of allUsers;" >
+    <div style="background-color:lavender; padding:20px">
+        <div style="text-align: center; margin:10px;">
+            <h5 >{{users.prenom}}</h5>
+            <h5 >{{users.nom}}</h5>
+            <h5 *ngIf="users.droit_evenement" style="color:red"> est administrateur</h5>
+            <h5 *ngIf="!users.droit_evenement" style="color:red">n'est pas administrateur</h5>
+            <h5>Niveau: {{users.niveau}} </h5> 
+            <p>{{users.email}} </p>  
+            <p>Né le: {{users.date_de_naissance | date }}  à {{users.lieu_de_naissance}}  </p>          
+            <h6>adresse :</h6>
+            <p>{{users.rue}} N°{{users.numero}} à {{users.code_postal}}, {{users.ville}} </p>
+            <p>{{users.pays}} </p>  
+            
+            <p>N° PADI: {{users.numero_padi}}</p>
+            <p>Assurance: {{users.nom_assurance}}</p>
+            <p>N° d'assurance: {{users.numero_assurance}}</p>
+            
+            
+                Droit administrateur <input type="checkbox" name="isAdmin" (click)="postDroitAdmin(users.id)">
+            
+        </div> 
+
+      
+      
+    </div>
+  </div>
+</div>

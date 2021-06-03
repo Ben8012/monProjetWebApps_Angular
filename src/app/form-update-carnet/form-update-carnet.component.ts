@@ -5,6 +5,7 @@ import {  Carnets, SiteDePlongee } from '../shared/api/class.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { formatDate } from '@angular/common';
 import { DateUtils } from '../utils/date.utils';
+import { UserSessionService } from '../shared/api/user-session.service';
 
 @Component({
   selector: 'app-form-update-carnet',
@@ -17,15 +18,17 @@ export class FormUpdateCarnetComponent implements OnInit {
   sites: SiteDePlongee[]=[]
   deco: boolean=false
   OneCarnet!:Carnets
-  id : any
+  user:any
 
-  constructor(private apiService : SiteDePlongeeService, private formBuilder : FormBuilder, private route:ActivatedRoute,private siteDePlongeeService:SiteDePlongeeService, private router : Router) 
+  constructor(private apiService : SiteDePlongeeService, private formBuilder : FormBuilder, private route:ActivatedRoute,private siteDePlongeeService:SiteDePlongeeService, private router : Router , private userSessionService : UserSessionService) 
   {
     this.OneCarnet = this.route.snapshot.data['datas']
-    // console.log(this.OneCarnet)
+     //console.log(this.OneCarnet)
    }
 
   ngOnInit(): void {
+    this.user = this.userSessionService.user
+
     let date = new Date(this.OneCarnet.date);
     let format = DateUtils.format(date);
     this.formUpdateCarnet = this.formBuilder.group({
@@ -34,13 +37,14 @@ export class FormUpdateCarnetComponent implements OnInit {
       lieux : [this.OneCarnet.siteId, [Validators.required]], 
       duree : [this.OneCarnet.duree, [Validators.required]],  
       profondeur : [this.OneCarnet.profondeur, [Validators.required]], 
-      temperature_air : [this.OneCarnet.temperature_air, [Validators.required]],  
-      temperature_eau : [this.OneCarnet.temperature_eau, [Validators.required]], 
+      temperature_air : [this.OneCarnet.temperature_air],  
+      temperature_eau : [this.OneCarnet.temperature_eau], 
       deco : [this.OneCarnet.deco,], 
       type_plongee : [this.OneCarnet.type_plongee, [Validators.required]], 
-      palier : [this.OneCarnet.palier, ],
-      info : [this.OneCarnet.carnetInfo, [Validators.required]], 
+      palier : [this.OneCarnet.palier],
+      info : [this.OneCarnet.info], 
       date : [format, [Validators.required]],  
+      userId : this.OneCarnet.userId
     })
 
     this.getSiteDePlongee()
@@ -53,7 +57,7 @@ export class FormUpdateCarnetComponent implements OnInit {
     {
       this.formUpdateCarnet.value.id = this.OneCarnet.carnetId
       this.apiService.postUpdateCarnet(this.formUpdateCarnet.value) 
-      this.router.navigate(['/app-carnet'])
+      this.router.navigate(['/app-carnet/'+ this.OneCarnet.userId])
     }
   }
 

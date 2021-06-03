@@ -17,6 +17,12 @@ export class SiteDePlongeeService {
 
 //Les GET
 
+getUsers(): Observable<any>{
+  return this._httpClient.get(
+    'http://localhost:3000/utilisateurs'
+  )
+}
+
   getSite(): Observable<any>{
       return this._httpClient.get(
         'http://localhost:3000/sites'
@@ -53,9 +59,9 @@ export class SiteDePlongeeService {
     ) 
   }
 
-  getCarnet():Observable<any>{
+  getCarnet(id:any):Observable<any>{
     return this._httpClient.get(
-      'http://localhost:3000/carnets'
+      'http://localhost:3000/carnets/'+id
     )
   }
 
@@ -86,6 +92,12 @@ export class SiteDePlongeeService {
   getEventBySpeciality(speciality:any):Observable<any>{
     return this._httpClient.get(
       'http://localhost:3000/events/speciality/'+speciality
+    )
+  }
+
+  getEventByUserId(userId: number): Observable<any>{
+    return this._httpClient.get(
+      'http://localhost:3000/eventsByUserId/'+userId
     )
   }
 
@@ -221,6 +233,17 @@ export class SiteDePlongeeService {
   {
     console.log(data)
     this._httpClient.post('http://localhost:3000/mail/formation', data)
+    .subscribe(
+      (data) => {
+        console.log(data)
+      }
+    )
+  }
+
+  postDroitAdmin(data :any)
+  {
+    console.log(data)
+    this._httpClient.post('http://localhost:3000/admin', data)
     .subscribe(
       (data) => {
         console.log(data)

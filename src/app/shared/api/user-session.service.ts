@@ -10,20 +10,21 @@ import jwt_decode from 'jwt-decode';
 export class UserSessionService {
 
     public user$: BehaviorSubject<string> = new BehaviorSubject("");
-    private user : any
+    public user : any
 
     constructor() {
         const token = sessionStorage.getItem('token')
 
         if (token) {
             const data: any = jwt_decode(token);
+            this.user = data
             this.user$.next(data);
         }
     }
 
-    getUsername() {
+    /*getUsername() {
         return this.user$;
-    }
+    }*/
 
     saveSession(token: any) {
         sessionStorage.setItem('token', token)
@@ -33,8 +34,8 @@ export class UserSessionService {
     }
 
     clearSession() {
-        console.log(this.user)
         sessionStorage.clear()
+        this.user = ""
         this.user$.next("")
     }
 

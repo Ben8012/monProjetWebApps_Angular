@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AgendaComponent } from './agenda/agenda.component';
+import { AllUsersComponent } from './all-users/all-users.component';
 import { CarnetComponent } from './carnet/carnet.component';
 import { ChoixFormationComponent } from './choix-formation/choix-formation.component';
 import { ChoixSpecialiteeComponent } from './choix-specialitee/choix-specialitee.component';
@@ -48,7 +49,7 @@ const routes: Routes = [
   { path:'app-infos-carrieres', component: InfosCarrieresComponent},
   { path:'app-login', component: LoginComponent},
   
-  { path:'app-agenda/:id',resolve :
+  { path:'app-agenda',resolve :
     {
     datas1 : ResolverCalendarEventService,
     dates2 : ResolverProfileService
@@ -66,16 +67,16 @@ const routes: Routes = [
     datas:ResolverInfosSpecialiteService
     }, component: InfosSpecialiteComponent},
 
-  { path:'app-carnet', component: CarnetComponent},
+  { path:'app-carnet/:id', component: CarnetComponent},
 
-  { path:'app-carnet/app-form-carnet', component: FormCarnetComponent},
+  { path:'app-carnet/:id/app-form-carnet', component: FormCarnetComponent},
 
   { path :'app-carnet/app-infos-carrieres/:id', resolve :
     {
      datas : ResolverInfosCarrieresService
     }, component: InfosCarrieresComponent},
 
-  { path : 'app-carnet/app-form-update-carnet/:id', resolve : 
+  { path : 'app-carnet/:id/app-form-update-carnet/:id', resolve : 
     {
       datas: ResolverUpdateCarnetService
     }, component:FormUpdateCarnetComponent},
@@ -95,7 +96,10 @@ const routes: Routes = [
   { path : 'app-profile/:id', resolve :
     {
       datas: ResolverProfileService
-    },component:ProfileComponent}
+    },component:ProfileComponent},
+
+  { path : 'app-all-users', component: AllUsersComponent},
+  
 ];
 
 
