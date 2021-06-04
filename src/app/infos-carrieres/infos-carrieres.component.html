@@ -1,13 +1,15 @@
-<div class="container" style="margin:10px">
-  <div class="media">
-      <img [src]="'http://localhost:3000/images/'+OneSiteDePlongee.photo" class="mr-3" style="width: 380px; height:300px;" alt="...">
-      <div class="media-body">
-        <h5 class="mt-0">{{OneSiteDePlongee.nom}}</h5>
-        <p>{{OneSiteDePlongee.info}}</p>
-      </div>
-  </div>
-  <div class="d-flex justify-content-around" style="margin:20px">
-      <button class="btn btn-primary" (click)="ouvreNouvelOnglet()">lien vers le site</button> 
-      <a [href]="'http://localhost:3000/download/'+OneSiteDePlongee.plan" target="_blank" class="btn btn-primary" >télécharger le plan</a>
-  </div>
+<div class="container" style="margin:10%;">
+  <div class="justify-content-center">
+    <div class="media">
+        <img [src]="'http://localhost:3000/images/'+OneSiteDePlongee.photo" class="mr-3" style="width: 380px; height:300px; border-radius: 10px;" alt="...">
+        <div class="media-body">
+          <h5 class="mt-0">{{OneSiteDePlongee.nom}}</h5>
+          <p>{{OneSiteDePlongee.info}}</p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-around" style="margin:10%">
+        <button class="btn btn-primary" (click)="ouvreNouvelOnglet()">lien vers le site</button> 
+        <a [href]="'http://localhost:3000/download/'+OneSiteDePlongee.plan" target="_blank" class="btn btn-primary" >télécharger le plan</a>
+    </div>
+</div>
 </div>

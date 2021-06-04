@@ -94,7 +94,7 @@
   <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
 
   <br /><br /><br />
-<div *ngIf="user">
+<div *ngIf="user && user.isAdmin">
   <h3 style="text-align: center;">
     Edit events
     <button class="btn btn-primary float-left" (click)="addEvent()">
@@ -125,7 +125,7 @@
       <tbody>
 
         <tr *ngFor="let event of events">
-          <td  *ngIf="event.userId == user.userId">
+          <td  *ngIf="user && event.userId == user.userId">
             <select  type="text"
             class="form-control"
             [(ngModel)]="event.title"

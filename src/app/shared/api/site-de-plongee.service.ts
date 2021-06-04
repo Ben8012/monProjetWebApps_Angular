@@ -109,7 +109,7 @@ getUsers(): Observable<any>{
     this._httpClient.post('http://localhost:3000/createUtilisateur', myForm)
     .subscribe(
       (data) => {
-        console.log(data)
+        //console.log(data)
       }
     )
   }
@@ -119,19 +119,18 @@ getUsers(): Observable<any>{
     this._httpClient.post('http://localhost:3000/user/update', myForm2)
     .subscribe(
       (data) => {
-        console.log(data)
+        //console.log(data)
       }
     )
   }
 
   deleteUtilisateur(id: any)
   {
-    console.log(id)
       this._httpClient.delete(
         `http://localhost:3000/user/delete/${id}`)
         .subscribe(
         (data) => {
-          console.log(data)
+          //console.log(data)
         }
       )
   }
@@ -156,19 +155,21 @@ getUsers(): Observable<any>{
       "http://localhost:3000/event/",event)
       .subscribe(
         (data) => {
-          console.log(data)
+          //console.log(data)
         }
       )
   }
 
-  postUpdateEvent(data : any)
+  postUpdateEvent(event : any)
   {
-    console.log(data)
+    console.log(event)
+    event.start=event.start.toISOString().slice(0, 19).replace('T', ' ');
+    event.end=event.end.toISOString().slice(0, 19).replace('T', ' ');
     this._httpClient.post(
-      "http://localhost:3000/update/event/", data)
+      "http://localhost:3000/update/event/", event)
       .subscribe(
         (data) => {
-          console.log(data)
+          //console.log(data)
         }
       )
   }
@@ -179,7 +180,7 @@ getUsers(): Observable<any>{
         `http://localhost:3000/delete/event/${id}`)
         .subscribe(
         (data) => {
-          console.log(data)
+          //console.log(data)
         }
       )
   }
@@ -190,7 +191,7 @@ getUsers(): Observable<any>{
       "http://localhost:3000/carnet/",formCarnet)
       .subscribe(
         (data) => {
-          console.log(data)
+          //console.log(data)
         }
       )
   }
@@ -203,7 +204,7 @@ getUsers(): Observable<any>{
       "http://localhost:3000/carnet/mtm",TwoId)
       .subscribe(
         (data) => {
-          console.log(data)
+          //console.log(data)
         }
       )
   }
@@ -214,7 +215,7 @@ getUsers(): Observable<any>{
       "http://localhost:3000/update/carnet", data)
       .subscribe(
         (data) => {
-          console.log(data)
+          //console.log(data)
         }
       )
   }
@@ -224,29 +225,27 @@ getUsers(): Observable<any>{
       `http://localhost:3000/delete/carnet/${id}`)
       .subscribe(
       (data) => {
-        console.log(data)
+        //console.log(data)
       }
     )
   }
 
   postEnvoisMail(data :any)
   {
-    console.log(data)
     this._httpClient.post('http://localhost:3000/mail/formation', data)
     .subscribe(
       (data) => {
-        console.log(data)
+        //console.log(data)
       }
     )
   }
 
   postDroitAdmin(data :any)
   {
-    console.log(data)
     this._httpClient.post('http://localhost:3000/admin', data)
     .subscribe(
       (data) => {
-        console.log(data)
+        //console.log(data)
       }
     )
   }

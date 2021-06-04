@@ -184,6 +184,8 @@ export class AgendaComponent  {
   
   updateEvent(eventToUpdate: CalendarEvent) {
     this.apiService.postUpdateEvent(eventToUpdate)
+    //console.log(eventToUpdate)
+    //window.location.reload()
   }
 
   setView(view: CalendarView) {
@@ -202,7 +204,6 @@ export class AgendaComponent  {
   eventsPlongee:EventsPlongee[]=[];
   training:boolean=false;
   user: any;
-  vueOk: boolean = false;
   allUsers:UserInfo[]=[]
   eventByUserId:EventsPlongee[]=[]
   
@@ -220,9 +221,9 @@ export class AgendaComponent  {
     this.getEvent()
     this.setEvent()
     this.getUsers()
-    this.getEventByUserId()
-
-    console.log(this.user)
+    
+    console.log(new Date(Date.now()))
+    //console.log(this.user)
    }
 
    setEvent(){
@@ -291,15 +292,14 @@ export class AgendaComponent  {
     )
   }
 
-  getEventByUserId(){
+  /*getEventByUserId(){
     this.siteDePlongeeService.getEventByUserId(this.user.userId)
     .subscribe(
       eventByUserId =>{
         this.eventByUserId = eventByUserId
       }
-    )
-    
-  }
+    )   
+  }*/
 
 
  

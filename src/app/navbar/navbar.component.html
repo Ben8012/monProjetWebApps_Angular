@@ -28,7 +28,7 @@
           {{user.surname}}
       </button>
       <button  *ngIf="user.email==='benjaminstercks@gmail.com'" class="btn btn bg-primary" style="margin-right:20px;color:whitesmoke"  routerLink='app-all-users'>Utilisateurs</button>
-      <button  *ngIf="!user.name" class="btn btn bg-primary" style="margin-right:20px;color:whitesmoke"  routerLink="app-login">Connection</button>
+      <button  *ngIf="!user.name" class="btn btn bg-primary" style="margin-right:20px;color:whitesmoke"  routerLink="app-login">Connexion</button>
       <button  *ngIf="user.name" class="btn btn bg-primary" style="margin-right:20px;color:whitesmoke" (click)="LogOut()" routerLink="app-login">Deconnection</button>
       <!-- <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

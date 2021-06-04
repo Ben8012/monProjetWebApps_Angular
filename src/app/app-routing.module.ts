@@ -71,7 +71,7 @@ const routes: Routes = [
 
   { path:'app-carnet/:id/app-form-carnet', component: FormCarnetComponent},
 
-  { path :'app-carnet/app-infos-carrieres/:id', resolve :
+  { path :'app-carnet/:id/app-infos-carrieres/:id', resolve :
     {
      datas : ResolverInfosCarrieresService
     }, component: InfosCarrieresComponent},

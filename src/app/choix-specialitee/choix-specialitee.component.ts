@@ -18,7 +18,7 @@ export class ChoixSpecialiteeComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.eventsBySpeciality)
+    //console.log(this.eventsBySpeciality)
   }
 
 }
