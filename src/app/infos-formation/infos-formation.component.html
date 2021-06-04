@@ -71,7 +71,6 @@
 
     <div class="media" style="padding:20px">
         <div class="media-body">
-            
           <h5 class="mt-0"> {{OneFormation.nom}}</h5>
           <p>{{OneFormation.intro}}</p>
           <h6>Le cours:</h6>
@@ -82,7 +81,8 @@
           <p>{{OneFormation.materiel}}</p>
           <h6>Durée:</h6>
           <p>{{OneFormation.duree}}</p>
-          <h6>Prix: {{OneFormation.prix}}€</h6>
+          <h6 *ngIf="OneFormation.prix!=100">Prix: {{OneFormation.prix}}€</h6>
+          <h6 *ngIf="OneFormation.prix==100">Prix varie entre 70€ et 110€ en fonction du lieu </h6>
           <p></p>
         </div>
     </div>

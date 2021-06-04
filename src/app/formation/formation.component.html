@@ -4,10 +4,15 @@
 <div class="row justify-content-center" >
     <div class="d-flex align-items-center " style="width: 18rem;margin:10px; ;" *ngFor= "let formation of formations">
       <div>
-        <h6 style="text-align: center;">{{formation.nom}}</h6>
-        <a [routerLink]="['app-infos-formation', formation.id]" >
-          <img [src]="'http://localhost:3000/images_formations/'+formation.image" style="width:286px; height:200px;margin:10px;" alt="..."> 
-        </a>         
+        <div style="background-color:lavender; ">
+          <a [routerLink]="['app-infos-formation', formation.id]" style=" text-decoration:none;color:black;">
+            <img [src]="'http://localhost:3000/images_formations/'+formation.image" style="width:286px; height:200px;" alt="..."> 
+            <div style="text-align: center;padding:10px;"> 
+              <h6>{{formation.nom}}</h6>
+              <h6>{{formation.niveau}}</h6>
+            </div>
+          </a> 
+        </div>
       </div>
     </div>
 </div>
@@ -18,10 +23,15 @@
   <div class="row justify-content-center">
     <div class="d-flex align-items-center " style="width: 18rem;margin:10px; ;" *ngFor= "let speciality of specialitys">
       <div>
-        <h6 style="text-align: center;">{{speciality.nom}}</h6>
-        <a [routerLink]="['app-infos-specialite', speciality.id]" >
-          <img [src]="'http://localhost:3000/images_formations/'+speciality.image" style="width:286px; height:200px;margin:10px;" alt="..."> 
-        </a>         
+        <div style="background-color:lavender; ">
+          <a [routerLink]="['app-infos-specialite', speciality.id]" style=" text-decoration:none;color:black;">
+            <img [src]="'http://localhost:3000/images_formations/'+speciality.image" style="width:286px; height:200px;" alt="..."> 
+            <div style="text-align: center;padding:10px;">
+              <h6>{{speciality.nom}}</h6>
+              <h6>{{speciality.nom_francais}}</h6>
+            </div>
+          </a> 
+        </div>        
       </div>
     </div>
     <!-- <div class="card text-center bg-primary mb-3" style="width: 18rem;margin:10px;" *ngFor= "let speciality of specialitys">

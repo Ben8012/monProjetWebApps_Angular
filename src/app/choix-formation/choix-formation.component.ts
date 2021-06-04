@@ -11,18 +11,20 @@ import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
 export class ChoixFormationComponent implements OnInit {
 
   eventsByTitle:EventsPlongee[]=[];
-
-  constructor(private apiService : SiteDePlongeeService, private siteDePlongeeService:SiteDePlongeeService, private route:ActivatedRoute,) 
+ 
+  constructor(private apiService : SiteDePlongeeService, private route:ActivatedRoute,) 
   {
     this.eventsByTitle = this.route.snapshot.data['datas']
    }
 
   ngOnInit(): void {
+    console.log(this.eventsByTitle)
     
   }
 
   envoisMail(datas : any){
-    this.apiService.postEnvoisMail(datas)
+    //this.apiService.postEnvoisMail(datas)
   }
 
+  
 }

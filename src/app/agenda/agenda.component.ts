@@ -247,6 +247,8 @@ export class AgendaComponent  {
       } 
    }
 
+   
+
    getFormation(){
     this.siteDePlongeeService.getFormation()
     .subscribe(

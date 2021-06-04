@@ -270,10 +270,12 @@
       </div>
     </div>
     <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" [routerLink]="['app-choix-formation', modalData.event?.id]">
+        Choisir
+      </button>
       <button type="button" class="btn btn-outline-secondary" (click)="close()">
         OK
       </button>
-    
     </div>
   </ng-template>
 </div>

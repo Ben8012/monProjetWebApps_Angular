@@ -12,13 +12,17 @@ export class ChoixSpecialiteeComponent implements OnInit {
 
   eventsBySpeciality:EventsPlongee[]=[];
 
-  constructor( private siteDePlongeeService:SiteDePlongeeService, private route:ActivatedRoute,) 
+  constructor(private apiService : SiteDePlongeeService, private route:ActivatedRoute,) 
   {
     this.eventsBySpeciality = this.route.snapshot.data['datas']
    }
 
   ngOnInit(): void {
     //console.log(this.eventsBySpeciality)
+  }
+
+  envoisMail(datas : any){
+    //this.apiService.postEnvoisMail(datas)
   }
 
 }

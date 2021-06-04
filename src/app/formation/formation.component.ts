@@ -17,6 +17,7 @@ export class FormationComponent implements OnInit {
   ngOnInit(): void {
    this.getFormation()
    this.getSpeciality()
+   
   }
 
   getFormation(){
