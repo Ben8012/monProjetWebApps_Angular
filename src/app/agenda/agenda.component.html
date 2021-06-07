@@ -9,14 +9,14 @@
           [(viewDate)]="viewDate"
           (viewDateChange)="closeOpenMonthViewDay()"
         >
-          Previous
+          Précédant
         </div>
         <div
           class="btn btn-outline-secondary"
           mwlCalendarToday
           [(viewDate)]="viewDate"
         >
-          Today
+          Aujourd'hui
         </div>
         <div
           class="btn btn-primary"
@@ -25,12 +25,12 @@
           [(viewDate)]="viewDate"
           (viewDateChange)="closeOpenMonthViewDay()"
         >
-          Next
+          Suivant
         </div>
       </div>
     </div>
     <div class="col-md-4">
-      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'fr' }}</h3>
     </div>
     <div class="col-md-4">
       <div class="btn-group">
@@ -39,21 +39,21 @@
           (click)="setView(CalendarView.Month)"
           [class.active]="view === CalendarView.Month"
         >
-          Month
+          Mois
         </div>
         <div
           class="btn btn-primary"
           (click)="setView(CalendarView.Week)"
           [class.active]="view === CalendarView.Week"
         >
-          Week
+          Semaine
         </div>
         <div
           class="btn btn-primary"
           (click)="setView(CalendarView.Day)"
           [class.active]="view === CalendarView.Day"
         >
-          Day
+          Jour
         </div>
       </div>
     </div>
@@ -96,29 +96,27 @@
   <br /><br /><br />
 <div *ngIf="user && user.isAdmin">
   <h3 style="text-align: center;">
-    Edit events
+    Editer
     <button class="btn btn-primary float-left" (click)="addEvent()">
-      Add new
+    Ajouter
     </button>
-    
-    
   </h3>
 
   <div class="table-responsive">
     <table class="table table-bordered">
       <thead  >
-        <tr>
-          <th>Event name</th>
+        <tr style="text-align: center;">
+          <th>Nom de l'evenement</th>
           <!--<th>Speciality</th>-->
-          <th>Location</th>
+          <th>Lieu</th>
           <!--<th>Training</th>-->
           <!--<th>Primary color</th>
           <th>Secondary color</th>-->
-          <th>Starts at</th>
-          <th>Ends at</th>
-          <th>Create</th>
-          <th>Update</th>
-          <th>Delete</th>
+          <th>Commence le</th>
+          <th>Finis le</th>
+          <th>Créer</th>
+          <th>Modifier</th>
+          <th>Effacer</th>
         </tr>
       </thead>
 
@@ -212,17 +210,17 @@
           </td>
           <td *ngIf="event.userId == user.userId">
             <button class="btn btn-primary float-right" (click)="createEvent(event)">
-              Create
+              Créer
             </button>
           </td>
           <td *ngIf="event.userId == user.userId">
             <button class="btn btn-primary" (click)="updateEvent(event)">
-              Update
+              Modifier
             </button>
           </td>
           <td *ngIf="event.userId == user.userId">
             <button class="btn btn-danger" (click)="deleteEvent(event)">
-              Delete
+              Effacer
             </button>
           </td>
           
@@ -234,14 +232,14 @@
 
   <ng-template #modalContent let-close="close">
     <div class="modal-header">
-      <h5 class="modal-title">Event action occurred</h5>
+      <h5 class="modal-title">Informations de l'evenement</h5>
       <button type="button" class="close" (click)="close()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
       <div>
-        Create by:
+        Créé par:
         <pre>{{ modalData.event?.instructor}}</pre>
       </div>
       <!--<div>
@@ -249,7 +247,7 @@
         <pre>{{ modalData.event?.training}}</pre>
       </div>-->
       <div>
-        Event name :
+        Nom de l'evenement :
         <pre>{{ modalData.event?.title}}</pre>
       </div>
       <!--<div>
@@ -257,25 +255,41 @@
         <pre>{{ modalData.event?.speciality}}</pre>
       </div>-->
       <div>
-        Location:
+        Lieu:
         <pre>{{ modalData.event?.location}}</pre>
       </div>
       <div>
-        Starts at:
-        <pre>{{ modalData.event?.start|date: 'short'}} </pre>
+        Commence le:
+        <pre>{{ modalData.event?.start|date: 'medium'}} </pre>
       </div>
       <div>
-        Ends at:
-        <pre>{{ modalData.event?.end|date: 'short'}} </pre>
+        Finis le:
+        <pre>{{ modalData.event?.end|date: 'medium'}} </pre>
+      </div>
+      <div>
+        Participants:
+        <pre  *ngFor="let info of infos">nom: {{info.nom}} prénom: {{info.prenom}} email: {{info.email}}</pre>
       </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" [routerLink]="['app-choix-formation', modalData.event?.id]">
-        Choisir
+    
+    <div class="modal-footer" *ngIf="user  ">
+      <button type="button" class="btn btn-outline-secondary" (click)="participe(modalData.event?.id,user.userId);close()">
+        Je participe 
       </button>
-      <button type="button" class="btn btn-outline-secondary" (click)="close()">
+      <button type="button" class="btn btn-outline-secondary" (click)="participePas(modalData.event?.id,user.userId);close()">
+        Ne plus participer 
+      </button>
+      <button type="button" class="btn btn-outline-secondary" (click)="voirParticipant(modalData.event?.id,user.userId)">
+        Voir les Participants
+      </button>
+    </div>
+      <div class="modal-footer" *ngIf="!user ">
+      <button type="button" class="btn btn-outline-secondary" routerLink="app-login" (click)="close()">
+        Vous devez etre connecté pour participer 
+      </button>
+      <!--<button type="button" class="btn btn-outline-secondary" (click)="close()">
         OK
-      </button>
+      </button>-->
     </div>
   </ng-template>
 </div>

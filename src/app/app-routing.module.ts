@@ -99,6 +99,8 @@ const routes: Routes = [
     },component:ProfileComponent},
 
   { path : 'app-all-users', component: AllUsersComponent},
+
+  { path : 'app-agenda/app-login', component: LoginComponent},
   
 ];
 

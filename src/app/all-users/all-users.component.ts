@@ -35,4 +35,8 @@ export class AllUsersComponent implements OnInit {
     this.siteDePlongeeService.postDroitAdmin(datas)
     this.getUsers()
   }
+
+  deleteUser(id: number){
+    this.siteDePlongeeService.deleteUtilisateur(id)
+  }
 }

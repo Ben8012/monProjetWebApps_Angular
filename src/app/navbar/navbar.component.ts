@@ -18,12 +18,15 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.userSessionService.user$.subscribe((user : any) => {
       this.user = user;
-      //console.log(this.user)
     })
   }
 
   LogOut(){
     this.userSessionService.clearSession()
+  }
+
+  goFb(){
+    window.open("https://www.facebook.com/groups/342660476729885");
   }
 
 }

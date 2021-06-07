@@ -1,3 +1,6 @@
+import { NgbPaginationNumber } from "@ng-bootstrap/ng-bootstrap";
+import { isConstructorDeclaration } from "typescript";
+
 export class Carnets{
     id : number;
     nom:string;
@@ -227,7 +230,23 @@ export class Carnets{
     this.color = data.color;
     this.draggable = data.draggable;
     this.resizable = data.resizable;
-    
-    
+
+    }
+
   }
-}
+
+  export class UserEvent{
+    
+    id:number;
+    id_evenement:number;
+    id_utilisateur: number;
+
+    constructor(data : any)
+    {
+    this.id= data.id;
+    this.id_evenement= data.id_evenement;
+    this.id_utilisateur= data.id_utilisateur;
+    }
+  }
+
+

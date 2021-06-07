@@ -27,10 +27,11 @@ import {  OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
-import { EventsPlongee, Formations, SiteDePlongee, Speciality, UserInfo } from '../shared/api/class.service';
+import { EventsPlongee, Formations, SiteDePlongee, Speciality, UserInfo, UserEvent } from '../shared/api/class.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { DateUtils} from '../utils/date.utils'
 import { UserSessionService } from '../shared/api/user-session.service';
+
 
 const colors: any = {
   red: {
@@ -89,6 +90,7 @@ export class AgendaComponent  {
   
   events: CalendarEvent[] = [];
   
+  //Ajouter un jour en milliseconde +86400000
 // Ajouter les options du datePicker permet dans donner une nombre de jour ou un evement peut etre créé
   public datePickerOptionsStart : FlatpickrDefaultsInterface = {
 
@@ -173,9 +175,10 @@ export class AgendaComponent  {
         },
       },
     ];
-
     
   }
+
+
 
   deleteEvent(eventToDelete: CalendarEvent) {
     this.events = this.events.filter((event) => event !== eventToDelete); 
@@ -184,8 +187,6 @@ export class AgendaComponent  {
   
   updateEvent(eventToUpdate: CalendarEvent) {
     this.apiService.postUpdateEvent(eventToUpdate)
-    //console.log(eventToUpdate)
-    //window.location.reload()
   }
 
   setView(view: CalendarView) {
@@ -198,18 +199,25 @@ export class AgendaComponent  {
 
 //mon code
 
-  formations:Formations[]=[];
-  specialitys:Speciality[]=[];
-  sites:SiteDePlongee[]=[];
-  eventsPlongee:EventsPlongee[]=[];
-  training:boolean=false;
-  user: any;
+  formations:Formations[]=[]
+  specialitys:Speciality[]=[]
+  sites:SiteDePlongee[]=[]
+  eventsPlongee:EventsPlongee[]=[]
+  training:boolean=false
+  user: any
   allUsers:UserInfo[]=[]
   eventByUserId:EventsPlongee[]=[]
+  dataEnvoisEmail:any
+  userEvent:UserEvent[]=[]
   
-  createEvent(eventCreate : CalendarEvent){
-      this.apiService.postCreateEvent(eventCreate)
-      window.location.reload()
+ 
+
+  createEvent(events : CalendarEvent){
+    events.start.setDate((events.start.getDate() + 1))
+    events.end.setDate((events.end.getDate() + 1))
+
+    this.apiService.postCreateEvent(events)
+    window.location.reload()
   }
   
   ngOnInit(): void {
@@ -221,9 +229,7 @@ export class AgendaComponent  {
     this.getEvent()
     this.setEvent()
     this.getUsers()
-    
-    console.log(new Date(Date.now()))
-    //console.log(this.user)
+    this.getUserEvent()
    }
 
    setEvent(){
@@ -247,6 +253,76 @@ export class AgendaComponent  {
       } 
    }
 
+  userEventId:any
+  existe:boolean=false
+   participe(eventId: any, userId:any){
+    
+      for (let index = 0; index < this.userEvent.length; index++) {
+        if(this.userEvent[index].id_evenement == eventId && this.userEvent[index].id_utilisateur == userId){
+          alert('participe deja')
+
+          this.existe=true
+        }
+      }
+      if(!this.existe){
+        this.userEventId={
+            eventId:eventId,
+            userId:userId
+          }
+          this.apiService.postCreateUserEvent(this.userEventId)
+
+          /*for (let index = 0; index < this.events.length; index++) {
+            if(this.events[index].id == eventId){
+              this.dataEnvoisEmail = this.events[index];
+            }  
+          }
+          this.apiService.postEnvoisMail(this.dataEnvoisEmail)*/
+          this.existe=!this.existe
+          window.location.reload()
+          //this.router.navigate(['/app-agenda']);
+        
+      } 
+   }
+  
+
+  deleteId:any
+
+   participePas(eventId: any, userId:any){
+    for (let index = 0; index < this.userEvent.length; index++) {
+      if(this.userEvent[index].id_evenement=eventId && this.userEvent[index].id_utilisateur==userId){
+      this.deleteId=this.userEvent[index].id
+      }
+    }
+    this.apiService.deleteUserEvent( this.deleteId)
+   }
+
+   eventUserId:any
+   userNom:string=''
+   userPrenom:string=''
+   userEmail:string=''
+   infos:UserInfo[]=[]
+
+   voirParticipant(eventId: any, userId:any){
+     
+     
+      for (let index = 0; index < this.userEvent.length; index++) {
+        if (this.userEvent[index].id_evenement=== eventId){
+         this.eventUserId = this.userEvent[index].id_utilisateur
+        console.log(this.eventUserId)
+        for (let index = 0; index < this.allUsers.length; index++) {
+          if (this.allUsers[index].id === this.eventUserId){
+  
+          this.infos[index] = this.allUsers[index]
+          
+          console.log(this.infos[index])
+          }
+        }
+        }
+      }
+     
+       
+
+   }
    
 
    getFormation(){
@@ -294,14 +370,16 @@ export class AgendaComponent  {
     )
   }
 
-  /*getEventByUserId(){
-    this.siteDePlongeeService.getEventByUserId(this.user.userId)
+  getUserEvent(){
+    this.siteDePlongeeService.getUserEvent()
     .subscribe(
-      eventByUserId =>{
-        this.eventByUserId = eventByUserId
+      userEvent =>{
+        this.userEvent = userEvent
       }
+     
     )   
-  }*/
+    
+  }
 
 
  

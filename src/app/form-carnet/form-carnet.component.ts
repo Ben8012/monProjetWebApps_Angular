@@ -50,7 +50,6 @@ export class FormCarnetComponent implements OnInit {
   {
     if(this.formCarnet.valid)
     {
-      //console.log(this.formCarnet.value)
       this.apiService.postFormCarnet(this.formCarnet.value) 
       this.router.navigate(['/app-carnet/'+this.user.userId])
     }

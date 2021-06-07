@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
+import { DateUtils} from '../utils/date.utils'
 
 @Component({
   selector: 'app-form-modification',
@@ -21,22 +22,26 @@ export class FormModificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
+
+    let date = new Date(this.OneProfile[0].date_de_naissance);
+    let format = DateUtils.format(date);
+
     this.myForm2 = this.formBuilder.group({
-        updateNomUtilsateur : [this.OneProfile[0].nom, ],   
-        updatePrenomUtilsateur : [this.OneProfile[0].prenom, ], 
-        updateEmailUtilsateur : [this.OneProfile[0].email,], 
-        updatePasswordlUtilsateur : [this.OneProfile[0].mot_de_passe,], 
-        updateRuelUtilsateur : [this.OneProfile[0].rue, ], 
-        updateNumerolUtilsateur : [this.OneProfile[0].numero, ],
-        updateVillelUtilsateur : [this.OneProfile[0].ville, ], 
-        updatePayslUtilsateur : [this.OneProfile[0].pays, ],  
-        updateCodePostalUtilsateur : [this.OneProfile[0].code_postal, ], 
-        updateDateDeNaissanceUtilsateur : [this.OneProfile[0].date_de_naissance, ], 
-        updateLieuDeNaissanceUtilsateur : [this.OneProfile[0].lieu, ],
-        updateNumeroPadiUtilsateur : [this.OneProfile[0].numero_padi, ],
-        updateNiveauActuelUtilsateur : [this.OneProfile[0].niveau, ], 
-        updateNomAssurancelUtilsateur : [this.OneProfile[0].nom_assurance, ],   
-        updateNumeroAssurancelUtilsateur : [this.OneProfile[0].numero_assurance, ]   
+        updateNomUtilsateur : [this.OneProfile[0].nom,  [Validators.required]],   
+        updatePrenomUtilsateur : [this.OneProfile[0].prenom,  [Validators.required]], 
+        updateEmailUtilsateur : [this.OneProfile[0].email,  [Validators.required]], 
+        updatePasswordlUtilsateur : [this.OneProfile[0].mot_de_passe,  [Validators.required]], 
+        updateRuelUtilsateur : [this.OneProfile[0].rue,  [Validators.required]], 
+        updateNumerolUtilsateur : [this.OneProfile[0].numero,  [Validators.required]],
+        updateVillelUtilsateur : [this.OneProfile[0].ville,  [Validators.required]], 
+        updatePayslUtilsateur : [this.OneProfile[0].pays,  [Validators.required]],  
+        updateCodePostalUtilsateur : [this.OneProfile[0].code_postal,  [Validators.required]], 
+        updateDateDeNaissanceUtilsateur : [format,  [Validators.required]], 
+        updateLieuDeNaissanceUtilsateur : [this.OneProfile[0].lieu_de_naissance,  [Validators.required]],
+        updateNumeroPadiUtilsateur : [this.OneProfile[0].numero_padi,  [Validators.required]],
+        updateNiveauActuelUtilsateur : [this.OneProfile[0].niveau,  [Validators.required]], 
+        updateNomAssurancelUtilsateur : [this.OneProfile[0].nom_assurance,  [Validators.required]],   
+        updateNumeroAssurancelUtilsateur : [this.OneProfile[0].numero_assurance,  [Validators.required]]   
               
     })
   }

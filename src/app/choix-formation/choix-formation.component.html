@@ -6,7 +6,7 @@
       <a [routerLink]="" (click)="envoisMail(event)"  style=" text-decoration:none;color:black;">
         <div style="text-align: center; margin:10px;">
           <h4>
-            <p>{{event.start| date:'short'}}</p> 
+            <p>{{event.start | date: 'medium'}}</p> 
           </h4>
           <h5 >{{event.title}}</h5>
           <p>site: {{event.location}}</p>

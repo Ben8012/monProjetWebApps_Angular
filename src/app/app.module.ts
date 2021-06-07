@@ -36,6 +36,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { UserSessionService } from './shared/api/user-session.service';
 
+import {  LOCALE_ID } from '@angular/core' ;
+import { registerLocaleData } from '@angular/common' ;
+import localeFr from '@angular/common/locales/fr' ;
+
+registerLocaleData(localeFr);;
+
 
 
 
@@ -88,6 +94,7 @@ import { UserSessionService } from './shared/api/user-session.service';
   ],
   
   providers: [
+    { provide: LOCALE_ID, useValue: "fr-FR" },
     SiteDePlongeeService,
     ResolverInfosCarrieresService,
     {

@@ -9,7 +9,7 @@
     </div>
     <div class="d-flex justify-content-around" style="margin:10%">
         <button class="btn btn-primary" (click)="ouvreNouvelOnglet()">lien vers le site</button> 
-        <a [href]="'http://localhost:3000/download/'+OneSiteDePlongee.plan" target="_blank" class="btn btn-primary" >télécharger le plan</a>
+        <a *ngIf="OneSiteDePlongee.plan" [href]="'http://localhost:3000/download/'+OneSiteDePlongee.plan" target="_blank" class="btn btn-primary" >télécharger le plan</a>
     </div>
 </div>
 </div>

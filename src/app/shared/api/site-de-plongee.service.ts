@@ -101,6 +101,12 @@ getUsers(): Observable<any>{
     )
   }
 
+  getUserEvent(): Observable<any>{
+    return this._httpClient.get(
+      'http://localhost:3000/userEvent/'
+    )
+  }
+
 
 //les POST
   
@@ -162,7 +168,6 @@ getUsers(): Observable<any>{
 
   postUpdateEvent(event : any)
   {
-    console.log(event)
     event.start=event.start.toISOString().slice(0, 19).replace('T', ' ');
     event.end=event.end.toISOString().slice(0, 19).replace('T', ' ');
     this._httpClient.post(
@@ -243,6 +248,26 @@ getUsers(): Observable<any>{
   postDroitAdmin(data :any)
   {
     this._httpClient.post('http://localhost:3000/admin', data)
+    .subscribe(
+      (data) => {
+        //console.log(data)
+      }
+    )
+  }
+
+  postCreateUserEvent(data :any)
+  {
+    this._httpClient.post('http://localhost:3000/create/userEvent', data)
+    .subscribe(
+      (data) => {
+        //console.log(data)
+      }
+    )
+  }
+
+  deleteUserEvent(id :any)
+  {
+    this._httpClient.delete( `http://localhost:3000/delete/userEvent/${id}`)
     .subscribe(
       (data) => {
         //console.log(data)

@@ -23,7 +23,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    //console.log(this.oneProfile)
   }
 
   deleteProfile(id : any){

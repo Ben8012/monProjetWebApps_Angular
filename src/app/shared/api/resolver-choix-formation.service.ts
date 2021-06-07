@@ -14,7 +14,6 @@ export class ResolverChoixFormationService implements Resolve<any>{
 
   resolve(route : ActivatedRouteSnapshot)
   {
-    // console.log(route.params)
     return this.serve.getEventByTitle(route.params.nom).pipe()
   }
 }

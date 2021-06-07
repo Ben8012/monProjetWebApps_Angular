@@ -23,7 +23,6 @@ export class FormUpdateCarnetComponent implements OnInit {
   constructor(private apiService : SiteDePlongeeService, private formBuilder : FormBuilder, private route:ActivatedRoute,private siteDePlongeeService:SiteDePlongeeService, private router : Router , private userSessionService : UserSessionService) 
   {
     this.OneCarnet = this.route.snapshot.data['datas']
-     //console.log(this.OneCarnet)
    }
 
   ngOnInit(): void {
