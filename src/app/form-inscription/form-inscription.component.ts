@@ -19,21 +19,26 @@ export class FormInscriptionComponent implements OnInit {
       
         createNomUtilsateur : ["", [Validators.required]],   
         createPrenomUtilsateur : ["", [Validators.required]], 
-        createEmailUtilsateur : ["@gmail.com", [Validators.required]], 
+        createEmailUtilsateur : ["@gmail.com", [Validators.required, Validators.email, Validators.minLength(8)]], 
         createPasswordlUtilsateur : ["", [Validators.required]], 
-        createRuelUtilsateur : ["de villers", [Validators.required]], 
+        createRuelUtilsateur : ["de la croix", [Validators.required]], 
         createNumerolUtilsateur : ["7", [Validators.required]],
-        createVillelUtilsateur : ["Sart Dames Avelines", [Validators.required]], 
+        createVillelUtilsateur : ["Magique Ville", [Validators.required]], 
         createPayslUtilsateur : ["Belgique", [Validators.required]],  
-        createCodePostalUtilsateur : ["1495", [Validators.required]], 
+        createCodePostalUtilsateur : ["009", [Validators.required]], 
         createDateDeNaissanceUtilsateur : ["1980-12-10", [Validators.required]], 
-        createLieuDeNaissanceUtilsateur : ["Nivelles", [Validators.required]],
+        createLieuDeNaissanceUtilsateur : ["Magique Ville", [Validators.required]],
         createNumeroPadiUtilsateur : ["454519", [Validators.required]],
         createNiveauActuelUtilsateur : ["", [Validators.required]], 
         createNomAssurancelUtilsateur : ["DAN", [Validators.required]],   
         createNumeroAssurancelUtilsateur : ["80808", [Validators.required]]   
               
+    },
+    {
+      //validators : customValidatorsPourMotDePasseParExemple
     })
+
+    console.log(this.myForm)
   }
 
   onSubmit()

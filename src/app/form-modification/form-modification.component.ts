@@ -29,7 +29,7 @@ export class FormModificationComponent implements OnInit {
     this.myForm2 = this.formBuilder.group({
         updateNomUtilsateur : [this.OneProfile[0].nom,  [Validators.required]],   
         updatePrenomUtilsateur : [this.OneProfile[0].prenom,  [Validators.required]], 
-        updateEmailUtilsateur : [this.OneProfile[0].email,  [Validators.required]], 
+        updateEmailUtilsateur : [this.OneProfile[0].email,  [Validators.required,Validators.email, Validators.minLength(8)]], 
         updatePasswordlUtilsateur : [this.OneProfile[0].mot_de_passe,  [Validators.required]], 
         updateRuelUtilsateur : [this.OneProfile[0].rue,  [Validators.required]], 
         updateNumerolUtilsateur : [this.OneProfile[0].numero,  [Validators.required]],

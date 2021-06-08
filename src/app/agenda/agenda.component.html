@@ -124,10 +124,18 @@
             class="form-control"
             [(ngModel)]="event.title"
             (keyup)="refresh.next()">
-                <option selected>{{event.title}}</option>
-                <option value="Discover Local Diving">Discover Local Diving</option>
-                <option   *ngFor="let formation of formations" value={{formation.nom}}>{{formation.nom}}</option>
-                 <option   *ngFor="let speciality of specialitys" value={{speciality.nom}}>{{speciality.nom}}</option>
+                <optgroup label="Donnée actuelle">
+                  <option selected>{{event.title}}</option>
+                </optgroup>
+                <optgroup label="Exploration">
+                  <option value="Discover Local Diving">Discover Local Diving</option>
+                </optgroup>
+                <optgroup label="Les formations">
+                  <option *ngFor="let formation of formations" value={{formation.nom}}>{{formation.nom}}</option>
+                </optgroup>
+                <optgroup label="Les spécialités">
+                  <option *ngFor="let speciality of specialitys" value={{speciality.nom}}>{{speciality.nom}}</option>
+                </optgroup>
             </select>
           </td>
           <td *ngIf="event.userId == user.userId">
@@ -136,14 +144,19 @@
               class="form-control"
               [(ngModel)]="event.location"
               (keyup)="refresh.next()">
-              <option selected>{{event.location}}</option>
-              <option   *ngFor="let site of sites" value={{site.nom}}>{{site.nom}}</option>
+              <optgroup label="Donnée actuelle">
+                <option selected>{{event.location}}</option>
+              </optgroup>
+              <optgroup label="Les sites de plongée">
+                <option *ngFor="let site of sites" value={{site.nom}}>{{site.nom}}</option>
+              </optgroup>
             </select>
           </td>
           <td  *ngIf="user && event.userId == user.userId">
             <input 
             type="number"
             class="form-control"
+            style="text-align: center;"
             [(ngModel)]="event.prix"
             (keyup)="refresh.next()"
           />
@@ -181,12 +194,12 @@
               Créer
             </button>
           </td>
-          <td *ngIf="event.userId == user.userId">
+          <td *ngIf="event.userId == user.userId && event.id">
             <button class="btn btn-primary" (click)="updateEvent(event)">
               Modifier
             </button>
           </td>
-          <td *ngIf="event.userId == user.userId">
+          <td *ngIf="event.userId == user.userId && event.id">
             <button class="btn btn-danger" (click)="deleteEvent(event)">
               Effacer
             </button>

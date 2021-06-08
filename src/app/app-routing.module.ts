@@ -20,6 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ResolverCalendarEventService } from './shared/api/reslover-calendar-event.service';
 import { ResolverChoixFormationService } from './shared/api/resolver-choix-formation.service';
 import { ResolverChoixSpecialiteeService } from './shared/api/resolver-choix-specialitee.service';
+import { ResolverGetListEventService } from './shared/api/resolver-get-list-event.service';
 import { ResolverInfosCarrieresService } from './shared/api/resolver-infos-carrieres.service';
 import { ResolverInfosSpecialiteService } from './shared/api/resolver-infos-specialite.service';
 import { ResolverInfosFormationService } from './shared/api/resolver-infos_formation.service';
@@ -52,7 +53,8 @@ const routes: Routes = [
   { path:'app-agenda',resolve :
     {
     datas1 : ResolverCalendarEventService,
-    dates2 : ResolverProfileService
+    dates2 : ResolverProfileService,
+    data : ResolverGetListEventService
     },  component: AgendaComponent},
 
   { path:'app-formation', component: FormationComponent},

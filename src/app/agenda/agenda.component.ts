@@ -1,35 +1,14 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  ViewChild,
-  TemplateRef,
-} from '@angular/core';
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours,
-} from 'date-fns';
+import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef} from '@angular/core';
+import { startOfDay, endOfDay, isSameDay, isSameMonth } from 'date-fns';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {
-  CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
-  CalendarView,
-} from 'angular-calendar';
+import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView,} from 'angular-calendar';
 import { FlatpickrDefaultsInterface } from 'angularx-flatpickr/flatpickr-defaults.service';
-import {  OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
 import { EventsPlongee, Formations, SiteDePlongee, Speciality, UserInfo, UserEvent } from '../shared/api/class.service';
 import { ChangeDetectorRef } from '@angular/core';
-import { DateUtils} from '../utils/date.utils'
 import { UserSessionService } from '../shared/api/user-session.service';
 
 
@@ -56,6 +35,34 @@ const colors: any = {
 })
 export class AgendaComponent  {
   @ViewChild('modalContent', { static: true }) modalContent!: TemplateRef<any>;
+
+  constructor(private modal: NgbModal,
+            private apiService : SiteDePlongeeService,
+            private formBuilder : FormBuilder,
+            private router:Router,
+            private siteDePlongeeService:SiteDePlongeeService,
+            private route : ActivatedRoute,
+            private ref: ChangeDetectorRef,
+            public userSessionService : UserSessionService,) 
+  {
+    this.OneProfile = this.route.snapshot.data["datas2"]
+    this.eventsPlongee = this.route.snapshot.data["datas1"]
+
+    this.formations = this.route.snapshot.data["data"][0]
+    this.specialitys = this.route.snapshot.data["data"][1]
+    this.sites = this.route.snapshot.data["data"][2]
+  }
+
+
+  ngOnInit(): void {
+    this.user = this.userSessionService.user
+
+    this.setEvent()
+    this.getUsers()
+    this.getUserEvent()
+   }
+
+
 
   view: CalendarView = CalendarView.Month;
 
@@ -108,11 +115,6 @@ export class AgendaComponent  {
   OneProfile: any
   id:any
 
-  constructor(private modal: NgbModal,private apiService : SiteDePlongeeService, private formBuilder : FormBuilder, private router:Router, private siteDePlongeeService:SiteDePlongeeService, private route : ActivatedRoute,private ref: ChangeDetectorRef,public userSessionService : UserSessionService,) 
-  {
-    this.OneProfile = this.route.snapshot.data["datas2"]
-    this.eventsPlongee = this.route.snapshot.data["datas1"]
-  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -184,11 +186,19 @@ export class AgendaComponent  {
 
   deleteEvent(eventToDelete: CalendarEvent) {
     this.events = this.events.filter((event) => event !== eventToDelete); 
-    this.apiService.deleteEvent(eventToDelete.id)
+    if(eventToDelete.id){
+      this.apiService.deleteEvent(eventToDelete.id)
+    }else{
+      alert("vous essayez de supprimer un evenement qui n'existe pas")
+    }
   }
   
   updateEvent(eventToUpdate: CalendarEvent) {
-    this.apiService.postUpdateEvent(eventToUpdate)
+    if(eventToUpdate.id){
+      this.apiService.postUpdateEvent(eventToUpdate)
+    }else{
+      alert("vous essayez de de modifier un evenement qui n'existe pas")
+    }
   }
 
   setView(view: CalendarView) {
@@ -215,23 +225,17 @@ export class AgendaComponent  {
  
 
   createEvent(events : CalendarEvent){
-    events.start.setDate((events.start.getDate() + 1))
-    events.end.setDate((events.end.getDate() + 1))
-    this.apiService.postCreateEvent(events)
-    window.location.reload()
+    if(events.title && events.instructor && events.prix && events.start && events.end ){
+      
+      events.start.setDate((events.start.getDate() + 1))
+      events.end.setDate((events.end.getDate() + 1))
+      this.apiService.postCreateEvent(events)
+      window.location.reload()
+    }else{
+      alert("Vous devez remplir touts les champs pour créer l'évenement")
+    }
   }
   
-  ngOnInit(): void {
-    this.user = this.userSessionService.user
-
-    this.getFormation()
-    this.getSpeciality()
-    this.getSite()
-    this.getEvent()
-    this.setEvent()
-    this.getUsers()
-    this.getUserEvent()
-   }
 
   setEvent(){
     for (let index = 0; index < this.eventsPlongee.length; index++) {
@@ -328,41 +332,6 @@ export class AgendaComponent  {
   }
    
 
-  getFormation(){
-    this.siteDePlongeeService.getFormation()
-    .subscribe(
-      formations =>{
-        this.formations = formations
-      }
-    ) 
-  }
-
-  getSpeciality(){
-    this.siteDePlongeeService.getSpeciality()
-    .subscribe(
-      specialitys =>{
-        this.specialitys = specialitys
-      }
-    )
-  }
-
-  getSite(){
-    this.siteDePlongeeService.getSite()
-    .subscribe(
-      sites=>{
-        this.sites = sites
-      }
-    )
-  }
-  
-  getEvent(){
-    this.siteDePlongeeService.getEvent()
-    .subscribe(
-      events=>{
-        this.eventsPlongee = events
-      }
-    )
-  }
 
   getUsers(){
     this.siteDePlongeeService.getUsers()
@@ -381,14 +350,5 @@ export class AgendaComponent  {
       }
     )   
   }
-
-
  
-
-  
-  
 }
-
-
-
-

@@ -18,7 +18,7 @@ export class FormUpdateInscriptionComponent implements OnInit {
       
       createNomUtilsateur : ["", [Validators.required]],   
       createPrenomUtilsateur : ["", [Validators.required]], 
-      createEmailUtilsateur : ["", [Validators.required]], 
+      createEmailUtilsateur : ["", [Validators.required,Validators.email, Validators.minLength(8)]], 
       createPasswordlUtilsateur : ["", [Validators.required]], 
       createRuelUtilsateur : ["", [Validators.required]], 
       createNumerolUtilsateur : ["", [Validators.required]],
