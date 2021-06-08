@@ -1,15 +1,16 @@
-<h4  style="text-align: center;margin:20px">Cliquez sur l'evenement pour validez votre choix</h4>
-<h5 style="text-align: center;margin:20px">Un email sera envoyé a votre instructeur qui prendra contact avec vous</h5>
+<h4  style="text-align: center;margin:20px" *ngIf="eventsBySpeciality[0]">Cliquez sur l'evenement pour validez votre choix</h4>
+<h5 style="text-align: center;margin:20px" *ngIf="eventsBySpeciality[0]">Un email sera envoyé a votre instructeur qui prendra contact avec vous</h5>
+<h5 style="text-align: center;margin:20px" *ngIf="!eventsBySpeciality[0]">Aucun evenement pour cette specialité n'a été créé pour le moment</h5>
 <div class="row justify-content-center">
     <div class="d-flex align-items-center " style="width: 18rem; margin:10px; height:80vh;" *ngFor= "let event of eventsBySpeciality">
       <div style="background-color:lavender;border:black solid 1px;border-radius: 10px; ">
         <a [routerLink]="" (click)="envoisMail(event)" style=" text-decoration:none;color:black;">
           <div style="text-align: center; margin:10px;">
-            <h4>
+            <h5>Début de la formation le :
               <p>Date de debut:</p>
               <p>{{event.start | date: 'medium'}}</p> 
-            </h4>
-            <h5 >{{event.speciality}}</h5>
+            </h5>
+            <h4>{{event.speciality}}</h4>
             <p>Lieu: {{event.location}}</p>
             <p>Tarif: {{event.prix}}€</p>
             <p>Crée par: {{event.instructor}}</p>    
