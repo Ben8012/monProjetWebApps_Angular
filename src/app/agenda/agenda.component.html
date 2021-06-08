@@ -107,11 +107,8 @@
       <thead  >
         <tr style="text-align: center;">
           <th>Nom de l'evenement</th>
-          <!--<th>Speciality</th>-->
           <th>Lieu</th>
-          <!--<th>Training</th>-->
-          <!--<th>Primary color</th>
-          <th>Secondary color</th>-->
+          <th>Tarif</th>
           <th>Commence le</th>
           <th>Finis le</th>
           <th>Créer</th>
@@ -121,7 +118,6 @@
       </thead>
 
       <tbody>
-
         <tr *ngFor="let event of events">
           <td  *ngIf="user && event.userId == user.userId">
             <select  type="text"
@@ -134,15 +130,6 @@
                  <option   *ngFor="let speciality of specialitys" value={{speciality.nom}}>{{speciality.nom}}</option>
             </select>
           </td>
-          <!--<td >
-            <select  type="text"
-            class="form-control"
-            [(ngModel)]="event.speciality"
-            (keyup)="refresh.next()">
-                <option selected>{{event.speciality}}</option>
-                <option   *ngFor="let speciality of specialitys" value={{speciality.nom}}>{{speciality.nom}}</option>
-            </select>
-          </td>-->
           <td *ngIf="event.userId == user.userId">
             <select
               type="text"
@@ -153,31 +140,14 @@
               <option   *ngFor="let site of sites" value={{site.nom}}>{{site.nom}}</option>
             </select>
           </td>
-          <!--<td>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="user.surname"
-              (keyup)="refresh.next()"
-            />
+          <td  *ngIf="user && event.userId == user.userId">
+            <input 
+            type="number"
+            class="form-control"
+            [(ngModel)]="event.prix"
+            (keyup)="refresh.next()"
+          />
           </td>
-          <td>
-            <input type="checkbox" class="form-control"  [(ngModel)]="event.training">
-          </td>-->
-          <!--<td>
-            <input
-              type="color"
-              [(ngModel)]="event.color.primary"
-              (change)="refresh.next()"
-            />
-          </td>
-          <td>
-            <input
-              type="color"
-              [(ngModel)]="event.color.secondary"
-              (change)="refresh.next()"
-            />
-          </td>-->
           <td *ngIf="event.userId == user.userId">
             <input
               class="form-control"
@@ -188,7 +158,6 @@
               [altInput]="true"
               [convertModelValue]="true"
               [enableTime]="true"
-              
               [options]="datePickerOptionsStart"
               placeholder="Not set"
             /> 
@@ -203,7 +172,6 @@
               [altInput]="true"
               [convertModelValue]="true"
               [enableTime]="true"
-             
               [options]="datePickerOptionsEnd"
               placeholder="Not set"
             />
@@ -223,7 +191,6 @@
               Effacer
             </button>
           </td>
-          
         </tr>
       </tbody>
     </table>
@@ -242,21 +209,17 @@
         Créé par:
         <pre>{{ modalData.event?.instructor}}</pre>
       </div>
-      <!--<div>
-        Training:
-        <pre>{{ modalData.event?.training}}</pre>
-      </div>-->
       <div>
         Nom de l'evenement :
         <pre>{{ modalData.event?.title}}</pre>
       </div>
-      <!--<div>
-        Speciality:
-        <pre>{{ modalData.event?.speciality}}</pre>
-      </div>-->
       <div>
         Lieu:
         <pre>{{ modalData.event?.location}}</pre>
+      </div>
+      <div>
+        Tarif:
+        <pre>{{ modalData.event?.prix}}€</pre>
       </div>
       <div>
         Commence le:
@@ -266,9 +229,9 @@
         Finis le:
         <pre>{{ modalData.event?.end|date: 'medium'}} </pre>
       </div>
-      <div>
-        Participants:
-        <pre  *ngFor="let info of infos">nom: {{info.nom}} prénom: {{info.prenom}} email: {{info.email}}</pre>
+      <div *ngIf="!vueParticipant">
+        Participants:<span *ngIf="!participants[0]"> Aucuns participants</span>
+        <pre  *ngFor="let participant of participants">nom:{{participant.nom}} prénom:{{participant.prenom}} email:{{participant.email}}</pre>
       </div>
     </div>
     
@@ -279,8 +242,11 @@
       <button type="button" class="btn btn-outline-secondary" (click)="participePas(modalData.event?.id,user.userId);close()">
         Ne plus participer 
       </button>
-      <button type="button" class="btn btn-outline-secondary" (click)="voirParticipant(modalData.event?.id,user.userId)">
+      <button type="button" class="btn btn-outline-secondary" *ngIf="vueParticipant" (click)="voirParticipant(modalData.event?.id,user.userId)">
         Voir les Participants
+      </button>
+      <button type="button" class="btn btn-outline-secondary" *ngIf="!vueParticipant" (click)="voirParticipant(modalData.event?.id,user.userId)">
+        Masquer les Participants
       </button>
     </div>
       <div class="modal-footer" *ngIf="!user ">

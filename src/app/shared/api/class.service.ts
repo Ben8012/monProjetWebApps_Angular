@@ -214,6 +214,7 @@ export class Carnets{
       beforeStart: true;
       afterEnd: true;
     }
+    prix:any;
   
     constructor(data : any)
     {
@@ -230,7 +231,7 @@ export class Carnets{
     this.color = data.color;
     this.draggable = data.draggable;
     this.resizable = data.resizable;
-
+    this.prix = data.prix;
     }
 
   }

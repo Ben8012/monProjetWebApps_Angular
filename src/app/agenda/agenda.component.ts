@@ -148,8 +148,9 @@ export class AgendaComponent  {
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
+    this.participants=[]
+    this.vueParticipant = true
     this.modal.open(this.modalContent, { size: 'lg' });
-    
   }
 
 
@@ -173,6 +174,7 @@ export class AgendaComponent  {
           beforeStart: true,
           afterEnd: true,
         },
+        prix:'',
       },
     ];
     
@@ -215,7 +217,6 @@ export class AgendaComponent  {
   createEvent(events : CalendarEvent){
     events.start.setDate((events.start.getDate() + 1))
     events.end.setDate((events.end.getDate() + 1))
-
     this.apiService.postCreateEvent(events)
     window.location.reload()
   }
@@ -232,7 +233,7 @@ export class AgendaComponent  {
     this.getUserEvent()
    }
 
-   setEvent(){
+  setEvent(){
     for (let index = 0; index < this.eventsPlongee.length; index++) {
       let evenements = new EventsPlongee(this.eventsPlongee)
       evenements.id = this.eventsPlongee[index].id
@@ -248,19 +249,19 @@ export class AgendaComponent  {
       evenements.draggable = this.eventsPlongee[index].draggable
       evenements.resizable = this.eventsPlongee[index].resizable
       evenements.userId = this.eventsPlongee[index].userId
+      evenements.prix = this.eventsPlongee[index].prix
   
       this.events.push(evenements)
       } 
-   }
+    }
 
   userEventId:any
   existe:boolean=false
-   participe(eventId: any, userId:any){
+    participe(eventId: any, userId:any){
     
       for (let index = 0; index < this.userEvent.length; index++) {
         if(this.userEvent[index].id_evenement == eventId && this.userEvent[index].id_utilisateur == userId){
           alert('participe deja')
-
           this.existe=true
         }
       }
@@ -280,52 +281,54 @@ export class AgendaComponent  {
           this.existe=!this.existe
           window.location.reload()
           //this.router.navigate(['/app-agenda']);
-        
       } 
-   }
+    }
   
 
   deleteId:any
 
-   participePas(eventId: any, userId:any){
-    for (let index = 0; index < this.userEvent.length; index++) {
-      if(this.userEvent[index].id_evenement=eventId && this.userEvent[index].id_utilisateur==userId){
-      this.deleteId=this.userEvent[index].id
-      }
+  participePas(eventId: any, userId:any){
+  for (let index = 0; index < this.userEvent.length; index++) {
+    if(this.userEvent[index].id_evenement=eventId && this.userEvent[index].id_utilisateur==userId){
+    this.deleteId=this.userEvent[index].id
     }
-    this.apiService.deleteUserEvent( this.deleteId)
-   }
+  }
+  this.apiService.deleteUserEvent( this.deleteId)
+  window.location.reload()
+  }
 
-   eventUserId:any
-   userNom:string=''
-   userPrenom:string=''
-   userEmail:string=''
-   infos:UserInfo[]=[]
+  eventUserId:any
+  participants:UserInfo[]=[]
+  vueParticipant:boolean=true
 
-   voirParticipant(eventId: any, userId:any){
-     
-     
-      for (let index = 0; index < this.userEvent.length; index++) {
-        if (this.userEvent[index].id_evenement=== eventId){
-         this.eventUserId = this.userEvent[index].id_utilisateur
-        console.log(this.eventUserId)
-        for (let index = 0; index < this.allUsers.length; index++) {
-          if (this.allUsers[index].id === this.eventUserId){
-  
-          this.infos[index] = this.allUsers[index]
-          
-          console.log(this.infos[index])
+  voirParticipant(eventId: any, userId:any)
+  {
+    if(this.vueParticipant)
+    {
+      for (let index = 0; index < this.userEvent.length; index++)
+      {
+        if (this.userEvent[index].id_evenement === eventId)
+        {
+          this.eventUserId = this.userEvent[index].id_utilisateur
+          for (let indexx = 0; indexx < this.allUsers.length; indexx++)
+          {
+            if (this.allUsers[indexx].id === this.eventUserId)
+            {
+              this.participants.push(this.allUsers[indexx])
+            }
           }
         }
-        }
       }
-     
-       
 
-   }
+      this.vueParticipant=!this.vueParticipant
+    }else{
+      this.participants=[]
+      this.vueParticipant=!this.vueParticipant
+    }
+  }
    
 
-   getFormation(){
+  getFormation(){
     this.siteDePlongeeService.getFormation()
     .subscribe(
       formations =>{
@@ -376,9 +379,7 @@ export class AgendaComponent  {
       userEvent =>{
         this.userEvent = userEvent
       }
-     
     )   
-    
   }
 
 
