@@ -3,15 +3,21 @@
       <div class="d-flex justify-content-center" >
           <h4>Connectez-vous</h4>
       </div>
-      <form [formGroup] ="myForm3" (ngSubmit)="onSubmit()">
+      <form [formGroup] ="myForm3" (ngSubmit)="onSubmit()" >
         <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="login">Votre login ( email)</label>
-            <input type="text" class="form-control" formControlName="login" placeholder="Votre login ( email)">
+          <div class="form-group col-md-12 ">
+            <label for="login">Votre login (email)</label>
+            <input type="text" class="form-control" formControlName="login" placeholder="Votre login (email)" id="login" [(ngModel)]="myForm3.login" >
+            
+            <!--<span class="text-danger" [hidden]="!(myForm3.controls.login.invalid && (myForm3.controls.login.touched || myForm3.controls.login.dirty))">
+              <i class="fas fa-exclamation-triangle"
+               data-toggle="popover" 
+               data-content="votre login doit se composer de 8 caractere et etre une adresse mail (ex ...@...)"></i>
+            </span>-->
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12 ">
             <label for="password">Votre mot de passe</label>
-            <input type="password" class="form-control" formControlName="password" placeholder="Votre mot de passe">
+            <input type="password" class="form-control" formControlName="password" placeholder="Votre mot de passe" id="password">
           </div>
         </div>  
         <div class="d-flex justify-content-center" style="margin:10px;">

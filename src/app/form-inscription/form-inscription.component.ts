@@ -5,6 +5,7 @@ import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
 
 @Component({
   selector: 'app-form-inscription',
+  styleUrls: ['form-inscription.component.scss'],
   templateUrl: './form-inscription.component.html'
 })
 export class FormInscriptionComponent implements OnInit {
@@ -20,7 +21,7 @@ export class FormInscriptionComponent implements OnInit {
         createNomUtilsateur : ["", [Validators.required]],   
         createPrenomUtilsateur : ["", [Validators.required]], 
         createEmailUtilsateur : ["@gmail.com", [Validators.required, Validators.email, Validators.minLength(8)]], 
-        createPasswordlUtilsateur : ["", [Validators.required]], 
+        createPasswordlUtilsateur : ["", [Validators.required, Validators.minLength(4)]], 
         createRuelUtilsateur : ["de la croix", [Validators.required]], 
         createNumerolUtilsateur : ["7", [Validators.required]],
         createVillelUtilsateur : ["Magique Ville", [Validators.required]], 
@@ -38,7 +39,7 @@ export class FormInscriptionComponent implements OnInit {
       //validators : customValidatorsPourMotDePasseParExemple
     })
 
-    console.log(this.myForm)
+    //console.log(this.myForm)
   }
 
   onSubmit()

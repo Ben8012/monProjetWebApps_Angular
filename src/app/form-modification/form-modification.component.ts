@@ -7,6 +7,7 @@ import { DateUtils} from '../utils/date.utils'
 
 @Component({
   selector: 'app-form-modification',
+  styleUrls: ['form-modification.component.scss'],
   templateUrl: './form-modification.component.html'
 })
 export class FormModificationComponent implements OnInit {

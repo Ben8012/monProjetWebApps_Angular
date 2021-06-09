@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { AgendaComponent } from './agenda/agenda.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { CarnetComponent } from './carnet/carnet.component';
@@ -27,6 +27,8 @@ import { ResolverInfosFormationService } from './shared/api/resolver-infos_forma
 import { ResolverProfileService } from './shared/api/resolver-profile.service';
 import { ResolverUpdateCarnetService } from './shared/api/resolver-update_carnet.service';
 import { SitePlongeeComponent } from './site-plongee/site-plongee.component';
+import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
+import { SuperAdminGuard } from './auth/super-admin.guard';
 
 const routes: Routes = [
   { path : '', component: HomeComponent, pathMatch : 'full'},
@@ -62,45 +64,45 @@ const routes: Routes = [
   { path:'app-formation/app-infos-formation/:id',resolve :
     {
       datas: ResolverInfosFormationService
-    }, component: InfosFormationComponent},
+    }, component: InfosFormationComponent },
 
   { path:'app-formation/app-infos-specialite/:id', resolve:
     {
     datas:ResolverInfosSpecialiteService
-    }, component: InfosSpecialiteComponent},
+    }, component: InfosSpecialiteComponent },
 
-  { path:'app-carnet/:id', component: CarnetComponent},
+  { path:'app-carnet/:id', component: CarnetComponent, canActivate: [AuthGuard]},
 
-  { path:'app-carnet/:id/app-form-carnet', component: FormCarnetComponent},
+  { path:'app-carnet/:id/app-form-carnet', component: FormCarnetComponent, canActivate: [AuthGuard]},
 
-  { path :'app-carnet/:id/app-infos-carrieres/:id', resolve :
+  { path :'app-carnet/:id/app-infos-carrieres/:id', canActivate: [AuthGuard], resolve :
     {
      datas : ResolverInfosCarrieresService
     }, component: InfosCarrieresComponent},
 
-  { path : 'app-carnet/:id/app-form-update-carnet/:id', resolve : 
+  { path : 'app-carnet/:id/app-form-update-carnet/:id', canActivate: [AuthGuard], resolve : 
     {
       datas: ResolverUpdateCarnetService
     }, component:FormUpdateCarnetComponent},
 
-  { path : 'app-login/app-form-update-inscription',component: FormUpdateInscriptionComponent},
+  { path : 'app-login/app-form-update-inscription',component: FormUpdateInscriptionComponent, canActivate: [AuthGuard]},
 
   { path : 'app-formation/app-infos-formation/:id/app-choix-formation/:nom',resolve : 
     {
       datas: ResolverChoixFormationService
-    },component: ChoixFormationComponent},
+    },component: ChoixFormationComponent , canActivate: [AuthGuard]},
 
   { path : 'app-formation/app-infos-specialite/:id/app-choix-specialitee/:nom',resolve :  
     {
       datas: ResolverChoixSpecialiteeService
-    },component: ChoixSpecialiteeComponent},
+    },component: ChoixSpecialiteeComponent , canActivate: [AuthGuard]},
 
   { path : 'app-profile/:id', resolve :
     {
       datas: ResolverProfileService
-    },component:ProfileComponent},
+    },component:ProfileComponent , canActivate: [AuthGuard]},
 
-  { path : 'app-all-users', component: AllUsersComponent},
+  { path : 'app-all-users', component: AllUsersComponent,  canActivate: [SuperAdminGuard]},
 
   { path : 'app-agenda/app-login', component: LoginComponent},
   

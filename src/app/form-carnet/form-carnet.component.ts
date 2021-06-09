@@ -9,6 +9,7 @@ import { UserSessionService } from '../shared/api/user-session.service';
 
 @Component({
   selector: 'app-form-carnet',
+  styleUrls: ['form-carnet.component.scss'],
   templateUrl: './form-carnet.component.html'
   
 })

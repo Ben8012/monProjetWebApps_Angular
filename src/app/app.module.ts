@@ -90,7 +90,7 @@ registerLocaleData(localeFr);;
     CalendarModule.forRoot({
       provide : DateAdapter,
       useFactory : adapterFactory,
-    })
+    }),
   ],
   
   providers: [

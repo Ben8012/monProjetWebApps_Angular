@@ -37,10 +37,15 @@
               "./node_modules/angular-calendar/css/angular-calendar.css",
               "./node_modules/flatpickr/dist/flatpickr.css",
               "./node_modules/@videogular/ngx-videogular/fonts/videogular.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/brands.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/v4-shims.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css",
               "src/styles.scss"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/popper.js/dist/umd/popper.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },

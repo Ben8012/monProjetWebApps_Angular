@@ -22,10 +22,6 @@ export class UserSessionService {
         }
     }
 
-    /*getUsername() {
-        return this.user$;
-    }*/
-
     saveSession(token: any) {
         sessionStorage.setItem('token', token)
         const data: any = jwt_decode(token);

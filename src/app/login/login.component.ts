@@ -2,14 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SiteDePlongeeService } from '../shared/api/site-de-plongee.service';
+declare var $ : any;
+
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  styleUrls: ['login.component.scss'],
+  templateUrl: './login.component.html',
+  
+  
 })
 export class LoginComponent implements OnInit {
 
   myForm3 : any
+ 
   constructor(private apiService : SiteDePlongeeService, private formBuilder : FormBuilder, private router:Router) {
 
   }
@@ -18,8 +24,10 @@ export class LoginComponent implements OnInit {
     this.myForm3 = this.formBuilder.group({
       
       login : ["@gmail.com", [Validators.required,Validators.email, Validators.minLength(8)]],   
-      password : ["", [Validators.required]] 
+      password : ["0000", [Validators.required,Validators.minLength(4)]] 
     })
+   
+    $('[data-toggle="popover"]').popover();
   }
 
   onSubmit()
@@ -30,4 +38,7 @@ export class LoginComponent implements OnInit {
     }
     this.router.navigate(['/app-formation'])
   }
+ 
+
+
 }
