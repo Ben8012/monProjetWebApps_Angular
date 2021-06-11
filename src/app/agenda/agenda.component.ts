@@ -159,7 +159,6 @@ export class AgendaComponent  {
   
   addEvent(): void {
     this.events = [
-      ...this.events,
       {
         title: '',
         userId:this.user.userId,
@@ -178,6 +177,7 @@ export class AgendaComponent  {
         },
         prix:'',
       },
+      ...this.events,
     ];
     
   }

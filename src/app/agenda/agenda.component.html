@@ -194,12 +194,12 @@
               Créer
             </button>
           </td>
-          <td *ngIf="event.userId == user.userId && event.id">
+          <td *ngIf="event.userId == user.userId ">
             <button class="btn btn-primary" (click)="updateEvent(event)">
               Modifier
             </button>
           </td>
-          <td *ngIf="event.userId == user.userId && event.id">
+          <td *ngIf="event.userId == user.userId ">
             <button class="btn btn-danger" (click)="deleteEvent(event)">
               Effacer
             </button>
@@ -244,7 +244,7 @@
       </div>
       <div *ngIf="!vueParticipant">
         Participants:<span *ngIf="!participants[0]"> Aucuns participants</span>
-        <pre  *ngFor="let participant of participants">nom:{{participant.nom}} prénom:{{participant.prenom}} email:{{participant.email}}</pre>
+        <pre  *ngFor="let participant of participants">nom:{{participant.nom}} prénom:{{participant.prenom}} <!--<span $ngIf="user.isAdmin">email:{{participant.email}}</span>--></pre>
       </div>
     </div>
     

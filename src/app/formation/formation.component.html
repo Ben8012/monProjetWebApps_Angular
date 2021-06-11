@@ -6,7 +6,7 @@
       <div>
         <div style="background-color:lavender; ">
           <a [routerLink]="['app-infos-formation', formation.id]" style=" text-decoration:none;color:black;">
-            <img [src]="'http://localhost:3000/images_formations/'+formation.image" style="width:286px; height:200px;" alt="..."> 
+            <img [src]="'http://localhost:3000/images_formations/'+formation.image" style="width:264px; height:200px;" alt="..."> 
             <div style="text-align: center;padding:10px;"> 
               <h6>{{formation.nom}}</h6>
               <h6>{{formation.niveau}}</h6>
@@ -34,14 +34,25 @@
         </div>        
       </div>
     </div>
-    <!-- <div class="card text-center bg-primary mb-3" style="width: 18rem;margin:10px;" *ngFor= "let speciality of specialitys">
-        <img [src]="'http://localhost:3000/images_formations/'+speciality.image" class="card-img-top" style="width:286px; height:200px;" alt="...">
-        <div class="card-body ">
-          <h5 class="card-title">{{speciality.nom}}</h5>
-    
-          <div class="">
-            <a [routerLink]="['app-infos-specialite', speciality.id]" class="btn btn-secondary"  >voir en detail </a>
-          </div>
-        </div>
-    </div> -->
   </div>
+  <br>
+  <br>
+  <div class="row justify-content-center" style="margin:20px;">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+      Voir l'arborescence PADI
+    </button>
+  </div>
+    
+  <!-- Modal -->
+  
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="justify-content-center" >
+          <img src="http://localhost:3000/images_formations/PADI-ALL.jpg" style="width:1152px; height: 645px;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
