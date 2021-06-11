@@ -1,34 +1,33 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
-import { AgendaComponent } from './agenda/agenda.component';
-import { AllUsersComponent } from './all-users/all-users.component';
-import { CarnetComponent } from './carnet/carnet.component';
-import { ChoixFormationComponent } from './choix-formation/choix-formation.component';
-import { ChoixSpecialiteeComponent } from './choix-specialitee/choix-specialitee.component';
-import { FormCarnetComponent } from './form-carnet/form-carnet.component';
-import { FormInscriptionComponent } from './form-inscription/form-inscription.component';
-import { FormModificationComponent } from './form-modification/form-modification.component';
-import { FormUpdateCarnetComponent } from './form-update-carnet/form-update-carnet.component';
-import { FormUpdateInscriptionComponent } from './form-update-inscription/form-update-inscription.component';
-import { FormationComponent } from './formation/formation.component';
-import { HomeComponent } from './home/home.component';
-import { InfosCarrieresComponent } from './infos-carrieres/infos-carrieres.component';
-import { InfosFormationComponent } from './infos-formation/infos-formation.component';
-import { InfosSpecialiteComponent } from './infos-specialite/infos-specialite.component';
-import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
-import { ResolverCalendarEventService } from './shared/api/reslover-calendar-event.service';
-import { ResolverChoixFormationService } from './shared/api/resolver-choix-formation.service';
-import { ResolverChoixSpecialiteeService } from './shared/api/resolver-choix-specialitee.service';
-import { ResolverGetListEventService } from './shared/api/resolver-get-list-event.service';
-import { ResolverInfosCarrieresService } from './shared/api/resolver-infos-carrieres.service';
-import { ResolverInfosSpecialiteService } from './shared/api/resolver-infos-specialite.service';
-import { ResolverInfosFormationService } from './shared/api/resolver-infos_formation.service';
-import { ResolverProfileService } from './shared/api/resolver-profile.service';
-import { ResolverUpdateCarnetService } from './shared/api/resolver-update_carnet.service';
-import { SitePlongeeComponent } from './site-plongee/site-plongee.component';
-import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
-import { SuperAdminGuard } from './auth/super-admin.guard';
+import { AgendaComponent } from './components/agenda/agenda.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
+import { CarnetComponent } from './components/carnet/carnet.component';
+import { ChoixFormationComponent } from './components/choix-formation/choix-formation.component';
+import { ChoixSpecialiteeComponent } from './components/choix-specialitee/choix-specialitee.component';
+import { FormCarnetComponent } from './components/form-carnet/form-carnet.component';
+import { FormInscriptionComponent } from './components/form-inscription/form-inscription.component';
+import { FormUpdateInscriptionComponent } from './components/form-update-inscription/form-update-inscription.component';
+import { FormUpdateCarnetComponent } from './components/form-update-carnet/form-update-carnet.component';
+import { FormationComponent } from './components/formation/formation.component';
+import { HomeComponent } from './components/home/home.component';
+import { InfosCarrieresComponent } from './components/infos-carrieres/infos-carrieres.component';
+import { InfosFormationComponent } from './components/infos-formation/infos-formation.component';
+import { InfosSpecialiteComponent } from './components/infos-specialite/infos-specialite.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ResolverCalendarEventService } from './shared/resolvers/reslover-calendar-event.service';
+import { ResolverChoixFormationService } from './shared/resolvers/resolver-choix-formation.service';
+import { ResolverChoixSpecialiteeService } from './shared/resolvers/resolver-choix-specialitee.service';
+import { ResolverGetListEventService } from './shared/resolvers/resolver-get-list-event.service';
+import { ResolverInfosCarrieresService } from './shared/resolvers/resolver-infos-carrieres.service';
+import { ResolverInfosSpecialiteService } from './shared/resolvers/resolver-infos-specialite.service';
+import { ResolverInfosFormationService } from './shared/resolvers/resolver-infos_formation.service';
+import { ResolverProfileService } from './shared/resolvers/resolver-profile.service';
+import { ResolverUpdateCarnetService } from './shared/resolvers/resolver-update_carnet.service';
+import { SitePlongeeComponent } from './components/site-plongee/site-plongee.component';
+import { AuthGuardService as AuthGuard } from './shared/auth/auth-guard.service';
+import { SuperAdminGuard } from './shared/auth/super-admin.guard';
 
 const routes: Routes = [
   { path : '', component: HomeComponent, pathMatch : 'full'},
@@ -37,11 +36,11 @@ const routes: Routes = [
 
   { path:'app-login/app-form-inscription', component: FormInscriptionComponent},
 
-  { path:'app-profile/:id/app-form-modification/:id',
+  { path:'app-profile/:id/app-form-update-inscription/:id',
    resolve :{
               datas: ResolverProfileService
     },
-    component: FormModificationComponent },
+    component: FormUpdateInscriptionComponent },
 
   { path :'app-site-plongee/app-infos-carrieres/:id', resolve : 
     {
@@ -84,8 +83,6 @@ const routes: Routes = [
     {
       datas: ResolverUpdateCarnetService
     }, component:FormUpdateCarnetComponent},
-
-  { path : 'app-login/app-form-update-inscription',component: FormUpdateInscriptionComponent, canActivate: [AuthGuard]},
 
   { path : 'app-formation/app-infos-formation/:id/app-choix-formation/:nom',resolve : 
     {
