@@ -24,9 +24,12 @@
         </li>
       </ul>
       
-      <button class="my-lg-0 bg-light" *ngIf="user.name" style="margin-right:20px; padding:7px; border-radius:25px; color:blue"  [routerLink]="['app-profile',user.userId]">
+      <button class="my-lg-0 bg-light" *ngIf="user.name && !user.isAdmin" style="margin-right:20px; padding:7px; border-radius:25px; color:blue"  [routerLink]="['app-profile',user.userId]">
           {{user.surname}}
       </button>
+      <button class="my-lg-0 bg-light" *ngIf="user.name && user.isAdmin" style="margin-right:20px; padding:7px; border-radius:25px; color:blue; border-color:springgreen "  [routerLink]="['app-profile',user.userId]">
+        {{user.surname}}
+    </button>
       <button  *ngIf="user.email==='benjamin@gmail.com'" class="btn btn bg-primary" style="margin-right:20px;color:whitesmoke"  routerLink='app-all-users'>Utilisateurs</button>
       <button  *ngIf="!user.name" class="btn btn bg-primary" style="margin-right:20px;color:whitesmoke"  routerLink="app-login">Connexion</button>
       <button  *ngIf="user.name" class="btn btn bg-primary" style="margin-right:20px;color:whitesmoke" (click)="LogOut()" routerLink="app-login">Deconnexion</button>

@@ -9,6 +9,7 @@ import { UserSessionService } from '../../shared/user_session/user-session.servi
 
 @Component({
   selector: 'app-form-update-carnet',
+  styleUrls: ['form-update-carnet.component.scss'],
   templateUrl: './form-update-carnet.component.html',
   
 })

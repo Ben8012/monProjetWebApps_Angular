@@ -8,12 +8,7 @@
           <div class="form-group col-md-12 ">
             <label for="login">Votre login (email)</label>
             <input type="text" class="form-control" formControlName="login" placeholder="Votre login (email)" id="login" [(ngModel)]="myForm3.login" >
-            
-            <!--<span class="text-danger" [hidden]="!(myForm3.controls.login.invalid && (myForm3.controls.login.touched || myForm3.controls.login.dirty))">
-              <i class="fas fa-exclamation-triangle"
-               data-toggle="popover" 
-               data-content="votre login doit se composer de 8 caractere et etre une adresse mail (ex ...@...)"></i>
-            </span>-->
+            <!--<span *ngIf="myForm3.controls.login.errors?.errorLoginExist">Utilisateur non existant</span>-->
           </div>
           <div class="form-group col-md-12 ">
             <label for="password">Votre mot de passe</label>

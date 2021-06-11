@@ -8,7 +8,7 @@ export class SuperAdminGuard implements CanActivate{
     canActivate(): boolean {
       if (!this.auth.isSuperAdmin()) {
         this.router.navigateByUrl('/app-login');
-        alert('Vous devez etre connecté pour accéder a cet URL')
+        alert('Vous devez etre super admin pour accéder a cet URL')
         return false;
       }
       return true;

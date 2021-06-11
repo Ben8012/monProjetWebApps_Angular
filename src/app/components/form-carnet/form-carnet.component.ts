@@ -30,16 +30,16 @@ export class FormCarnetComponent implements OnInit {
 
     this.formCarnet = this.formBuilder.group({
       
-      nom : ["Open Water Diver", [Validators.required]], 
+      nom : [, [Validators.required]], 
       lieux : ["", [Validators.required]], 
-      duree : ["50", [Validators.required]],  
-      profondeur : ["10", [Validators.required]], 
-      temperature_air : [null],  
-      temperature_eau : [null], 
-      deco : [null], 
-      type_plongee : ["Formation", [Validators.required]], 
-      palier : [null],
-      info : ["chouette",], 
+      duree : ["", [Validators.required]],  
+      profondeur : ["", [Validators.required]], 
+      temperature_air : ["",],  
+      temperature_eau : ["",], 
+      deco : ["",], 
+      type_plongee : ["", [Validators.required]], 
+      palier : ["",],
+      info : ["",], 
       date : ["", [Validators.required]], 
       userId : [this.user.userId],
     })

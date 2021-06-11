@@ -18,21 +18,21 @@ export class FormInscriptionComponent implements OnInit {
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
       
-        createNomUtilsateur : ["", [Validators.required]],   
-        createPrenomUtilsateur : ["", [Validators.required]], 
-        createEmailUtilsateur : ["@gmail.com", [Validators.required, Validators.email, Validators.minLength(8)]], 
-        createPasswordlUtilsateur : ["", [Validators.required, Validators.minLength(4)]], 
-        createRuelUtilsateur : ["de la croix", [Validators.required]], 
-        createNumerolUtilsateur : ["7", [Validators.required]],
-        createVillelUtilsateur : ["Magique Ville", [Validators.required]], 
-        createPayslUtilsateur : ["Belgique", [Validators.required]],  
-        createCodePostalUtilsateur : ["009", [Validators.required]], 
-        createDateDeNaissanceUtilsateur : ["1980-12-10", [Validators.required]], 
-        createLieuDeNaissanceUtilsateur : ["Magique Ville", [Validators.required]],
-        createNumeroPadiUtilsateur : ["454519", [Validators.required]],
-        createNiveauActuelUtilsateur : ["", [Validators.required]], 
-        createNomAssurancelUtilsateur : ["DAN", [Validators.required]],   
-        createNumeroAssurancelUtilsateur : ["80808", [Validators.required]]   
+        createNomUtilsateur : [, [Validators.required]],   
+        createPrenomUtilsateur : [, [Validators.required]], 
+        createEmailUtilsateur : [, [Validators.required, Validators.email, Validators.minLength(8)]], 
+        createPasswordlUtilsateur : [, [Validators.required, Validators.minLength(4)]], 
+        createRuelUtilsateur : [, [Validators.required]], 
+        createNumerolUtilsateur : [, [Validators.required]],
+        createVillelUtilsateur : [, [Validators.required]], 
+        createPayslUtilsateur : [, [Validators.required]],  
+        createCodePostalUtilsateur : [, [Validators.required]], 
+        createDateDeNaissanceUtilsateur : [, [Validators.required]], 
+        createLieuDeNaissanceUtilsateur : [, [Validators.required]],
+        createNumeroPadiUtilsateur : [, ],
+        createNiveauActuelUtilsateur : [, [Validators.required]], 
+        createNomAssurancelUtilsateur : [, ],   
+        createNumeroAssurancelUtilsateur : [,]   
               
     },
     {
@@ -47,7 +47,7 @@ export class FormInscriptionComponent implements OnInit {
     if(this.myForm.valid)
     {
       this.apiService.postCreateUtilisateur(this.myForm.value)
-      this.router.navigate(['/app-formation'])
+      this.router.navigate(['/app-login'])
     }
   }
 

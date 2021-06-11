@@ -38,5 +38,6 @@ export class AllUsersComponent implements OnInit {
 
   deleteUser(id: number){
     this.siteDePlongeeService.deleteUtilisateur(id)
+    window.location.reload()
   }
 }

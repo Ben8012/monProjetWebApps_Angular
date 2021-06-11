@@ -31,7 +31,7 @@ export class FormUpdateInscriptionComponent implements OnInit {
         updateNomUtilsateur : [this.OneProfile[0].nom,  [Validators.required]],   
         updatePrenomUtilsateur : [this.OneProfile[0].prenom,  [Validators.required]], 
         updateEmailUtilsateur : [this.OneProfile[0].email,  [Validators.required,Validators.email, Validators.minLength(8)]], 
-        updatePasswordlUtilsateur : [this.OneProfile[0].mot_de_passe,  [Validators.required]], 
+        updatePasswordlUtilsateur : [,  [Validators.required]], 
         updateRuelUtilsateur : [this.OneProfile[0].rue,  [Validators.required]], 
         updateNumerolUtilsateur : [this.OneProfile[0].numero,  [Validators.required]],
         updateVillelUtilsateur : [this.OneProfile[0].ville,  [Validators.required]], 
@@ -39,10 +39,10 @@ export class FormUpdateInscriptionComponent implements OnInit {
         updateCodePostalUtilsateur : [this.OneProfile[0].code_postal,  [Validators.required]], 
         updateDateDeNaissanceUtilsateur : [format,  [Validators.required]], 
         updateLieuDeNaissanceUtilsateur : [this.OneProfile[0].lieu_de_naissance,  [Validators.required]],
-        updateNumeroPadiUtilsateur : [this.OneProfile[0].numero_padi,  [Validators.required]],
+        updateNumeroPadiUtilsateur : [this.OneProfile[0].numero_padi, ],
         updateNiveauActuelUtilsateur : [this.OneProfile[0].niveau,  [Validators.required]], 
-        updateNomAssurancelUtilsateur : [this.OneProfile[0].nom_assurance,  [Validators.required]],   
-        updateNumeroAssurancelUtilsateur : [this.OneProfile[0].numero_assurance,  [Validators.required]]   
+        updateNomAssurancelUtilsateur : [this.OneProfile[0].nom_assurance,  ],   
+        updateNumeroAssurancelUtilsateur : [this.OneProfile[0].numero_assurance, ]   
               
     })
   }
