@@ -47,9 +47,9 @@ export class NewPasswordComponent implements OnInit {
       if(this.loginValid){
         this.apiService.postNewPassword(this.myFormNewPassword.value)
         localStorage.setItem('formNewpassword', JSON.stringify(this.myFormNewPassword.value))
-        this.router.navigate(['/app-login'])
         this.loginValid=undefined
-
+        alert(' vous allez recevoir un mail, confirmez la modification de votre mot de passe via ce mail ')
+        this.router.navigate(['/app-formation'])
       }else{
         alert("ce compte n'existe pas")
       }

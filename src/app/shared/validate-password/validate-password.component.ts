@@ -15,6 +15,7 @@ newPassword=[]
     console.log(JSON.parse(localStorage.getItem('formNewpassword')??''))
     this.newPassword=JSON.parse(localStorage.getItem('formNewpassword')??'')
     this.apiService.postNewPasswordOK(this.newPassword)
+   
   }
 
 }
