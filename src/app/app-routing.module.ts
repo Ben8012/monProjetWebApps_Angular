@@ -28,6 +28,8 @@ import { ResolverUpdateCarnetService } from './shared/resolvers/resolver-update_
 import { SitePlongeeComponent } from './components/site-plongee/site-plongee.component';
 import { AuthGuardService as AuthGuard } from './shared/auth/auth-guard.service';
 import { SuperAdminGuard } from './shared/auth/super-admin.guard';
+import { NewPasswordComponent } from './components/new-password/new-password.component';
+import { ValidatePasswordComponent } from './shared/validate-password/validate-password.component';
 
 const routes: Routes = [
   { path : '', component: HomeComponent, pathMatch : 'full'},
@@ -103,6 +105,11 @@ const routes: Routes = [
 
   { path : 'app-agenda/app-login', component: LoginComponent},
   
+  { path :'app-login/app-new-password', component: NewPasswordComponent},
+
+  { path:'app-validate-password', component: ValidatePasswordComponent},
+
+  { path :'app-validate-password/app-login', component: LoginComponent}
 ];
 
 

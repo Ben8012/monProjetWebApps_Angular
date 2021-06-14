@@ -150,6 +150,28 @@ getUsers(): Observable<any>{
       )
   }
 
+  postNewPassword(myFormNewPassword : any)
+  {
+     this._httpClient.post(
+      "http://localhost:3000/user/newPassword/",myFormNewPassword)
+      .subscribe(
+        (data: any) => {
+          
+        }
+      )
+  }
+
+  postNewPasswordOK(myFormNewPassword : any)
+  {
+     this._httpClient.post(
+      "http://localhost:3000/user/newPasswordOK/",myFormNewPassword)
+      .subscribe(
+        (data: any) => {
+          
+        }
+      )
+  }
+
   postCreateEvent(event : any)
   {
     event.start=event.start.toISOString().slice(0, 19).replace('T', ' ');

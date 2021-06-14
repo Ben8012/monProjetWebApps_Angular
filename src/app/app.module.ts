@@ -38,7 +38,9 @@ import { UserSessionService } from './shared/user_session/user-session.service';
 
 import {  LOCALE_ID } from '@angular/core' ;
 import { registerLocaleData } from '@angular/common' ;
-import localeFr from '@angular/common/locales/fr' ;
+import localeFr from '@angular/common/locales/fr';
+import { NewPasswordComponent } from './components/new-password/new-password.component';
+import { ValidatePasswordComponent } from './shared/validate-password/validate-password.component' ;
 
 registerLocaleData(localeFr);;
 
@@ -67,6 +69,8 @@ registerLocaleData(localeFr);;
     ChoixSpecialiteeComponent,
     ProfileComponent,
     AllUsersComponent,
+    NewPasswordComponent,
+    ValidatePasswordComponent,
     
     
     

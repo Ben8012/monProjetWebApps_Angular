@@ -11,10 +11,11 @@
             <!--<span *ngIf="myForm3.controls.login.errors?.errorLoginExist">Utilisateur non existant</span>-->
           </div>
           <div class="form-group col-md-12 ">
-            <label for="password">Votre mot de passe</label>
+            <label for="password">Votre mot de passe (min 4 caractères)</label>
             <input type="password" class="form-control" formControlName="password" placeholder="Votre mot de passe" id="password">
           </div>
-        </div>  
+        </div> 
+        <a class="d-flex justify-content-end" routerLink="app-new-password">mot de passe oublié</a> 
         <div class="d-flex justify-content-center" style="margin:10px;">
           <button type="submit" [disabled]="myForm3.invalid" class="btn btn-primary" >Connectez-vous</button>
         </div>
