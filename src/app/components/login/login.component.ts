@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   
 
   ngOnInit(): void {
+    localStorage.clear()
     this.user = this.userSessionService.user
     this.getUsers()
     this.myForm3 = this.formBuilder.group({
