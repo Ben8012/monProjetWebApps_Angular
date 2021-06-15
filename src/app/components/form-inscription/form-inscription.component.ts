@@ -20,7 +20,7 @@ export class FormInscriptionComponent implements OnInit {
       
         createNomUtilsateur : [, [Validators.required]],   
         createPrenomUtilsateur : [, [Validators.required]], 
-        createEmailUtilsateur : [, [Validators.required, Validators.email, Validators.minLength(8)]], 
+        createEmailUtilsateur : [, [Validators.required, Validators.minLength(8),Validators.pattern("[a-z0-9-\.]+@([a-z0-9-]+\.)+\.[a-z0-9-]{2,4}")]], 
         createPasswordlUtilsateur : [, [Validators.required, Validators.minLength(4)]], 
         createRuelUtilsateur : [, [Validators.required]], 
         createNumerolUtilsateur : [, [Validators.required]],

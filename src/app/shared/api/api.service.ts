@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { Carnets, EventsPlongee } from '../class/class.service';
 import { UserSessionService } from '../user_session/user-session.service';
@@ -10,7 +11,8 @@ import { UserSessionService } from '../user_session/user-session.service';
 export class SiteDePlongeeService {
 
   constructor(private _httpClient : HttpClient, 
-    private userSessionService : UserSessionService) { }
+    private userSessionService : UserSessionService,
+    private _router : Router) { }
 
 //Les GET
 
@@ -146,6 +148,10 @@ getUsers(): Observable<any>{
       .subscribe(
         (data: any) => {
           this.userSessionService.saveSession(data.token)
+          this._router.navigate(['/app-formation'])
+        },
+        (error) => {
+          alert("Mot de passe invalide")
         }
       )
   }

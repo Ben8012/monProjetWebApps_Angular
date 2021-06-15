@@ -109,7 +109,11 @@ const routes: Routes = [
 
   { path:'app-validate-password', component: ValidatePasswordComponent},
 
-  { path :'app-validate-password/app-login', component: LoginComponent}
+  { path :'app-validate-password/app-login', component: LoginComponent},
+
+  //{ path : '404', component : ErreurComponent},
+
+  { path : '**' , redirectTo : 'app-home'}
 ];
 
 

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
+
 import { SiteDePlongeeService } from '../api/api.service';
 
 
@@ -10,7 +9,7 @@ import { SiteDePlongeeService } from '../api/api.service';
 })
 export class ResolverInfosCarrieresService implements Resolve<any>{
 
-  constructor(public serve :  SiteDePlongeeService) { }
+  constructor( public serve : SiteDePlongeeService ) { }
 
 
   resolve(route : ActivatedRouteSnapshot)

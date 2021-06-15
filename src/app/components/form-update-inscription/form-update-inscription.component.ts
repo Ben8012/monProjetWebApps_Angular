@@ -30,7 +30,7 @@ export class FormUpdateInscriptionComponent implements OnInit {
     this.myForm2 = this.formBuilder.group({
         updateNomUtilsateur : [this.OneProfile[0].nom,  [Validators.required]],   
         updatePrenomUtilsateur : [this.OneProfile[0].prenom,  [Validators.required]], 
-        updateEmailUtilsateur : [this.OneProfile[0].email,  [Validators.required,Validators.email, Validators.minLength(8)]], 
+        updateEmailUtilsateur : [this.OneProfile[0].email,  [Validators.required, Validators.minLength(8),Validators.pattern("[a-z0-9-\.]+@([a-z0-9-]+\.)+\.[a-z0-9-]{2,4}")]], 
         updatePasswordlUtilsateur : [,  [Validators.required]], 
         updateRuelUtilsateur : [this.OneProfile[0].rue,  [Validators.required]], 
         updateNumerolUtilsateur : [this.OneProfile[0].numero,  [Validators.required]],

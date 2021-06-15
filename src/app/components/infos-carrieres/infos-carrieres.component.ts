@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {  SiteDePlongeeService} from '../../shared/api/api.service';
 import { SiteDePlongee } from '../../shared/class/class.service';
@@ -15,9 +15,10 @@ export class InfosCarrieresComponent implements OnInit {
   public OneSiteDePlongee!:SiteDePlongee
   public id : any 
 
-  constructor(private siteDePlongeeService:SiteDePlongeeService,private route: ActivatedRoute,private http: HttpClient)
+  constructor(private _router : Router, private siteDePlongeeService:SiteDePlongeeService,private route: ActivatedRoute,private http: HttpClient)
   {
     this.OneSiteDePlongee = this.route.snapshot.data["datas"]
+    if(this.OneSiteDePlongee == null) this._router.navigate(['/app-site-plongee']) 
   }
 
   ngOnInit(): void {

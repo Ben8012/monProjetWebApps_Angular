@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import  { VgApiService }  from  '@videogular/ngx-videogular/core';
 import { VgPlayerComponent } from '@videogular/ngx-videogular/core';
 import {  SiteDePlongeeService } from '../../shared/api/api.service';
@@ -20,17 +20,21 @@ export class InfosFormationComponent implements OnInit {
   public api !: VgApiService  ;
   public user: any;
  
-  constructor(private siteDePlongeeService:SiteDePlongeeService,private route: ActivatedRoute,private http: HttpClient, public router : ActivatedRoute, public userSessionService:UserSessionService) 
+  constructor(private _router : Router,private siteDePlongeeService:SiteDePlongeeService,private route: ActivatedRoute,private http: HttpClient, public router : ActivatedRoute, public userSessionService:UserSessionService) 
   {
     this.OneFormation = this.router.snapshot.data["datas"]
    }
   
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.userSessionService.user$.subscribe((user : any) => {
-      this.user = user;
-    })
+    if(this.OneFormation == null){
+      this._router.navigate(['/app-formation']) 
+    } else{
+      this.id = this.route.snapshot.paramMap.get('id');
+      this.userSessionService.user$.subscribe((user : any) => {
+        this.user = user;
+      })
+    }
   }
 
   onPlayerReady(api: VgApiService) {

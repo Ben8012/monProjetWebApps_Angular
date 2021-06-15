@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.user = this.userSessionService.user
     this.getUsers()
     this.myForm3 = this.formBuilder.group({
-      login : ["@", [Validators.required,Validators.email, Validators.minLength(8)],/*checkIfLoginExistValidator.check(this.http_client)*/],   
+      login : ["@", [Validators.required, Validators.minLength(8), Validators.pattern("[a-z0-9-\.]+@([a-z0-9-]+\.)+\.[a-z0-9-]{2,4}")]],   
       password : ["", [Validators.required,Validators.minLength(4)]] 
     })
 
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       }
       if(this.loginValid){
         this.apiService.postLogin(this.myForm3.value)
-        this.router.navigate(['/app-formation'])
+        
         this.loginValid=undefined
 
       }else{
