@@ -8,12 +8,12 @@ export class AuthService {
       ) {}
   // ...
   public isAuthenticated(): boolean {
-      console.log('token')
+      //console.log('token')
     const token = sessionStorage.getItem('token');
     if(token) {
         const decoded = <any>jwt_decode(token);
         const exp = decoded.exp;
-        console.log(decoded);
+       // console.log(decoded);
         
         if(exp * 1000 < Date.now()) {
             return false;
@@ -26,12 +26,12 @@ export class AuthService {
   }
 
   public isSuperAdmin() {
-    console.log('token')
+    //console.log('token')
     const token = sessionStorage.getItem('token');
     if(token) {
         const decoded = <any>jwt_decode(token);
         const exp = decoded.exp;
-        console.log(decoded);
+       // console.log(decoded);
         
         if(exp * 1000 < Date.now()) {
             return false;

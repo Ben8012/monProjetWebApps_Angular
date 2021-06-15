@@ -275,6 +275,16 @@ getUsers(): Observable<any>{
     )
   }
 
+  postDeamndeDroitAdmin(data :any)
+  {
+    this._httpClient.post('http://localhost:3000/demande/admin', data)
+    .subscribe(
+      (data) => {
+        //console.log(data)
+      }
+    )
+  }
+
   postCreateUserEvent(data :any)
   {
     this._httpClient.post('http://localhost:3000/create/userEvent', data)

@@ -40,7 +40,7 @@ import {  LOCALE_ID } from '@angular/core' ;
 import { registerLocaleData } from '@angular/common' ;
 import localeFr from '@angular/common/locales/fr';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
-import { ValidatePasswordComponent } from './shared/validate-password/validate-password.component' ;
+import { ValidatePasswordComponent } from './components/validate-password/validate-password.component' ;
 
 registerLocaleData(localeFr);;
 

@@ -29,7 +29,7 @@ import { SitePlongeeComponent } from './components/site-plongee/site-plongee.com
 import { AuthGuardService as AuthGuard } from './shared/auth/auth-guard.service';
 import { SuperAdminGuard } from './shared/auth/super-admin.guard';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
-import { ValidatePasswordComponent } from './shared/validate-password/validate-password.component';
+import { ValidatePasswordComponent } from './components/validate-password/validate-password.component';
 
 const routes: Routes = [
   { path : '', component: HomeComponent, pathMatch : 'full'},

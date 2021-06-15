@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SiteDePlongeeService } from '../api/api.service';
+import { SiteDePlongeeService } from '../../shared/api/api.service';
 
 @Component({
   selector: 'app-validate-password',
@@ -12,7 +12,6 @@ newPassword=[]
   constructor(private apiService : SiteDePlongeeService) { }
 
   ngOnInit(): void {
-    console.log(JSON.parse(localStorage.getItem('formNewpassword')??''))
     this.newPassword=JSON.parse(localStorage.getItem('formNewpassword')??'')
     this.apiService.postNewPasswordOK(this.newPassword)
    

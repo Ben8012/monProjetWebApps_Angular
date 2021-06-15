@@ -1,21 +1,26 @@
-<h2 style="text-align: center;">Votre profil </h2>
+
 <div  class="row justify-content-center">
-  <div class="d-flex align-items-center " style="width: 18rem; margin:10px;">
-    <div style="background-color:lavender; padding:20px">
+  <div class="d-flex align-items-center " style="width: 50vh; ">
+    <div style="background-color:lavender; padding:50px; margin:20px">
         <div style="text-align: center; margin:10px;">
-          <h5 >{{oneProfile[0].prenom}}</h5>
-          <h5 >{{oneProfile[0].nom}}</h5>
-            
-            <p>{{oneProfile[0].email}} </p>  
-            <p>Né le: {{oneProfile[0].date_de_naissance | date }}  à {{oneProfile[0].lieu_de_naissance}}  </p>   
-            
-            <h6>adresse :</h6>
-            <p>{{oneProfile[0].rue}} N°{{oneProfile[0].numero}} à {{oneProfile[0].code_postal}}, {{oneProfile[0].ville}} </p>
-            <p>{{oneProfile[0].pays}} </p>  
-            <p>Niveau: {{oneProfile[0].niveau}} </p>   
-            <p>N° PADI: {{oneProfile[0].numero_padi}}</p>
-            <p>Assurance: {{oneProfile[0].nom_assurance}}</p>
-            <p>N° d'assurance: {{oneProfile[0].numero_assurance}}</p>
+          <h2 >Votre profil </h2>
+          <br>
+          <h5 >{{oneProfile[0].prenom}} {{oneProfile[0].nom}}</h5>
+          <p>{{oneProfile[0].email}} </p>  
+          <p>Né le: {{oneProfile[0].date_de_naissance | date }}  à {{oneProfile[0].lieu_de_naissance}}  </p>   
+          <h6>adresse :</h6>
+          <p>{{oneProfile[0].rue}} N°{{oneProfile[0].numero}} à {{oneProfile[0].code_postal}}, {{oneProfile[0].ville}} </p>
+          <p>{{oneProfile[0].pays}} </p>  
+          <p>Niveau: {{oneProfile[0].niveau}} </p>   
+          <p>N° PADI: {{oneProfile[0].numero_padi}}</p>
+          <p>Assurance: {{oneProfile[0].nom_assurance}}</p>
+          <p>N° d'assurance: {{oneProfile[0].numero_assurance}}</p>
+          <p *ngIf="oneProfile[0].droit_evenement ">Droits administrateur activés</p>
+          <p *ngIf="!oneProfile[0].droit_evenement && !oneProfile[0].demandeAdmin" >Demande de droits administrateur </p>
+          <button  *ngIf="!oneProfile[0].droit_evenement && !oneProfile[0].demandeAdmin" type="button" class="btn btn-primary" (click)="postDeamndeDroitAdmin(oneProfile[0])" >Validez</button>
+          <p  *ngIf="!oneProfile[0].droit_evenement && !oneProfile[0].demandeAdmin"> (Permet de crée des évènements)</p>
+          <p *ngIf="oneProfile[0].demandeAdmin">Demande de droits administrateur en cours</p>
+          <h6>Gèré votre profile :</h6>
         </div> 
       
       <div class="d-flex justify-content-around" style="padding:10px">

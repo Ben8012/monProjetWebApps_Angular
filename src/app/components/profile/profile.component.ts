@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
 
   public oneProfile : any
   public id : any
+  public demandeAdmin: boolean=false
 
   constructor(private siteDePlongeeService:SiteDePlongeeService,private route: ActivatedRoute,private http: HttpClient, public router : ActivatedRoute,private userSessionService : UserSessionService)
   { 
@@ -31,4 +32,10 @@ export class ProfileComponent implements OnInit {
     window.location.reload()
   }
 
+  postDeamndeDroitAdmin(profil : any){
+    profil.demandeAdmin=true
+    this.siteDePlongeeService.postDeamndeDroitAdmin(profil)
+    alert('un email a été envoyé, votre demande de droit administateur va etre traité sous peu ')
+    
+  }
 }
