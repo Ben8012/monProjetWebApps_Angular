@@ -294,7 +294,7 @@ export class AgendaComponent  {
 
   participePas(eventId: any, userId:any){
   for (let index = 0; index < this.userEvent.length; index++) {
-    if(this.userEvent[index].id_evenement=eventId && this.userEvent[index].id_utilisateur==userId){
+    if(this.userEvent[index].id_evenement==eventId && this.userEvent[index].id_utilisateur==userId){
     this.deleteId=this.userEvent[index].id
     }
   }
