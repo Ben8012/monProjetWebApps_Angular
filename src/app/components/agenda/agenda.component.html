@@ -119,7 +119,7 @@
 
       <tbody>
         <tr *ngFor="let event of events">
-          <td  *ngIf="user && event.id == user.userId">
+          <td  *ngIf="user && event.userId == user.userId">
             <select  type="text"
             class="form-control"
             [(ngModel)]="event.title"
@@ -138,7 +138,7 @@
                 </optgroup>
             </select>
           </td>
-          <td *ngIf="event.id == user.userId">
+          <td *ngIf="event.userId == user.userId">
             <select
               type="text"
               class="form-control"
@@ -152,7 +152,7 @@
               </optgroup>
             </select>
           </td>
-          <td  *ngIf="user && event.id == user.userId">
+          <td  *ngIf="user && event.userId == user.userId">
             <input 
             type="number"
             class="form-control"
@@ -161,7 +161,7 @@
             (keyup)="refresh.next()"
           />
           </td>
-          <td *ngIf="event.id == user.userId">
+          <td *ngIf="event.userId == user.userId">
             <input
               class="form-control"
               type="text"
@@ -175,7 +175,7 @@
               placeholder="Not set"
             /> 
           </td>
-          <td *ngIf="event.id == user.userId">
+          <td *ngIf="event.userId == user.userId">
             <input
               class="form-control"
               type="text"
@@ -189,17 +189,17 @@
               placeholder="Not set"
             />
           </td>
-          <td *ngIf="event.id == user.userId">
+          <td *ngIf="event.userId == user.userId">
             <button class="btn btn-primary float-right" (click)="createEvent(event)">
               Créer
             </button>
           </td>
-          <td *ngIf="event.id == user.userId ">
+          <td *ngIf="event.userId == user.userId ">
             <button class="btn btn-primary" (click)="updateEvent(event)">
               Modifier
             </button>
           </td>
-          <td *ngIf="event.id == user.userId ">
+          <td *ngIf="event.userId == user.userId ">
             <button class="btn btn-danger" (click)="deleteEvent(event)">
               Effacer
             </button>
