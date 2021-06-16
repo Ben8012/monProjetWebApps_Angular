@@ -27,18 +27,6 @@ const colors: any = {
   },
 };
 
-export interface CalendarCustomEvent<Any> {
-  
-  instructor: string;//ajout
-  userId?: number;
-  training : boolean;
-  speciality:string;
-  level:string;
-  prix:any;
-  location:string;//jusqu'ici
-
-}
-
 @Component({
   selector: 'agenda-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -152,6 +140,13 @@ export class AgendaComponent  {
       if (iEvent === event) {
         return {
           ...event,
+          instructor: "",
+          userId: 0,
+          training : false,
+          speciality:"",
+          level:"",
+          prix: 0,
+          location:"",
           start: newStart,
           end: newEnd,
         };
