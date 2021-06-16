@@ -7,7 +7,7 @@
        
     </div> -->
     <div class="video-player-wrapper">
-        <vg-player>
+        <vg-player (onPlayerReady)="onPlayerReady($event)">
           <vg-overlay-play></vg-overlay-play>
           <vg-buffering></vg-buffering>
       
@@ -16,7 +16,7 @@
             <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
           </vg-scrub-bar>
       
-          <vg-controls autoplay>
+          <vg-controls >
             <vg-play-pause></vg-play-pause>
             <vg-playback-button></vg-playback-button>
       
@@ -34,15 +34,14 @@
             <vg-fullscreen></vg-fullscreen>
           </vg-controls>
           <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" crossorigin autoplay> 
-            <!--<video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" autoplay muted onloadedmetadata="this.muted = true">-->
             <source src="'../../assets/video/padi_intro.mp4" type="video/mp4">
             
-            <track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt"
-            srclang="en" default>
+            <!--<track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt"
+            srclang="en">
             <track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt"
             srclang="es">
-            <track kind="subtitles" label="Francais" src="http://static.videogular.com/assets/subs/pale-blue-dot-fr.vtt"
-            srclang="fr">
+            <track kind="subtitles" label="Francais" src="../../assets/subtitles/padi_intro_fr.vtt"
+            srclang="fr">-->
           </video>
         </vg-player> 
     

@@ -5,7 +5,7 @@ import { Formations, Speciality } from '../../shared/class/class.service';
 @Component({
   selector: 'app-formation',
   templateUrl: './formation.component.html',
-  
+  styleUrls : ['./formation.component.scss']
 })
 export class FormationComponent implements OnInit {
 

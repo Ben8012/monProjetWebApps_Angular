@@ -5,7 +5,8 @@ import { UserSessionService } from '../../shared/user_session/user-session.servi
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.html'
+  templateUrl: './navbar.component.html',
+  styleUrls:['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
 

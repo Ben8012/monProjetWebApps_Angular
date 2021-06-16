@@ -2,7 +2,7 @@
 <h2 style="text-align: center;">Les formations</h2>
 <br>
 <div class="row justify-content-center" >
-    <div class="d-flex align-items-center " style="width: 18rem;margin:10px; ;" *ngFor= "let formation of formations">
+    <!-- <div class="d-flex align-items-center " style="width: 18rem;margin:10px; ;" *ngFor= "let formation of formations">
       <div>
         <div style="background-color:lavender; ">
           <a [routerLink]="['app-infos-formation', formation.id]" style=" text-decoration:none;color:black;">
@@ -14,45 +14,49 @@
           </a> 
         </div>
       </div>
+    </div> -->
+    <div class="d-flex align-items-center box" *ngFor= "let formation of formations">
+          <a [routerLink]="['app-infos-formation', formation.id]">
+            <img [src]="'http://localhost:3000/images_formations/'+formation.image" class="img" alt="..."> 
+            <div class="content"> 
+              <h6>{{formation.nom}}</h6>
+              <h6>{{formation.niveau}}</h6>
+            </div>
+          </a> 
     </div>
 </div>
 <br>
 <br>
 <h2 style="text-align: center;">Les spécialités</h2>
 <br>
-  <div class="row justify-content-center">
-    <div class="d-flex align-items-center " style="width: 18rem;margin:10px; ;" *ngFor= "let speciality of specialitys">
-      <div>
-        <div style="background-color:lavender; ">
-          <a [routerLink]="['app-infos-specialite', speciality.id]" style=" text-decoration:none;color:black;">
-            <img [src]="'http://localhost:3000/images_formations/'+speciality.image" style="width:286px; height:200px;" alt="..."> 
-            <div style="text-align: center;padding:10px;">
-              <h6>{{speciality.nom}}</h6>
-              <h6>{{speciality.nom_francais}}</h6>
-            </div>
-          </a> 
-        </div>        
-      </div>
-    </div>
+<div class="row justify-content-center ">
+  <div class="d-flex align-items-center box" *ngFor= "let speciality of specialitys">
+        <a [routerLink]="['app-infos-specialite', speciality.id]">
+          <img [src]="'http://localhost:3000/images_formations/'+speciality.image" class="img" alt="..."> 
+          <div class="content">
+            <h6>{{speciality.nom}}</h6>
+            <h6>{{speciality.nom_francais}}</h6>
+          </div>
+        </a> 
   </div>
-  <br>
-  <br>
-  <div class="row justify-content-center" style="margin:20px;">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-      Voir l'arborescence PADI
-    </button>
-  </div>
-    
-  <!-- Modal -->
+</div>
+<br>
+<br>
+<div class="row justify-content-center" style="margin:20px;">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+    Voir l'arborescence PADI
+  </button>
+</div>
   
-  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="justify-content-center" >
-          <img src="http://localhost:3000/images_formations/PADI-ALL.jpg" style="width:1152px; height: 645px;">
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- Modal -->
 
-  
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="justify-content-center" >
+        <img src="http://localhost:3000/images_formations/PADI-ALL.jpg" style="width:1152px; height: 645px;">
+      </div>
+    </div>
+  </div>
+</div>
+

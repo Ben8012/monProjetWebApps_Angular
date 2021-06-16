@@ -40,7 +40,8 @@ import {  LOCALE_ID } from '@angular/core' ;
 import { registerLocaleData } from '@angular/common' ;
 import localeFr from '@angular/common/locales/fr';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
-import { ValidatePasswordComponent } from './components/validate-password/validate-password.component' ;
+import { ValidatePasswordComponent } from './components/validate-password/validate-password.component';
+import { ErreurRoutingComponent } from './components/erreur-routing/erreur-routing.component' ;
 
 registerLocaleData(localeFr);;
 
@@ -71,6 +72,7 @@ registerLocaleData(localeFr);;
     AllUsersComponent,
     NewPasswordComponent,
     ValidatePasswordComponent,
+    ErreurRoutingComponent,
     
     
     

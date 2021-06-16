@@ -1,13 +1,11 @@
 <div class="row justify-content-center" >
-  <div class="d-flex align-items-center " style="width: 18rem; margin:10px;" *ngFor= "let site of siteDePlongee">
-    <div style="background-color:lavender; ">
-      <a [routerLink]="['app-infos-carrieres', site.id]"  style=" text-decoration:none;color:black;">
-        <img [src]="'http://localhost:3000/images/'+site.photo" class="card-img-top" style="width:286px; height:200px;" alt="...">
-        <div style="text-align: center; margin:10px;">
+  <div class="d-flex align-items-center box " *ngFor= "let site of siteDePlongee">
+      <a [routerLink]="['app-infos-carrieres', site.id]" >
+        <img [src]="'http://localhost:3000/images/'+site.photo" class="img" alt="...">
+        <div class="content">
           <h5 >{{site.nom}}</h5>
           <p >{{site.niveau_min}} </p>    
         </div> 
       </a>
-    </div>
   </div>
 </div>

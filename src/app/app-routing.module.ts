@@ -30,6 +30,7 @@ import { AuthGuardService as AuthGuard } from './shared/auth/auth-guard.service'
 import { SuperAdminGuard } from './shared/auth/super-admin.guard';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
 import { ValidatePasswordComponent } from './components/validate-password/validate-password.component';
+import { ErreurRoutingComponent } from './components/erreur-routing/erreur-routing.component';
 
 const routes: Routes = [
   { path : '', component: HomeComponent, pathMatch : 'full'},
@@ -111,7 +112,7 @@ const routes: Routes = [
 
   { path :'app-validate-password/app-login', component: LoginComponent},
 
-  //{ path : '404', component : ErreurComponent},
+  { path : '404', component : ErreurRoutingComponent},
 
   { path : '**' , redirectTo : 'app-home'}
 ];

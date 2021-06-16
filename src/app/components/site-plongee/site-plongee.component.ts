@@ -5,7 +5,8 @@ import {SiteDePlongee } from '../../shared/class/class.service';
 
 @Component({
   selector: 'app-site-plongee',
-  templateUrl: './site-plongee.component.html'
+  templateUrl: './site-plongee.component.html',
+  styleUrls :['./site-plongee.component.scss']
 })
 export class SitePlongeeComponent implements OnInit {
   siteDePlongee:SiteDePlongee[]=[];

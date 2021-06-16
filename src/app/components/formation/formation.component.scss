@@ -1,0 +1,25 @@
+.box {
+    width: 264px;margin:12px;
+    background-color:lavender;
+   
+}
+
+.img {
+    width:264px; height:200px;
+}
+.content {
+    text-decoration:none;color:black !important;
+    text-align: center;padding:10px;
+}
+
+.box a {
+    text-decoration: unset;
+}
+
+
+.box a:hover {
+    text-decoration: unset;
+}
+.box:hover {
+    box-shadow: 2px 2px 2px blue;
+}

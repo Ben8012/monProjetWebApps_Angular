@@ -35,17 +35,16 @@ export class InfosFormationComponent implements OnInit {
         this.user = user;
       })
     }
+    
   }
 
   onPlayerReady(api: VgApiService) {
     this.api = api;
 
-    this.api.getDefaultMedia().subscriptions.ended.subscribe(
-        () => {
-            // Set the video to the beginning
-            this.api.getDefaultMedia().currentTime = 0;
-        }
-    );
-  }
+    // Set the volume video to 0
+    this.api.volume = 0
 
+    // Set the video to the beginning
+    this.api.getDefaultMedia().currentTime = 0;
+  }
 }
