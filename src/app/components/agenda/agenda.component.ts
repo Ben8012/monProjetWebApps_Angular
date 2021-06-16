@@ -27,12 +27,25 @@ const colors: any = {
   },
 };
 
+export interface CalendarCustomEvent<Any> {
+  
+  instructor: string;//ajout
+  userId?: number;
+  training : boolean;
+  speciality:string;
+  level:string;
+  prix:any;
+  location:string;//jusqu'ici
+
+}
+
 @Component({
   selector: 'agenda-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['agenda.component.scss'],
   templateUrl: './agenda.component.html',
 })
+
 export class AgendaComponent  {
   @ViewChild('modalContent', { static: true }) modalContent!: TemplateRef<any>;
 
