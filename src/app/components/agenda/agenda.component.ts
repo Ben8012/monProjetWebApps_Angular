@@ -98,7 +98,6 @@ export class AgendaComponent  {
   
   events: CalendarEvent[] = [];
   
-  //Ajouter un jour en milliseconde +86400000
 // Ajouter les options du datePicker permet dans donner une nombre de jour ou un evement peut etre créé
   public datePickerOptionsStart : FlatpickrDefaultsInterface = {
 
