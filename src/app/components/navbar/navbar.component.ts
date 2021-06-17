@@ -30,4 +30,8 @@ export class NavbarComponent implements OnInit {
     window.open("https://www.facebook.com/groups/342660476729885");
   }
 
+  monCv(){
+    window.open('http://localhost:3000/download/CV_Benjamin.pdf')
+  }
+
 }
