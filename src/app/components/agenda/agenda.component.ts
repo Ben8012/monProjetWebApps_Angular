@@ -59,7 +59,7 @@ export class AgendaComponent  {
 
   ngOnInit(): void {
     this.user = this.userSessionService.user
-    //this.getEvent()
+    //this.getEvents()
     //this.eventSubject()
     this.setEvent()
     this.getUsers()
@@ -223,7 +223,7 @@ export class AgendaComponent  {
     this.activeDayIsOpen = false;
   }
 
-  //mon code
+//mon code
 
   formations:Formations[]=[]
   specialitys:Speciality[]=[]
@@ -345,40 +345,8 @@ export class AgendaComponent  {
     )   
   }
 
-
-  /*getEvent(){
-    this.siteDePlongeeService.getEvent()
-    .subscribe(
-      eventsPlongee =>{
-        this.eventsPlongee = eventsPlongee;
-        for (let index = 0; index < this.eventsPlongee.length; index++) {
-          
-          let evenements = new EventsPlongee(this.eventsPlongee)
-          evenements.id = this.eventsPlongee[index].id
-          evenements.title = this.eventsPlongee[index].title
-          evenements.instructor = this.eventsPlongee[index].instructor
-          evenements.training = this.eventsPlongee[index].training
-          evenements.location = this.eventsPlongee[index].location
-          evenements.level = this.eventsPlongee[index].level
-          evenements.speciality = this.eventsPlongee[index].speciality
-          evenements.start = new Date(this.eventsPlongee[index].start)
-          evenements.end = new Date(this.eventsPlongee[index].end)
-          evenements.color = this.eventsPlongee[index].color
-          evenements.draggable = this.eventsPlongee[index].draggable
-          evenements.resizable = this.eventsPlongee[index].resizable
-          evenements.userId = this.eventsPlongee[index].userId
-          evenements.prix = this.eventsPlongee[index].prix
-      
-          this.events.push(evenements)
-        }
-      }
-    )
-    console.log(this.events)
-  }*/
-
   setEvent(){
     for (let index = 0; index < this.eventsPlongee.length; index++) {
-      
       let evenements = new EventsPlongee(this.eventsPlongee)
       evenements.id = this.eventsPlongee[index].id
       evenements.title = this.eventsPlongee[index].title
@@ -400,7 +368,13 @@ export class AgendaComponent  {
   }
 
 
-  
+  // component.this
+/*NgOnInit {
+  this.getEvents();
+  this.eventSubject()
+}*/
+
+
 
   /*private eventSubject(): void {
   this.apiService.stateEventSubject
@@ -427,7 +401,7 @@ export class AgendaComponent  {
         this.events.push(evenements)
         //this.ref.markForCheck
         } 
-        //console.log(this.events)
+        console.log(this.events)
       });
   }
 

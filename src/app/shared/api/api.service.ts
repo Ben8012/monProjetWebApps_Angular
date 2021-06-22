@@ -85,7 +85,7 @@ export class SiteDePlongeeService {
 
 
 // recuperer les evenements
-/*public stateEvent: any ;
+public stateEvent: any ;
 public stateEventSubject = new Subject<any>();
 
 public AllEvent(): Promise<any> {
@@ -95,7 +95,7 @@ return this._httpClient.get(`http://localhost:3000/events`)
     this.stateEvent = rep;
     this.stateEventSubject.next(this.stateEvent);
     });
-}*/
+}
 
 
   getEventByTitle(title:any):Observable<any>{
