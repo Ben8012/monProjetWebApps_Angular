@@ -32,6 +32,7 @@ const colors: any = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['agenda.component.scss'],
   templateUrl: './agenda.component.html',
+  
 })
 
 export class AgendaComponent  {
@@ -44,7 +45,8 @@ export class AgendaComponent  {
             private siteDePlongeeService:SiteDePlongeeService,
             private route : ActivatedRoute,
             private ref: ChangeDetectorRef,
-            public userSessionService : UserSessionService,) 
+            public userSessionService : UserSessionService,
+            ) 
   {
     this.OneProfile = this.route.snapshot.data["datas2"]
     this.eventsPlongee = this.route.snapshot.data["datas1"]
@@ -57,7 +59,8 @@ export class AgendaComponent  {
 
   ngOnInit(): void {
     this.user = this.userSessionService.user
-
+    //this.getEvent()
+    //this.eventSubject()
     this.setEvent()
     this.getUsers()
     this.getUserEvent()
@@ -98,7 +101,7 @@ export class AgendaComponent  {
   
   events: CalendarEvent[] = [];
   
-// Ajouter les options du datePicker permet dans donner une nombre de jour ou un evement peut etre créé
+  // Ajouter les options du datePicker permet dans donner une nombre de jour ou un evement peut etre créé
   public datePickerOptionsStart : FlatpickrDefaultsInterface = {
 
     enable : [{from : new Date(Date.now()), to : new Date(new Date().getFullYear() + 200, 12)}]
@@ -202,7 +205,11 @@ export class AgendaComponent  {
   
   updateEvent(eventToUpdate: CalendarEvent) {
     if(eventToUpdate.id){
+      eventToUpdate.start.setDate((eventToUpdate.start.getDate() + 1))
+      eventToUpdate.end.setDate((eventToUpdate.end.getDate() + 1))
       this.apiService.postUpdateEvent(eventToUpdate)
+      
+      window.location.reload()
     }else{
       alert("vous essayez de de modifier un evenement qui n'existe pas")
     }
@@ -216,7 +223,7 @@ export class AgendaComponent  {
     this.activeDayIsOpen = false;
   }
 
-//mon code
+  //mon code
 
   formations:Formations[]=[]
   specialitys:Speciality[]=[]
@@ -243,28 +250,6 @@ export class AgendaComponent  {
     }
   }
   
-
-  setEvent(){
-    for (let index = 0; index < this.eventsPlongee.length; index++) {
-      let evenements = new EventsPlongee(this.eventsPlongee)
-      evenements.id = this.eventsPlongee[index].id
-      evenements.title = this.eventsPlongee[index].title
-      evenements.instructor = this.eventsPlongee[index].instructor
-      evenements.training = this.eventsPlongee[index].training
-      evenements.location = this.eventsPlongee[index].location
-      evenements.level = this.eventsPlongee[index].level
-      evenements.speciality = this.eventsPlongee[index].speciality
-      evenements.start = new Date(this.eventsPlongee[index].start)
-      evenements.end = new Date(this.eventsPlongee[index].end)
-      evenements.color = this.eventsPlongee[index].color
-      evenements.draggable = this.eventsPlongee[index].draggable
-      evenements.resizable = this.eventsPlongee[index].resizable
-      evenements.userId = this.eventsPlongee[index].userId
-      evenements.prix = this.eventsPlongee[index].prix
-  
-      this.events.push(evenements)
-      } 
-    }
 
   userEventId:any
   existe:boolean=false
@@ -338,14 +323,6 @@ export class AgendaComponent  {
       this.participants=[]
       this.vueParticipant=!this.vueParticipant
     }
-
-    /*for (let index = 0; index < this.participants.length; index++) {
-      if( this.participants[index]==this.user.name){
-        this.jeParticipe=true
-      }  
-    }
-    console.log(this.participants)
-    console.log(this.user)*/
   }
    
 
@@ -367,5 +344,98 @@ export class AgendaComponent  {
       }
     )   
   }
+
+
+  /*getEvent(){
+    this.siteDePlongeeService.getEvent()
+    .subscribe(
+      eventsPlongee =>{
+        this.eventsPlongee = eventsPlongee;
+        for (let index = 0; index < this.eventsPlongee.length; index++) {
+          
+          let evenements = new EventsPlongee(this.eventsPlongee)
+          evenements.id = this.eventsPlongee[index].id
+          evenements.title = this.eventsPlongee[index].title
+          evenements.instructor = this.eventsPlongee[index].instructor
+          evenements.training = this.eventsPlongee[index].training
+          evenements.location = this.eventsPlongee[index].location
+          evenements.level = this.eventsPlongee[index].level
+          evenements.speciality = this.eventsPlongee[index].speciality
+          evenements.start = new Date(this.eventsPlongee[index].start)
+          evenements.end = new Date(this.eventsPlongee[index].end)
+          evenements.color = this.eventsPlongee[index].color
+          evenements.draggable = this.eventsPlongee[index].draggable
+          evenements.resizable = this.eventsPlongee[index].resizable
+          evenements.userId = this.eventsPlongee[index].userId
+          evenements.prix = this.eventsPlongee[index].prix
+      
+          this.events.push(evenements)
+        }
+      }
+    )
+    console.log(this.events)
+  }*/
+
+  setEvent(){
+    for (let index = 0; index < this.eventsPlongee.length; index++) {
+      
+      let evenements = new EventsPlongee(this.eventsPlongee)
+      evenements.id = this.eventsPlongee[index].id
+      evenements.title = this.eventsPlongee[index].title
+      evenements.instructor = this.eventsPlongee[index].instructor
+      evenements.training = this.eventsPlongee[index].training
+      evenements.location = this.eventsPlongee[index].location
+      evenements.level = this.eventsPlongee[index].level
+      evenements.speciality = this.eventsPlongee[index].speciality
+      evenements.start = new Date(this.eventsPlongee[index].start)
+      evenements.end = new Date(this.eventsPlongee[index].end)
+      evenements.color = this.eventsPlongee[index].color
+      evenements.draggable = this.eventsPlongee[index].draggable
+      evenements.resizable = this.eventsPlongee[index].resizable
+      evenements.userId = this.eventsPlongee[index].userId
+      evenements.prix = this.eventsPlongee[index].prix
+  
+      this.events.push(evenements)
+    }
+  }
+
+
+  
+
+  /*private eventSubject(): void {
+  this.apiService.stateEventSubject
+    .subscribe(
+    (datas) => {
+      this.eventsPlongee=datas
+      for (let index = 0; index < this.eventsPlongee.length; index++) {
+        let evenements = new EventsPlongee(this.eventsPlongee)
+        evenements.id = this.eventsPlongee[index].id
+        evenements.title = this.eventsPlongee[index].title
+        evenements.instructor = this.eventsPlongee[index].instructor
+        evenements.training = this.eventsPlongee[index].training
+        evenements.location = this.eventsPlongee[index].location
+        evenements.level = this.eventsPlongee[index].level
+        evenements.speciality = this.eventsPlongee[index].speciality
+        evenements.start = new Date(this.eventsPlongee[index].start)
+        evenements.end = new Date(this.eventsPlongee[index].end)
+        evenements.color = this.eventsPlongee[index].color
+        evenements.draggable = this.eventsPlongee[index].draggable
+        evenements.resizable = this.eventsPlongee[index].resizable
+        evenements.userId = this.eventsPlongee[index].userId
+        evenements.prix = this.eventsPlongee[index].prix
+    
+        this.events.push(evenements)
+        //this.ref.markForCheck
+        } 
+        //console.log(this.events)
+      });
+  }
+
+
+
+  private getEvents() :void{
+    this.apiService.AllEvent();
+  }*/
+
  
 }

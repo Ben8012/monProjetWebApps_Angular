@@ -6,10 +6,17 @@
 
 .img {
     width:264px; height:200px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .content {
     text-decoration:none;color:black !important;
     text-align: center;padding:10px;
+    
+}
+
+.box{
+    border-radius: 10px;
 }
 
 .box a {
@@ -21,5 +28,5 @@
     text-decoration: unset;
 }
 .box:hover {
-    box-shadow: 2px 2px 2px blue;
+    box-shadow: 2px 2px 2px black;
 }

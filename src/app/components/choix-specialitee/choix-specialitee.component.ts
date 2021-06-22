@@ -5,6 +5,7 @@ import { SiteDePlongeeService } from '../../shared/api/api.service';
 
 @Component({
   selector: 'app-choix-specialitee',
+  styleUrls: ['./choix-specialitee.component.scss'],
   templateUrl: './choix-specialitee.component.html',
   
 })

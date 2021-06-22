@@ -129,6 +129,7 @@ export class Carnets{
     video:string;
     id_facture: number;
     niveau:string;
+    youtube:string;
   
     constructor(data: any)
     {
@@ -149,7 +150,8 @@ export class Carnets{
         this.photo3 = data.photo3;
         this.video = data.video;
         this.id_facture = data.id_facture;   
-        this.niveau = data.niveau;   
+        this.niveau = data.niveau; 
+        this.youtube= data.youtube;  
     }
   }
   
@@ -172,6 +174,7 @@ export class Carnets{
     video:string;
     id_facture: number;
     nom_francais : string;
+    youtube:string;
   
     constructor(data: any)
     {
@@ -193,6 +196,7 @@ export class Carnets{
         this.video = data.video;
         this.id_facture = data.id_facture;   
         this.nom_francais= data.nom_francais;   
+        this.youtube= data.youtube;  
     }
   }
 

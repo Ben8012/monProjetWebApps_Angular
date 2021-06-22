@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer,SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import  { VgApiService }  from  '@videogular/ngx-videogular/core';
 import { VgPlayerComponent } from '@videogular/ngx-videogular/core';
@@ -20,10 +21,19 @@ export class InfosFormationComponent implements OnInit {
   public api !: VgApiService  ;
   public user: any;
  
-  constructor(private _router : Router,private siteDePlongeeService:SiteDePlongeeService,private route: ActivatedRoute,private http: HttpClient, public router : ActivatedRoute, public userSessionService:UserSessionService) 
-  {
-    this.OneFormation = this.router.snapshot.data["datas"]
-   }
+  constructor(
+    private _router : Router,
+    private siteDePlongeeService:SiteDePlongeeService,
+    private route: ActivatedRoute,
+    private http: HttpClient, 
+    public router : ActivatedRoute, 
+    public userSessionService:UserSessionService,
+    private sanitizer : DomSanitizer
+    ) 
+      {
+        this.OneFormation = this.router.snapshot.data["datas"]
+        
+      }
   
 
   ngOnInit(): void {
@@ -46,5 +56,9 @@ export class InfosFormationComponent implements OnInit {
 
     // Set the video to the beginning
     this.api.getDefaultMedia().currentTime = 0;
+  }
+
+  public urlVideo(): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.OneFormation.youtube+'?autoplay=1');
   }
 }

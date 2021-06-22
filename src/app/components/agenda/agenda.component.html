@@ -94,7 +94,9 @@
   <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
 
   <br /><br /><br />
-<div *ngIf="user && user.isAdmin">
+<div 
+  *ngIf="user && user.isAdmin"
+  >
   <h3 style="text-align: center;">
     Editer
     <button class="btn btn-primary float-left" (click)="addEvent()">
@@ -102,7 +104,7 @@
     </button>
   </h3>
 
-  <div class="table-responsive">
+  <div class="table-responsive vueEvent">
     <table class="table table-bordered">
       <thead  >
         <tr style="text-align: center;">
@@ -126,9 +128,6 @@
             (keyup)="refresh.next()">
                 <optgroup label="Donnée actuelle">
                   <option selected>{{event.title}}</option>
-                </optgroup>
-                <optgroup label="Exploration">
-                  <option value="Discover Local Diving">Discover Local Diving</option>
                 </optgroup>
                 <optgroup label="Les formations">
                   <option *ngFor="let formation of formations" value={{formation.nom}}>{{formation.nom}}</option>

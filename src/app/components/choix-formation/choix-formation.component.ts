@@ -5,6 +5,7 @@ import { SiteDePlongeeService } from '../../shared/api/api.service';
 
 @Component({
   selector: 'app-choix-formation',
+  styleUrls: ['./choix-formation.component.scss'],
   templateUrl: './choix-formation.component.html',
   
 })

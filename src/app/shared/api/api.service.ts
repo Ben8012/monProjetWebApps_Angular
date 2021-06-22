@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { Carnets, EventsPlongee } from '../class/class.service';
 import { UserSessionService } from '../user_session/user-session.service';
 
@@ -16,11 +16,11 @@ export class SiteDePlongeeService {
 
 //Les GET
 
-getUsers(): Observable<any>{
-  return this._httpClient.get(
-    'http://localhost:3000/utilisateurs'
-  )
-}
+  getUsers(): Observable<any>{
+    return this._httpClient.get(
+      'http://localhost:3000/utilisateurs'
+    )
+  }
 
   getSite(): Observable<any>{
       return this._httpClient.get(
@@ -81,6 +81,22 @@ getUsers(): Observable<any>{
       'http://localhost:3000/events'
     )
   }
+
+
+
+// recuperer les evenements
+/*public stateEvent: any ;
+public stateEventSubject = new Subject<any>();
+
+public AllEvent(): Promise<any> {
+return this._httpClient.get(`http://localhost:3000/events`)
+    .toPromise()
+    .then(rep => {
+    this.stateEvent = rep;
+    this.stateEventSubject.next(this.stateEvent);
+    });
+}*/
+
 
   getEventByTitle(title:any):Observable<any>{
     return this._httpClient.get(
